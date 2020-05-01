@@ -1,0 +1,253 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📚 Stack Overflow
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📚 Stack Overflow
+  description: Stack Overflow accounts to aggregate
+paths:
+  /so:
+    get:
+      tags:
+      - 📚 Stack Overflow
+      summary: Read all available Stack Overflow accounts
+      operationId: getStacks
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StackOverflow'
+    post:
+      tags:
+      - 📚 Stack Overflow
+      summary: Create a new Stack Overflow account
+      operationId: createStack
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                user:
+                  type: integer
+                  example: 11919256
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StackOverflow'   
+  /so/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired Stack Overflow account
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 📚 Stack Overflow
+      summary: Read specific Stack Overflow acount by ID
+      operationId: getStackByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StackOverflow'    
+    patch:
+      tags:
+      - 📚 Stack Overflow
+      summary: Update Stack Overflow account based on API data
+      operationId: updateStackUser
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StackOverflow'      
+    put:
+      tags:
+      - 📚 Stack Overflow
+      summary: Update specific Stack Overflow account by ID
+      operationId: updateStack
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                user:
+                  type: integer
+                  example: 11919256
+                account:
+                  type: integer
+                  example: 14905500
+                joined_at:
+                  type: string
+                  format: date-time
+                reputation:
+                  type: integer
+                  example: 0
+                accept_rate:
+                  type: integer
+                  example: 0
+                name:
+                  type: string
+                  example: krhoyt
+                location:
+                  type: string
+                  example: The Interwebs!
+                website:
+                  type: string
+                  example: http://something.com
+                link:
+                  type: string
+                  example: http://something.com
+                image:
+                  type: string
+                  example: http://something.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StackOverflow'
+    delete:
+      tags:
+      - 📚 Stack Overflow
+      summary: Delete specific Stack Overflow account by ID
+      operationId: deleteStackByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid         
+  /so/answers/{user_id}:        
+    parameters:
+    - name: user_id
+      in: path
+      description: Stack Overflow user ID
+      required: true
+      schema:
+        type: string
+        example: '1146762'
+    get:
+      tags:
+      - 📚 Stack Overflow
+      summary: Get answers made by specific Stack Overflow account
+      operationId: getStackAnswers
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /so/question/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: Stack Overflow question ID
+      required: true
+      schema:
+        type: string
+        example: '38583348'
+    get:
+      tags:
+      - 📚 Stack Overflow
+      summary: Get a specific question from Stack Overflow
+      operationId: getStackQuestion
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    StackOverflow:
+      required:
+      - developer_id
+      - account
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid          
+        user:
+          type: integer
+          example: 11919256
+        account:
+          type: integer
+          example: 14905500
+        joined_at:
+          type: string
+          format: date-time
+        reputation:
+          type: integer
+          example: 0
+        accept_rate:
+          type: integer
+          example: 0
+        name:
+          type: string
+          example: krhoyt
+        location:
+          type: string
+          example: The Interwebs!
+        website:
+          type: string
+          example: http://something.com
+        link:
+          type: string
+          example: http://something.com
+        image:
+          type: string
+          example: http://something.com

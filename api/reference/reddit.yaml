@@ -1,0 +1,185 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 👽 Reddit
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 👽 Reddit
+  description: Reddit accounts to aggregate
+paths:
+  /reddit:
+    get:
+      tags:
+      - 👽 Reddit
+      summary: Read all available Reddit accounts
+      operationId: getReddits
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reddit'
+    post:
+      tags:
+      - 👽 Reddit
+      summary: Create a new Reddit account
+      operationId: createReddit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+                  example: krhoyt
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reddit'
+  /reddit/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired Reddit account
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 👽 Reddit
+      summary: Read specific Reddit account by ID
+      operationId: getRedditByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reddit'
+    patch:
+      tags:
+      - 👽 Reddit
+      summary: Update Reddit account based on API data
+      operationId: updateRedditAccount
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reddit'
+    put:
+      tags:
+      - 👽 Reddit
+      summary: Update specific Reddit account by ID
+      operationId: updateReddit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                user:
+                  type: string
+                  example: u19t6
+                name:
+                  type: string
+                  example: Tokyono
+                joined_at:
+                  type: string
+                  format: date-time
+                image:
+                  type: string
+                  example: http://something.com
+                link:
+                  type: integer
+                  example: 0
+                comment:
+                  type: integer
+                  example: 0
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reddit'
+    delete:
+      tags:
+      - 👽 Reddit
+      summary: Delete specific Reddit account by ID
+      operationId: deleteRedditByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+components:
+  schemas:
+    Reddit:
+      required:
+      - developer_id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid
+        user:
+          type: string
+          example: u19t6
+        name:
+          type: string
+          example: Tokyono
+        joined_at:
+          type: string
+          format: date-time
+        image:
+          type: string
+          example: http://something.com
+        link:
+          type: integer
+          example: 0
+        comment:
+          type: integer
+          example: 0

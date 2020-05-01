@@ -1,0 +1,146 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🤝 Situation
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🤝 Situation
+  description: Different types of developer interactions
+paths:
+  /situation:
+    get:
+      tags:
+      - 🤝 Situation
+      summary: Read all available situations
+      operationId: getSituations
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Situation'
+    post:
+      tags:
+      - 🤝 Situation
+      summary: Create a new situation type
+      operationId: createSituation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Sleeping
+                color_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Situation'   
+  /situation/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID of specific situation type
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 🤝 Situation
+      summary: Read specific situation by ID
+      operationId: getSituationByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Situation'      
+    put:
+      tags:
+      - 🤝 Situation
+      summary: Update specific situation by ID
+      operationId: updateSituation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Sleeping
+                color_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Situation'
+    delete:
+      tags:
+      - 🤝 Situation
+      summary: Delete specific situation by ID
+      operationId: deleteSituationByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid                                                              
+components:
+  schemas:
+    Situation:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: Sleeping
+        color_id:
+          type: string
+          format: uuid
+          

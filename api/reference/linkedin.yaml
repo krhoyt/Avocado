@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📇 LinkedIn
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📇 LinkedIn
+  description: Developer LinkedIn account
+paths:
+  /linkedin:
+    get:
+      tags:
+      - 📇 LinkedIn
+      summary: Read all available accounts
+      operationId: getLinkedIn
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LinkedIn'
+    post:
+      tags:
+      - 📇 LinkedIn
+      summary: Create a new LinkedIn account
+      operationId: createLinkedIn
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                profile:
+                  type: string
+                  example: parkerkrhoyt
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkedIn'   
+  /linkedin/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired account
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 📇 LinkedIn
+      summary: Read specific account by ID
+      operationId: getLinkedInByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkedIn'      
+    put:
+      tags:
+      - 📇 LinkedIn
+      summary: Update specific account by ID
+      operationId: updateLinkedIn
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                profile:
+                  type: string
+                  example: parkerkrhoyt
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkedIn'
+    delete:
+      tags:
+      - 📇 LinkedIn
+      summary: Delete specific account by ID
+      operationId: deleteLinkedInByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid                                                              
+components:
+  schemas:
+    LinkedIn:
+      required:
+      - developer_id
+      - profile
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid          
+        profile:
+          type: string
+          example: parkerkrhoyt
+          

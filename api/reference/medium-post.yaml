@@ -1,0 +1,358 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🔮 📝 Medium Post
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🔮 📝 Medium Post
+  description: Post made to a Medium account
+paths:
+  /medium/post:
+    get:
+      tags:
+      - 🔮 📝 Medium Post
+      summary: Read all available account posts
+      operationId: getMediumPosts
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MediumPost'
+    post:
+      tags:
+      - 🔮 📝 Medium Post
+      summary: Create a new Medium account post
+      operationId: createMediumPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                medium_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  format: uuid
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: Friends
+                summary:
+                  type: string
+                  example: How you doin'?!
+                claps:
+                  type: integer
+                  example: 0
+                category:
+                  type: array
+                  items:
+                    type: string
+                  example: ['sitcom', 'television']
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                concepts:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                entities:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediumPost'
+  /medium/post/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired Medium post
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🔮 📝 Medium Post
+      summary: Read specific Medium post by ID
+      operationId: getMediumPostByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediumPost'
+    put:
+      tags:
+      - 🔮 📝 Medium Post
+      summary: Update specific Medium post by ID
+      operationId: updateMediumPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                medium_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  format: uuid
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: Friends
+                summary:
+                  type: string
+                  example: How you doin'?!
+                claps:
+                  type: integer
+                  example: 0
+                category:
+                  type: array
+                  items:
+                    type: string
+                  example: ['sitcom', 'television']
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                concepts:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                entities:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediumPost'
+    delete:
+      tags:
+      - 🔮 📝 Medium Post
+      summary: Delete specific Medium post by ID
+      operationId: deleteMediumPostByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /medium/post/guid/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: GUID field for specific Medium post (Base64, UTF-8)
+      required: true
+      schema:
+        type: string
+        format: byte
+    get:
+      tags:
+      - 🔮 📝 Medium Post
+      summary: Read specific Medium post by GUID
+      operationId: getMediumPostByGUID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediumPost'
+  /medium/post/{id}/media:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for specific Medium post
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🔮 📝 Medium Post
+      summary: Read all available media for given Medium post
+      operationId: getMediumPostMedia
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'media.yaml#/components/schemas/Media'
+    post:
+      tags:
+      - 🔮 📝 Medium Post
+      summary: Create a new reference between a Medium post and media
+      operationId: createMediumPostMedia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                media_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  post_id:
+                    type: string
+                    format: uuid
+                  media_id:
+                    type: string
+                    format: uuid
+components:
+  schemas:
+    MediumPost:
+      required:
+      - medium_id
+      - published_at
+      - guid
+      - link
+      - title
+      - summary
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        medium_id:
+          type: string
+          format: uuid
+        published_at:
+          type: string
+          format: date-time
+        guid:
+          type: string
+          format: uuid
+        link:
+          type: string
+          example: http://something.com
+        title:
+          type: string
+          example: Friends
+        summary:
+          type: string
+          example: How you doin'?!
+        claps:
+          type: integer
+          example: 0
+        category:
+          type: array
+          items:
+            type: string
+          example: ['sitcom', 'television']
+        keywords:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+        concepts:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+        entities:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+    MediumPostMedia:
+      required:
+      - post_id
+      - media_id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        uuid:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        post_id:
+          type: string
+          format: uuid
+        media_id:
+          type: string
+          format: uuid

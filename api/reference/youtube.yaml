@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📺 YouTube
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📺 YouTube
+  description: YouTube accounts to aggregate
+paths:
+  /youtube:
+    get:
+      tags:
+      - 📺 YouTube
+      summary: Read all available YouTube accounts
+      operationId: getYouTube
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/YouTube'
+    post:
+      tags:
+      - 📺 YouTube
+      summary: Create a new YouTube account
+      operationId: createYouTube
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                channel:
+                  type: string
+                  example: UCSFeFhtLBuzU2UMs7oOL54A
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YouTube'   
+  /youtube/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired YouTube account
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 📺 YouTube
+      summary: Read specific YouTube account by ID
+      operationId: getYouTubeID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YouTube'      
+    put:
+      tags:
+      - 📺 YouTube
+      summary: Update specific YouTube account by ID
+      operationId: updateYouTube
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                channel:
+                  type: string
+                  example: UCSFeFhtLBuzU2UMs7oOL54A
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YouTube'
+    delete:
+      tags:
+      - 📺 YouTube
+      summary: Delete specific YouTube account by ID
+      operationId: deleteYouTubeID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid                                                              
+components:
+  schemas:
+    YouTube:
+      required:
+      - developer_id
+      - channel
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid          
+        channel:
+          type: string
+          example: UCSFeFhtLBuzU2UMs7oOL54A

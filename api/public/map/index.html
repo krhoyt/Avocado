@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <title>IBM Champion Map</title>
+
+
+  <link rel='stylesheet' href='https://js.arcgis.com/4.14/esri/themes/light/main.css' />
+  <link rel='stylesheet' href='map.css' />
+  <script src='https://js.arcgis.com/4.14/'></script>
+  <script src='map.js'></script>
+</head>
+
+<body>
+
+  <div id='viewDiv'>
+    <div class='loader padding-leader-3 padding-trailer-3 js-loader'>
+      <div class='loader-bars'></div>
+      <div class='loader-text'>Loading ...</div>
+    </div>
+    <div id='actions' class='esri-widget'>
+      <a id='filterToggle' class='showing'>Filters</a>
+      <div id='filterContainer'>
+        <ul id='filterList'>
+        </ul>
+        <button class='esri-button' id='clear'>Clear filter</button>
+      </div>
+    </div>
+  </div>
+  <div id='info-display'>
+    <p id='info'></p>
+  </div>
+</body>
+
+</html>

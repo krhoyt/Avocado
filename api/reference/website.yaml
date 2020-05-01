@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🌐 Website
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🌐 Website
+  description: Developer website
+paths:
+  /website:
+    get:
+      tags:
+      - 🌐 Website
+      summary: Read all available websites
+      operationId: getWebsites
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Website'
+    post:
+      tags:
+      - 🌐 Website
+      summary: Create a new website
+      operationId: createWebsite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                url:
+                  type: string
+                  example: http://something.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Website'   
+  /website/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired website
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 🌐 Website
+      summary: Read specific website by ID
+      operationId: getWebsiteByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Website'      
+    put:
+      tags:
+      - 🌐 Website
+      summary: Update specific website by ID
+      operationId: updateWebsite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                url:
+                  type: string
+                  example: http://something.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Website'
+    delete:
+      tags:
+      - 🌐 Website
+      summary: Delete specific website by ID
+      operationId: deleteWebsiteByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid                                                              
+components:
+  schemas:
+    Website:
+      required:
+      - developer_id
+      - url
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid          
+        url:
+          type: string
+          example: http://something.com
+          

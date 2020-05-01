@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🧰 Utility
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🧰 Utility
+  description: Tools used that are unrelated to storage
+paths:
+  /utility/images/{url}:
+    get:    
+      tags:
+      - 🧰 Utility
+      summary: Extract unique images from a document (web page)
+      operationId: getUtilityImages
+      parameters:
+      - name: url
+        in: path
+        description: URL of the document to scape (Base64, UTF-8)
+        required: true
+        schema:
+          type: string
+          format: byte       
+      - in: query
+        name: accept
+        required: false
+        schema:
+          type: string
+          example: 'jpeg,jpg,png,tiff,gif'
+          default: 'jpeg,jpg,png,tiff,gif'
+        description: Accepted image types defaults to Watson supported formats
+      - in: query
+        name: check
+        required: false
+        schema:
+          type: boolean
+          default: true
+        description: Check for valid file type against accepted types
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: Maximum size of image to classify (Mb)
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                example: ['http://something.com/bee.jpg', 'http://something.com/whisk.png', 'http://something.com/cat.gif']
+  /utility/geocode:
+    get:    
+      tags:
+      - 🧰 Utility
+      summary: Find recommended addresses and locations
+      operationId: getUtilityGeocode
+      parameters:
+      - in: query
+        name: location
+        required: false
+        schema:
+          type: string
+          example: 'Armonk, NY'
+          default: 'Armonk, NY'
+        description: The location to geocode
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object

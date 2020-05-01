@@ -1,0 +1,384 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🥑 Avocado
+  description: 'Developer Relations means relating to developers. There are millions of developers. How do you relate to them all? What are your metrics? Where do you even get started? Avocado is an out-of-the-box developer relations system, with your success at heart. ❤️️'
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+- url: https://insights-api.mybluemix.net/api
+security:
+- ApiKeyAuth: []
+tags:
+- name: 📒 Account
+  description: Account ownership of data sets
+- name: 🌈 Color
+  description: Available system colors  
+- name: 🤝 Situation
+  description: Different types of developer interactions
+- name: 💬 ️Language
+  description: Languages spoken by developers around the world  
+- name: 🏢 Organization
+  description: Logical groupings of developers (tagging)
+- name: 🖇️ Relationship
+  description: Business connections between stakeholders
+- name: 👔 Role
+  description: Logical groupings of developers (tagging)  
+- name: 🔧 Skill
+  description: Skills available to developers (tagging)
+- name: 🖥️ Developer
+  description: Individual developers - and advocates
+- name: 🖼️ Media
+  description: Media (image files) associated with content aggregation
+- name: ️🗒️ Note
+  description: Notes associated with developer activities  
+- name: 🏗️ Contribution
+  description: Contributions made by developers
+- name: 🧱 Capacity
+  description: Capacity in which developer contributed    
+- name: 📓 Blog
+  description: Blog feeds to aggregate
+- name: 📓 📝 Blog Post
+  description: Post made to a personal blog
+- name: 🔥 Dev
+  description:  DEV Community accounts to aggregate (Dev.to)
+- name: 🔥 📝 Dev Post
+  description: Post made to a DEV Community account
+- name: 🐙 GitHub
+  description: GitHub accounts to aggregate
+- name: 🐙 🐱 GitHub Event
+  description: Public GitHub repository interactions
+- name: 📸 Instagram
+  description: Developer Instagram account   
+- name: 📇 LinkedIn
+  description: Developer LinkedIn account  
+- name: 🔮 Medium
+  description: Medium feeds to aggregate
+- name: 🔮 📝 Medium Post
+  description: Post made to a Medium account
+- name: 👽 Reddit
+  description: Reddit accounts to aggregate  
+- name: 👽 📝 Reddit Post
+  description: Post made to a Reddit account  
+- name: 📚 Stack Overflow
+  description: Stack Overflow accounts to aggregate
+- name: 📚 ✋ Stack Overflow Answer
+  description: Answer made by a Stack Overflow account
+- name: 📚 ❓ Stack Overflow Question
+  description: Question proposed by a Stack Overflow account
+- name: 🐦 Twitter
+  description: Twitter accounts to aggregate
+- name: 🐦 ✒️ Twitter Status
+  description: Status update to a Twitter account
+- name: 🌐 Website
+  description: Developer website
+- name: 📺 YouTube
+  description: YouTube accounts to aggregate
+- name: 📺 📼 YouTube Video
+  description: Video posted to a YouTube account
+- name: 🗄️ Repository
+  description: Specific GitHub repositories to monitor
+- name: 🧠 Watson
+  description: Watson machine learning features
+- name: 🧰 Utility
+  description: Tools used that are unrelated to storage
+paths:
+  /account:
+    $ref: 'account.yaml#/paths/~1account'
+  /account/{id}:
+    $ref: 'account.yaml#/paths/~1account~1{id}'
+  /account/{id}/token/refresh:
+    $ref: 'account.yaml#paths/~1account~1{id}~1token~1refresh'
+  /account/email/{email}:
+    $ref: 'account.yaml#/paths/~1account~1email~1{email}'
+  /account/email:
+    $ref: 'account.yaml#/paths/~1account~1email'
+  /account/login:
+    $ref: 'account.yaml#/paths/~1account~1login'
+  /account/token/{token}:
+    $ref: 'account.yaml#/paths/~1account~1token~1{token}'        
+  /color:
+    $ref: 'color.yaml#/paths/~1color'
+  /color/{id}:
+    $ref: 'color.yaml#/paths/~1color~1{id}'          
+  /situation:
+    $ref: 'situation.yaml#/paths/~1situation'
+  /situation/{id}:
+    $ref: 'situation.yaml#/paths/~1situation~1{id}'
+  /language:
+    $ref: 'language.yaml#/paths/~1language'
+  /language/{id}:
+    $ref: 'language.yaml#/paths/~1language~1{id}'
+  /language/name/{prefix}:
+    $ref: 'language.yaml#/paths/~1language~1name~1{prefix}'        
+  /organization:
+    $ref: 'organization.yaml#/paths/~1organization'
+  /organization/{id}:
+    $ref: 'organization.yaml#/paths/~1organization~1{id}'
+  /organization/name/{prefix}:
+    $ref: 'organization.yaml#/paths/~1organization~1name~1{prefix}' 
+  /relationship:
+    $ref: 'relationship.yaml#/paths/~1relationship'
+  /relationship/{id}:
+    $ref: 'relationship.yaml#/paths/~1relationship~1{id}'
+  /relationship/name/{prefix}:
+    $ref: 'relationship.yaml#/paths/~1relationship~1name~1{prefix}'     
+  /role:
+    $ref: 'role.yaml#/paths/~1role'
+  /role/{id}:
+    $ref: 'role.yaml#/paths/~1role~1{id}'
+  /role/name/{prefix}:
+    $ref: 'role.yaml#/paths/~1role~1name~1{prefix}'       
+  /skill:
+    $ref: 'skill.yaml#/paths/~1skill'
+  /skill/{id}:
+    $ref: 'skill.yaml#/paths/~1skill~1{id}'
+  /skill/name/{prefix}:
+    $ref: 'skill.yaml#/paths/~1skill~1name~1{prefix}'        
+  /developer:
+    $ref: 'developer.yaml#/paths/~1developer'
+  /developer/{id}:
+    $ref: 'developer.yaml#/paths/~1developer~1{id}'
+  /developer/{id}/social:
+    $ref: 'developer.yaml#/paths/~1developer~1{id}~1social'    
+  /developer/{id}/{model}:
+    $ref: 'developer.yaml#/paths/~1developer~1{id}~1{model}'
+  /developer/{developer_id}/{model}/{model_id}:
+    $ref: 'developer.yaml#/paths/~1developer~1{developer_id}~1{model}~1{model_id}'
+  /media:
+    $ref: 'media.yaml#/paths/~1media'
+  /media/{id}:
+    $ref: 'media.yaml#/paths/~1media~1{id}'
+  /media/url/{url}:
+    $ref: 'media.yaml#/paths/~1media~1url~1{url}'
+  /note:
+    $ref: 'note.yaml#/paths/~1note'
+  /note/{id}:
+    $ref: 'note.yaml#/paths/~1note~1{id}'    
+  /note/developer/{id}:
+    $ref: 'note.yaml#/paths/~1note~1developer~1{id}' 
+  /contribution:
+    $ref: 'contribution.yaml#/paths/~1contribution'
+  /contribution/{id}:
+    $ref: 'contribution.yaml#/paths/~1contribution~1{id}'    
+  /contribution/developer/{id}:
+    $ref: 'contribution.yaml#/paths/~1contribution~1developer~1{id}'            
+  /contribution/{id}/role:
+    $ref: 'contribution.yaml#/paths/~1contribution~1{id}~1role'    
+  /contribution/{contribution_id}/role/{role_id}:
+    $ref: 'contribution.yaml#/paths/~1contribution~1{contribution_id}~1role~1{role_id}'    
+  /capacity:
+    $ref: 'capacity.yaml#/paths/~1capacity'
+  /capacity/{id}:
+    $ref: 'capacity.yaml#/paths/~1capacity~1{id}'    
+  /blog:
+    $ref: 'blog.yaml#/paths/~1blog'
+  /blog/{id}:
+    $ref: 'blog.yaml#/paths/~1blog~1{id}'
+  /blog/post:
+    $ref: 'blog-post.yaml#/paths/~1blog~1post'
+  /blog/post/{id}:
+    $ref: 'blog-post.yaml#/paths/~1blog~1post~1{id}'
+  /blog/post/guid/{id}:
+    $ref: 'blog-post.yaml#/paths/~1blog~1post~1guid~1{id}'
+  /blog/post/{id}/media:
+    $ref: 'blog-post.yaml#/paths/~1blog~1post~1{id}~1media'
+  /dev:
+    $ref: 'dev.yaml#/paths/~1dev'
+  /dev/{id}:
+    $ref: 'dev.yaml#/paths/~1dev~1{id}'
+  /dev/post:
+    $ref: 'dev-post.yaml#/paths/~1dev~1post'
+  /dev/post/{id}:
+    $ref: 'dev-post.yaml#/paths/~1dev~1post~1{id}'
+  /dev/post/guid/{id}:
+    $ref: 'dev-post.yaml#/paths/~1dev~1post~1guid~1{id}'
+  /dev/post/{id}/media:
+    $ref: 'dev-post.yaml#/paths/~1dev~1post~1{id}~1media'
+  /github:
+    $ref: 'github.yaml#/paths/~1github'
+  /github/{id}:
+    $ref: 'github.yaml#/paths/~1github~1{id}'
+  /github/event:
+    $ref: 'github-event.yaml#/paths/~1github~1event'
+  /github/event/{id}:
+    $ref: 'github-event.yaml#/paths/~1github~1event~1{id}'
+  /github/event/id/{id}:
+    $ref: 'github-event.yaml#/paths/~1github~1event~1id~1{id}'
+  /github/activity/{login}:
+    $ref: 'github.yaml#/paths/~1github~1activity~1{login}'
+  /instagram:
+    $ref: 'instagram.yaml#/paths/~1instagram'
+  /instagram/{id}:
+    $ref: 'instagram.yaml#/paths/~1instagram~1{id}'            
+  /linkedin:
+    $ref: 'linkedin.yaml#/paths/~1linkedin'
+  /linkedin/{id}:
+    $ref: 'linkedin.yaml#/paths/~1linkedin~1{id}'        
+  /medium:
+    $ref: 'medium.yaml#/paths/~1medium'
+  /medium/{id}:
+    $ref: 'medium.yaml#/paths/~1medium~1{id}'
+  /medium/post:
+    $ref: 'medium-post.yaml#/paths/~1medium~1post'
+  /medium/post/{id}:
+    $ref: 'medium-post.yaml#/paths/~1medium~1post~1{id}'
+  /medium/post/guid/{id}:
+    $ref: 'medium-post.yaml#/paths/~1medium~1post~1guid~1{id}'
+  /medium/post/{id}/media:
+    $ref: 'medium-post.yaml#/paths/~1medium~1post~1{id}~1media'
+  /reddit:
+    $ref: 'reddit.yaml#/paths/~1reddit'
+  /reddit/{id}:
+    $ref: 'reddit.yaml#/paths/~1reddit~1{id}'    
+  /reddit/post:
+    $ref: 'reddit-post.yaml#/paths/~1reddit~1post'
+  /reddit/post/{id}:
+    $ref: 'reddit-post.yaml#/paths/~1reddit~1post~1{id}'
+  /reddit/post/guid/{id}:
+    $ref: 'reddit-post.yaml#/paths/~1reddit~1post~1guid~1{id}'    
+  /so:
+    $ref: 'so.yaml#/paths/~1so'
+  /so/{id}:
+    $ref: 'so.yaml#/paths/~1so~1{id}'
+  /so/answer:
+    $ref: 'so-answer.yaml#/paths/~1so~1answer'
+  /so/answer/{id}:
+    $ref: 'so-answer.yaml#/paths/~1so~1answer~1{id}'
+  /so/answer/id/{id}:
+    $ref: 'so-answer.yaml#/paths/~1so~1answer~1id~1{id}'
+  /so/answers/{user_id}:
+    $ref: 'so.yaml#/paths/~1so~1answers~1{user_id}'
+  /so/question/id/{id}:
+    $ref: 'so-question.yaml#/paths/~1so~1question~1id~1{id}'
+  /twitter:
+    $ref: 'twitter.yaml#/paths/~1twitter'
+  /twitter/{id}:
+    $ref: 'twitter.yaml#/paths/~1twitter~1{id}'
+  /twitter/timeline/{screen_name}:
+    $ref: 'twitter.yaml#/paths/~1twitter~1timeline~1{screen_name}'
+  /twitter/status:
+    $ref: 'twitter-status.yaml#/paths/~1twitter~1status'
+  /twitter/status/{id}:
+    $ref: 'twitter-status.yaml#/paths/~1twitter~1status~1{id}'
+  /twitter/status/id/{id}:
+    $ref: 'twitter-status.yaml#/paths/~1twitter~1status~1id~1{id}'
+  /twitter/status/{id}/media:
+    $ref: 'twitter-status.yaml#/paths/~1twitter~1status~1{id}~1media'
+  /website:
+    $ref: 'website.yaml#/paths/~1website'
+  /website/{id}:
+    $ref: 'website.yaml#/paths/~1website~1{id}'    
+  /youtube:
+    $ref: 'youtube.yaml#/paths/~1youtube'
+  /youtube/{id}:
+    $ref: 'youtube.yaml#/paths/~1youtube~1{id}'
+  /youtube/video:
+    $ref: 'youtube-video.yaml#/paths/~1youtube~1video'
+  /youtube/video/{id}:
+    $ref: 'youtube-video.yaml#/paths/~1youtube~1video~1{id}'
+  /youtube/video/guid/{id}:
+    $ref: 'youtube-video.yaml#/paths/~1youtube~1video~1guid~1{id}'
+  /youtube/video/duration/{video}:
+    $ref: 'youtube-video.yaml#/paths/~1youtube~1video~1duration~1{video}'
+  /repository:
+    $ref: 'repository.yaml#/paths/~1repository'
+  /repository/{id}:
+    $ref: 'repository.yaml#/paths/~1repository~1{id}'
+  /watson/language/{url}:
+    $ref: 'watson.yaml#/paths/~1watson~1language~1{url}'
+  /watson/vision/{url}:
+    $ref: 'watson.yaml#/paths/~1watson~1vision~1{url}'
+  /utility/images/{url}:
+    $ref: 'utility.yaml#/paths/~1utility~1images~1{url}'
+  /utility/geocode:
+    $ref: 'utility.yaml#/paths/~1utility~1geocode'    
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Avocado
+  schemas:
+    Account:
+      $ref: 'account.yaml#/components/schemas/Account'
+    Blog:
+      $ref: 'blog.yaml#/components/schemas/Blog'
+    BlogPost:
+      $ref: 'blog-post.yaml#/components/schemas/BlogPost'
+    BlogPostMedia:
+      $ref: 'blog-post.yaml#/components/schemas/BlogPostMedia'
+    Capacity:
+      $ref: 'capacity.yaml#/components/schemas/Capacity'   
+    Color:
+      $ref: 'color.yaml#/components/schemas/Color'                        
+    Contribution:
+      $ref: 'contribution.yaml#/components/schemas/Contribution'         
+    Dev:
+      $ref: 'dev.yaml#/components/schemas/Dev'
+    Developer:
+      $ref: 'developer.yaml#/components/schemas/Developer'
+    DevPost:
+      $ref: 'dev-post.yaml#/components/schemas/DevPost'
+    DevPostMedia:
+      $ref: 'dev-post.yaml#/components/schemas/DevPostMedia'
+    GitHub:
+      $ref: 'github.yaml#/components/schemas/GitHub'
+    GitHubEvent:
+      $ref: 'github-event.yaml#/components/schemas/GitHubEvent'
+    Language:
+      $ref: 'language.yaml#/components/schemas/Language' 
+    Instagram:
+      $ref: 'instagram.yaml#/components/schemas/Instagram'      
+    LinkedIn:
+      $ref: 'linkedin.yaml#/components/schemas/LinkedIn'            
+    Media:
+      $ref: 'media.yaml#/components/schemas/Media'
+    Medium:
+      $ref: 'medium.yaml#/components/schemas/Medium'
+    MediumPost:
+      $ref: 'medium-post.yaml#/components/schemas/MediumPost'
+    MediumPostMedia:
+      $ref: 'medium-post.yaml#/components/schemas/MediumPostMedia'
+    Note:
+      $ref: 'note.yaml#/components/schemas/Note'      
+    Organization:
+      $ref: 'organization.yaml#/components/schemas/Organization'      
+    Reddit:
+      $ref: 'reddit.yaml#/components/schemas/Reddit'      
+    RedditPost:
+      $ref: 'reddit-post.yaml#/components/schemas/RedditPost'            
+    Relationship:
+      $ref: 'relationship.yaml#/components/schemas/Relationship'            
+    Repository:
+      $ref: 'repository.yaml#/components/schemas/Repository'
+    Role:
+      $ref: 'role.yaml#/components/schemas/Role' 
+    Situation:
+      $ref: 'situation.yaml#/components/schemas/Situation'      
+    Skill:
+      $ref: 'skill.yaml#/components/schemas/Skill'      
+    StackOverflow:
+      $ref: 'so.yaml#/components/schemas/StackOverflow'
+    StackOverflowAnswer:
+      $ref: 'so-answer.yaml#/components/schemas/StackOverflowAnswer'
+    StackOverflowQuestion:
+      $ref: 'so-question.yaml#/components/schemas/StackOverflowQuestion'
+    Twitter:
+      $ref: 'twitter.yaml#/components/schemas/Twitter'
+    TwitterStatus:
+      $ref: 'twitter-status.yaml#/components/schemas/TwitterStatus'
+    TwitterStatusMedia:
+      $ref: 'twitter-status.yaml#/components/schemas/TwitterStatusMedia'
+    Website:
+      $ref: 'website.yaml#/components/schemas/Website'      
+    YouTube:
+      $ref: 'youtube.yaml#/components/schemas/YouTube'
+    YouTubeVideo:
+      $ref: 'youtube-video.yaml#/components/schemas/YouTubeVideo'

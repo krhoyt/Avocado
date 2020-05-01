@@ -1,0 +1,238 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🐦 Twitter
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🐦 Twitter
+  description: Twitter accounts to aggregate
+paths:
+  /twitter:
+    get:
+      tags:
+      - 🐦 Twitter
+      summary: Read all available Twitter accounts
+      operationId: getTwitters
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Twitter'
+    post:
+      tags:
+      - 🐦 Twitter
+      summary: Create a new Twitter account
+      operationId: createTwitter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                screen_name:
+                  type: string
+                  example: winst_whitehall         
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Twitter'   
+  /twitter/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired Twitter account
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 🐦 Twitter
+      summary: Read specific Twitter acount by ID
+      operationId: getTwitterByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Twitter'      
+    put:
+      tags:
+      - 🐦 Twitter
+      summary: Update specific Twitter account by ID
+      operationId: updateTwitter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                user:
+                  type: integer
+                  example: 0
+                joined_at:
+                  type: string
+                  format: date-time
+                name:
+                  type: string
+                  example: Winston Whitehall
+                screen_name:
+                  type: string
+                  example: winst_whitehall
+                image:
+                  type: string
+                  example: http://something.com
+                followers:
+                  type: integer
+                  example: 0
+                friends:
+                  type: integer
+                  example: 0
+                listed:
+                  type: integer
+                  example: 0
+                favorites:
+                  type: integer
+                  example: 0
+                count:
+                  type: integer
+                  example: 0
+                location:
+                  type: string
+                  example: London
+                description:
+                  type: string
+                  example: Travels with My Father                
+                url:
+                  type: string
+                  example: https://netflix.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Twitter'
+    delete:
+      tags:
+      - 🐦 Twitter
+      summary: Delete specific Twitter account by ID
+      operationId: deleteTwitterByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid         
+  /twitter/timeline/{screen_name}:        
+    parameters:
+    - name: screen_name
+      in: path
+      description: Screen name of Twitter account
+      required: true
+      schema:
+        type: string
+        example: winst_whitehall
+    get:
+      tags:
+      - 🐦 Twitter
+      summary: Get timeline for specific Twitter user
+      operationId: getTwitterTimeline
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+components:
+  schemas:
+    Twitter:
+      required:
+      - developer_id
+      - screen_name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid          
+        user:
+          type: integer
+          example: 0
+        joined_at:
+          type: string
+          format: date-time
+        name:
+          type: string
+          example: Winston Whitehall
+        screen_name:
+          type: string
+          example: winst_whitehall
+        image:
+          type: string
+          example: http://something.com
+        followers:
+          type: integer
+          example: 0
+        friends:
+          type: integer
+          example: 0
+        listed:
+          type: integer
+          example: 0
+        favorites:
+          type: integer
+          example: 0
+        count:
+          type: integer
+          example: 0
+        location:
+          type: string
+          example: London
+        description:
+          type: string
+          example: Travels with My Father
+        url:
+          type: string
+          example: https://netflix.com

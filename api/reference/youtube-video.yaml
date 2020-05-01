@@ -1,0 +1,278 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📺 📼 YouTube Video
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📺 📼 YouTube Video
+  description: Video posted to a YouTube account
+paths:
+  /youtube/video:
+    get:
+      tags:
+      - 📺 📼 YouTube Video
+      summary: Read all available YouTube videos
+      operationId: getYouTubeVideos
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/YouTubeVideo'
+    post:
+      tags:
+      - 📺 📼 YouTube Video
+      summary: Create a new account video
+      operationId: createYouTubeVideo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                youtube_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  format: uuid
+                video:
+                  type: string
+                  example: oNyXYPhnUIs
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: Knight Rider
+                views:
+                  type: integer
+                  example: 0
+                stars:
+                  type: integer
+                  example: 0
+                duration: 
+                  type: integer
+                  example: 0
+                thumbnail:
+                  type: string
+                  example: http://something.com  
+                summary:
+                  type: string
+                  example: Original show introduction
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YouTubeVideo'
+  /youtube/video/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired account video
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 📺 📼 YouTube Video
+      summary: Read specific account video by ID
+      operationId: getYouTubeVideoByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YouTubeVideo'
+    put:
+      tags:
+      - 📺 📼 YouTube Video
+      summary: Update specific account video by ID
+      operationId: updateYouTubeVideo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                youtube_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  format: uuid
+                video:
+                  type: string
+                  example: oNyXYPhnUIs
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: Knight Rider
+                views:
+                  type: integer
+                  example: 0
+                stars:
+                  type: integer
+                  example: 0
+                duration:
+                  type: integer
+                  example: 0
+                thumbnail:
+                  type: string
+                  example: http://something.com
+                summary:
+                  type: string
+                  example: Original show introduction
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YouTubeVideo'
+    delete:
+      tags:
+      - 📺 📼 YouTube Video
+      summary: Delete specific account video by ID
+      operationId: deleteYouTubeVideoByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /youtube/video/guid/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: GUID field for specific account video (Base64, UTF-8)
+      required: true
+      schema:
+        type: string
+        format: byte
+    get:
+      tags:
+      - 📺 📼 YouTube Video
+      summary: Read specific account video by GUID
+      operationId: getYouTubeVideoByGUID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YouTubeVideo'
+  /youtube/video/duration/{video}:
+    parameters:
+    - name: video
+      in: path
+      description: Specific YouTube video ID
+      required: true
+      schema:
+        type: string
+        example: oNyXYPhnUIs
+    get:
+      tags:
+      - 📺 📼 YouTube Video
+      summary: Get information about video duration
+      operationId: getYouTubeVideoDuration
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  duration: 
+                    type: string
+                    example: PT9M59S
+                  seconds:
+                    type: integer
+                    example: 599
+components:
+  schemas:
+    YouTubeVideo:
+      required:
+      - youtube_id
+      - published_at
+      - guid
+      - video
+      - link
+      - title
+      - summary
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        youtube_id:
+          type: string
+          format: uuid
+        published_at:
+          type: string
+          format: date-time
+        guid:
+          type: string
+          format: uuid
+        video:
+          type: string
+          example: oNyXYPhnUIs          
+        link:
+          type: string
+          example: http://something.com
+        title:
+          type: string
+          example: Knight Rider
+        views:
+          type: integer
+          example: 0
+        stars:
+          type: integer
+          example: 0
+        duration:
+          type: integer
+          example: 0
+        thumbnail:
+          type: string
+          example: http://something.com
+        summary:
+          type: string
+          example: Original show introduction

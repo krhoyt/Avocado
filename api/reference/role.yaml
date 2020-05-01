@@ -1,0 +1,216 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 👔 Role
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+security:
+- ApiKeyAuth: []
+tags:
+- name: 👔 Role
+  description: Logical groupings of developers (tagging)
+paths:
+  /role:
+    get:
+      tags:
+      - 👔 Role
+      summary: Read all available roles
+      operationId: getRoles
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: Engineer
+                    color_id:
+                      type: string
+                      format: uuid
+                    count:
+                      type: integer
+                      example: 0
+    post:
+      tags:
+      - 👔 Role
+      summary: Create a new role
+      operationId: createRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Engineer
+                color_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+  /role/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired role
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 👔 Role
+      summary: Read specific role by ID
+      operationId: getRoleByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+    put:
+      tags:
+      - 👔 Role
+      summary: Update specific role by ID
+      operationId: updateRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Engineer
+                color_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+    delete:
+      tags:
+      - 👔 Role
+      summary: Delete specific role by ID
+      operationId: deleteRoleByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /role/name/{prefix}:
+    parameters:
+    - name: prefix
+      in: path
+      description: Prefix for a given role
+      required: true
+      schema:
+        type: string
+        example: Eng
+    get:
+      tags:
+      - 👔 Role
+      summary: Search for role with given value
+      operationId: searchRoleByName
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: Engineer
+                    color_id:
+                      type: string
+                      format: uuid
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Avocado
+  schemas:
+    Role:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: Engineer
+        color_id: 
+          type: string
+          format: uuid

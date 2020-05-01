@@ -1,0 +1,276 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 👽 📝 Reddit Post
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 👽 📝 Reddit Post
+  description: Post made to a Reddit account
+paths:
+  /reddit/post:
+    get:
+      tags:
+      - 👽 📝 Reddit Post
+      summary: Read all available Reddit posts
+      operationId: getRedditPosts
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RedditPost'
+    post:
+      tags:
+      - 👽 📝 Reddit Post
+      summary: Create a new Reddit post
+      operationId: createRedditPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reddit_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  example: f1vb4nq                                  
+                author:
+                  type: string
+                  example: Sipredion
+                title:
+                  type: string
+                  example: How about that?
+                body:
+                  type: string
+                  example: This is my opinion.
+                comments:
+                  type: integer
+                  example: 0
+                score:
+                  type: integer
+                  example: 0
+                ups:
+                  type: integer
+                  example: 0
+                downs:
+                  type: integer
+                  example: 0
+                parent:
+                  type: string
+                  example: t1_f1v83vi
+                subreddit:
+                  type: string
+                  example: worldnews
+                owner:
+                  type: string
+                  example: vannybros
+                link:
+                  type: string
+                  example: http://something.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedditPost'
+  /reddit/post/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired Reddit post
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 👽 📝 Reddit Post
+      summary: Read specific Reddit post by ID
+      operationId: getRedditPostByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedditPost'
+    put:
+      tags:
+      - 👽 📝 Reddit Post
+      summary: Update specific Reddit post by ID
+      operationId: updateRedditPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reddit_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  example: f1vb4nq                  
+                author:
+                  type: string
+                  example: Sipredion
+                title:
+                  type: string
+                  example: How about that?
+                body:
+                  type: string
+                  example: This is my opinion.
+                comments:
+                  type: integer
+                  example: 0
+                score:
+                  type: integer
+                  example: 0
+                ups:
+                  type: integer
+                  example: 0
+                downs:
+                  type: integer
+                  example: 0
+                parent:
+                  type: string
+                  example: t1_f1v83vi
+                subreddit:
+                  type: string
+                  example: worldnews
+                owner:
+                  type: string
+                  example: vannybros
+                link:
+                  type: string
+                  example: http://something.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedditPost'
+    delete:
+      tags:
+      - 👽 📝 Reddit Post
+      summary: Delete specific Reddit post by ID
+      operationId: deleteRedditPostByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /reddit/post/guid/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: Reddit ID field for specific post
+      required: true
+      schema:
+        type: string
+        format: byte
+    get:
+      tags:
+      - 👽 📝 Reddit Post
+      summary: Read specific Reddit post by ID
+      operationId: getRedditPostByGUID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedditPost'
+components:
+  schemas:
+    RedditPost:
+      required:
+      - reddit_id
+      - published_at
+      - guid
+      - title
+      - body
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        reddit_id:
+          type: string
+          format: uuid
+        published_at:
+          type: string
+          format: date-time
+        guid:
+          type: string
+          example: f1vb4nq
+        author:
+          type: string
+          example: Sipredion
+        title:
+          type: string
+          example: How about that?
+        body:
+          type: string
+          example: This is my opinion.
+        comments:
+          type: integer
+          example: 0
+        score:
+          type: integer
+          example: 0
+        ups:
+          type: integer
+          example: 0
+        downs:
+          type: integer
+          example: 0
+        parent:
+          type: string
+          example: t1_f1v83vi
+        subreddit:
+          type: string
+          example: worldnews
+        owner:
+          type: string
+          example: vannybros
+        link:
+          type: string
+          example: http://something.com
+    

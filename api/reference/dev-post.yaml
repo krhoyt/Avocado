@@ -1,0 +1,371 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🔥 📝 DEV Community Post
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🔥 📝 Dev Post
+  description: Post made to a DEV Community account
+paths:
+  /dev/post:
+    get:
+      tags:
+      - 🔥 📝 Dev Post
+      summary: Read all available DEV Community posts
+      operationId: getDevCommunityPosts
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DevPost'
+    post:
+      tags:
+      - 🔥 📝 Dev Post
+      summary: Create a new account post
+      operationId: createDevCommunityPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dev_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  format: uuid
+                article:
+                  type: integer
+                  example: 172031
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: Friends
+                summary:
+                  type: string
+                  example: How you doin'?!
+                likes:
+                  type: integer
+                  example: 0
+                reading:
+                  type: integer
+                  example: 0
+                unicorn:
+                  type: integer
+                  example: 0
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                concepts:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                entities:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DevPost'
+  /dev/post/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired account posts
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🔥 📝 Dev Post
+      summary: Read specific account post by ID
+      operationId: getDevCommunityPostByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DevPost'
+    put:
+      tags:
+      - 🔥 📝 Dev Post
+      summary: Update specific account post by ID
+      operationId: updateDevCommunityPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dev_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  format: uuid
+                article:
+                  type: integer
+                  example: 172031
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: Friends
+                summary:
+                  type: string
+                  example: How you doin'?!
+                likes:
+                  type: integer
+                  example: 0
+                reading:
+                  type: integer
+                  example: 0
+                unicorn:
+                  type: integer
+                  example: 0                                    
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                concepts:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                entities:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DevPost'
+    delete:
+      tags:
+      - 🔥 📝 Dev Post
+      summary: Delete specific account post by ID
+      operationId: deleteDevCommunityPostByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /dev/post/guid/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: GUID field for specific account post (Base64, UTF-8)
+      required: true
+      schema:
+        type: string
+        format: byte
+    get:
+      tags:
+      - 🔥 📝 Dev Post
+      summary: Read specific account post by GUID
+      operationId: getDevCommunityPostByGUID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DevPost'
+  /dev/post/{id}/media:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for specific account post
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🔥 📝 Dev Post
+      summary: Read all available media for given account post
+      operationId: getDevCommunityPostMedia
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'media.yaml#/components/schemas/Media'
+    post:
+      tags:
+      - 🔥 📝 Dev Post
+      summary: Create a new reference between an account post and media
+      operationId: createDevCommunityPostMedia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                media_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  post_id:
+                    type: string
+                    format: uuid
+                  media_id:
+                    type: string
+                    format: uuid
+components:
+  schemas:
+    DevPost:
+      required:
+      - dev_id
+      - published_at
+      - guid
+      - article
+      - link
+      - title
+      - summary
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        dev_id:
+          type: string
+          format: uuid
+        published_at:
+          type: string
+          format: date-time
+        guid:
+          type: string
+          format: uuid
+        article:
+          type: integer
+          example: 172031          
+        link:
+          type: string
+          example: http://something.com
+        title:
+          type: string
+          example: Friends
+        summary:
+          type: string
+          example: How you doin'?!
+        likes:
+          type: integer
+          example: 0
+        reading:
+          type: integer
+          example: 0          
+        unicorn:
+          type: integer
+          example: 0          
+        keywords:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+        concepts:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+        entities:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+    DevPostMedia:
+      required:
+      - post_id
+      - media_id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        uuid:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        post_id:
+          type: string
+          format: uuid
+        media_id:
+          type: string
+          format: uuid

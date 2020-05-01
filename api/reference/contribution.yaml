@@ -1,0 +1,438 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🏗️ Contribution
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🏗️ Contribution
+  description: Contributions made by developers
+paths:
+  /contribution:
+    get:
+      tags:
+      - 🏗️ Contribution
+      summary: Read all available contributions
+      operationId: getContributions
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contribution'
+    post:
+      tags:
+      - 🏗️ Contribution
+      summary: Create a new contribution for a developer
+      operationId: createContribution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                contributed_at: 
+                  type: string
+                  format: date-time
+                description:
+                  type: string
+                  example: Published new book
+                link:
+                  type: string
+                  example: https://something.com
+                public:
+                  type: integer
+                  example: 0
+                capacity_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  developer_id:
+                    type: string
+                    format: uuid
+                  contributed_at: 
+                    type: string
+                    format: date-time
+                  description:
+                    type: string
+                    example: Published new book
+                  link:
+                    type: string
+                    example: https://something.com
+                  public:
+                    type: integer
+                    example: 0
+                  capacity_id:
+                    type: string
+                    format: uuid                    
+  /contribution/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID of a specific contribution
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 🏗️ Contribution
+      summary: Read specific contributiony by ID
+      operationId: getContributionByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contribution'      
+    put:
+      tags:
+      - 🏗️ Contribution
+      summary: Update specific contribution by ID
+      operationId: updateContribution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                contributed_at: 
+                  type: string
+                  format: date-time
+                description:
+                  type: string
+                  example: Published new book
+                link:
+                  type: string
+                  example: https://something.com
+                public:
+                  type: integer
+                  example: 0
+                capacity_id:
+                  type: string
+                  format: uuid                                     
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contribution'
+    delete:
+      tags:
+      - 🏗️ Contribution
+      summary: Delete specific contribution by ID
+      operationId: deleteContributionByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid                                                              
+  /contribution/developer/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID of a specific developer
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 🏗️ Contribution
+      summary: Read contributions for specific developer
+      operationId: getContributionByDeveloperID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    developer_id:
+                      type: string
+                      format: uuid
+                    contributed_at: 
+                      type: string
+                      format: date-time
+                    description:
+                      type: string
+                      example: Published new book
+                    link:
+                      type: string
+                      example: https://something.com
+                    public:
+                      type: integer
+                      example: 0
+                    capacity_id:
+                      type: string
+                      format: uuid      
+  /contribution/{id}/role:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired contribution
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🏗️ Contribution
+      summary: Get roles associated with a contribution by ID
+      operationId: getContributionRolesByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    name:
+                      type: string
+                      example: 'Cloud'
+    post:
+      tags:
+      - 🏗️ Contribution
+      summary: Associate a specific contribution with the given role
+      operationId: createContributionRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                name:
+                  type: string
+                  example: 'Cloud'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    contribution_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: 'Cloud'
+    put:
+      tags:
+      - 🏗️ Contribution
+      summary: Update contribution association with a given role
+      operationId: updateContributionRole
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                    example: 'Cloud'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    contribution_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: 'Cloud'
+    delete:
+      tags:
+      - 🏗️ Contribution
+      summary: Remove all contribution association with a given role
+      operationId: removeContributionRole
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+  /contribution/{contribution_id}/role/{role_id}:
+    parameters:
+    - name: contribution_id
+      in: path
+      description: ID field for desired contribution
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: role_id
+      in: path
+      description: ID field for the desired role
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    delete:
+      tags:
+      - 🏗️ Contribution
+      summary: Remove a specific role relation for a specific developer
+      operationId: removeContributionItemsByRoleID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    contribution_id:
+                      type: string
+                      format: uuid
+                    role_id:
+                      type: string
+                      format: uuid                      
+components:
+  schemas:
+    Contribution:
+      required:
+      - developer_id
+      - description
+      - capacity_id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid
+        contributed_at: 
+          type: string
+          format: date-time
+        description:
+          type: string
+          example: Published new book
+        link:
+          type: string
+          example: https://something.com
+        public:
+          type: integer
+          example: 0
+        capacity_id:
+          type: string
+          format: uuid                                              

@@ -1,0 +1,167 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🔮 Medium
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🔮 Medium
+  description: Medium feeds to aggregate
+paths:
+  /medium:
+    get:
+      tags:
+      - 🔮 Medium
+      summary: Read all available Medium feeds
+      operationId: getMediums
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Medium'
+    post:
+      tags:
+      - 🔮 Medium
+      summary: Create a new Medium account
+      operationId: createMedium
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                user_name:
+                  type: string
+                  example: boneskull
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medium'
+  /medium/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired Medium feed
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🔮 Medium
+      summary: Read specific Medium feed by ID
+      operationId: getMediumByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medium'
+    patch:
+      tags:
+      - 🔮 Medium
+      summary: Update Medium account based on scraping
+      operationId: updateMediumUser
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medium'                
+    put:
+      tags:
+      - 🔮 Medium
+      summary: Update specific Medium feed by ID
+      operationId: updateMedium
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                user_name:
+                  type: string
+                  example: boneskull
+                following:
+                  type: integer
+                  example: 0
+                followed_by:
+                  type: integer
+                  example: 0
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medium'
+    delete:
+      tags:
+      - 🔮 Medium
+      summary: Delete specific Medium feed by ID
+      operationId: deleteMediumByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+components:
+  schemas:
+    Medium:
+      required:
+      - developer_id
+      - user_name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid
+        user_name:
+          type: string
+          example: boneskull
+        following:
+          type: integer
+          example: 0
+        followed_by:
+          type: integer
+          example: 0

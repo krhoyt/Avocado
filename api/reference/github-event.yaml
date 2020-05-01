@@ -1,0 +1,202 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🐙 🐱 GitHub Event
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🐙 🐱 GitHub Event
+  description: Public GitHub repository interactions
+paths:
+  /github/event:
+    get:
+      tags:
+      - 🐙 🐱 GitHub Event
+      summary: Read all available GitHub events
+      operationId: getGitHubEvent
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GitHubEvent'
+    post:
+      tags:
+      - 🐙 🐱 GitHub Event
+      summary: Create a new GitHub event
+      operationId: createGitHubEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                github_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                event:
+                  type: integer
+                  example: 0
+                event_name:
+                  type: string
+                  example: CommentEvent
+                repository:
+                  type: integer
+                  example: 0
+                repository_name:
+                  type: string
+                  example: 'phenomnomnominal/betterer'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitHubEvent'
+  /github/event/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired GitHub event
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🐙 🐱 GitHub Event
+      summary: Read specific GitHub event by ID
+      operationId: getGitHubEventByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitHubEvent'
+    put:
+      tags:
+      - 🐙 🐱 GitHub Event
+      summary: Update specific GitHub event by ID
+      operationId: updateGitHubEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                github_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                event:
+                  type: integer
+                  example: 0
+                event_name:
+                  type: string
+                  example: CommentEvent
+                repository:
+                  type: integer
+                  example: 0
+                repository_name:
+                  type: string
+                  example: 'phenomnomnominal/betterer'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitHubEvent'
+    delete:
+      tags:
+      - 🐙 🐱 GitHub Event
+      summary: Delete specific GitHub event by ID
+      operationId: deleteGitHubEventByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /github/event/id/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: GitHub event ID
+      required: true
+      schema:
+        type: string
+        format: '10470753840'
+    get:
+      tags:
+      - 🐙 🐱 GitHub Event
+      summary: Read specific GitHub event by GitHub event ID
+      operationId: getGitHubEventByEventID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitHubEvent'
+components:
+  schemas:
+    GitHubEvent:
+      required:
+      - github_id
+      - published_at
+      - event
+      - event_name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        github_id:
+          type: string
+          format: uuid
+        published_at:
+          type: string
+          format: date-time
+        event:
+          type: integer
+          example: 0
+        event_name:
+          type: string
+          example: CommentEvent
+        repository:
+          type: integer
+          example: 0
+        repository_name:
+          type: string
+          example: 'phenomnomnominal/betterer'

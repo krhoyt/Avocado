@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📸 Instagram
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📸 Instagram
+  description: Developer Instagram account
+paths:
+  /instagram:
+    get:
+      tags:
+      - 📸 Instagram
+      summary: Read all available accounts
+      operationId: getInstagram
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Instagram'
+    post:
+      tags:
+      - 📸 Instagram
+      summary: Create a new Instagram account
+      operationId: createInstagram
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                profile:
+                  type: string
+                  example: parkerkrhoyt
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instagram'   
+  /instagram/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired account
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 📸 Instagram
+      summary: Read specific account by ID
+      operationId: getInstagramByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instagram'      
+    put:
+      tags:
+      - 📸 Instagram
+      summary: Update specific account by ID
+      operationId: updateInstagram
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                profile:
+                  type: string
+                  example: parkerkrhoyt
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Instagram'
+    delete:
+      tags:
+      - 📸 Instagram
+      summary: Delete specific account by ID
+      operationId: deleteInstagramByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid                                                              
+components:
+  schemas:
+    Instagram:
+      required:
+      - developer_id
+      - profile
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid          
+        profile:
+          type: string
+          example: parkerkrhoyt
+          

@@ -1,0 +1,349 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📓 📝 Blog Post
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📓 📝 Blog Post
+  description: Post made to a personal blog
+paths:
+  /blog/post:
+    get:
+      tags:
+      - 📓 📝 Blog Post
+      summary: Read all available blog posts
+      operationId: getBlogPosts
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlogPost'
+    post:
+      tags:
+      - 📓 📝 Blog Post
+      summary: Create a new blog post
+      operationId: createBlogPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                blog_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  format: uuid
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: Friends
+                summary:
+                  type: string
+                  example: How you doin'?!
+                category:
+                  type: array
+                  items:
+                    type: string
+                  example: ['sitcom', 'television']
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                concepts:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                entities:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+  /blog/post/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired blog feed
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 📓 📝 Blog Post
+      summary: Read specific blog post by ID
+      operationId: getBlogPostByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+    put:
+      tags:
+      - 📓 📝 Blog Post
+      summary: Update specific blog post by ID
+      operationId: updateBlogPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                blog_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                guid:
+                  type: string
+                  format: uuid
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: Friends
+                summary:
+                  type: string
+                  example: How you doin'?!
+                category:
+                  type: array
+                  items:
+                    type: string
+                  example: ['sitcom', 'television']
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                concepts:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                entities:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+    delete:
+      tags:
+      - 📓 📝 Blog Post
+      summary: Delete specific blog post by ID
+      operationId: deleteBlogPostByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /blog/post/guid/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: GUID field for specific blog post (Base64, UTF-8)
+      required: true
+      schema:
+        type: string
+        format: byte
+    get:
+      tags:
+      - 📓 📝 Blog Post
+      summary: Read specific blog post by GUID
+      operationId: getBlogPostByGUID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+  /blog/post/{id}/media:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for specific blog post
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 📓 📝 Blog Post
+      summary: Read all available media for given blog post
+      operationId: getBlogPostMedia
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'media.yaml#/components/schemas/Media'
+    post:
+      tags:
+      - 📓 📝 Blog Post
+      summary: Create a new reference between a blog post and media
+      operationId: createBlogPostMedia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                media_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  post_id:
+                    type: string
+                    format: uuid
+                  media_id:
+                    type: string
+                    format: uuid
+components:
+  schemas:
+    BlogPost:
+      required:
+      - blog_id
+      - published_at
+      - guid
+      - link
+      - title
+      - summary
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        blog_id:
+          type: string
+          format: uuid
+        published_at:
+          type: string
+          format: date-time
+        guid:
+          type: string
+          format: uuid
+        link:
+          type: string
+          example: http://something.com
+        title:
+          type: string
+          example: Friends
+        summary:
+          type: string
+          example: How you doin'?!
+        category:
+          type: array
+          items:
+            type: string
+          example: ['sitcom', 'television']
+        keywords:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+        concepts:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+        entities:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+    BlogPostMedia:
+      required:
+      - post_id
+      - media_id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        uuid:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        post_id:
+          type: string
+          format: uuid
+        media_id:
+          type: string
+          format: uuid

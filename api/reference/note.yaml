@@ -1,0 +1,221 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: ️🗒️ Note
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: ️🗒️ Note
+  description: Notes associated with developer activities
+paths:
+  /note:
+    get:
+      tags:
+      - ️🗒️ Note
+      summary: Read all available notes
+      operationId: getNotes
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Note'
+    post:
+      tags:
+      - ️🗒️ Note
+      summary: Create a new note for a developer
+      operationId: createNote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                situation_id:
+                  type: string
+                  format: uuid
+                full_text:
+                  type: string
+                  example: Somewhere over the rainbow.
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  developer_id:
+                    type: string
+                    format: uuid
+                  situation_id:
+                    type: string
+                    format: uuid
+                  situation_name:
+                    type: string
+                    example: Conference
+                  full_text:
+                    type: string
+                    example: Somewhere over the rainbow.
+  /note/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID of a specific note
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - ️🗒️ Note
+      summary: Read specific note by ID
+      operationId: getNoteByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'      
+    put:
+      tags:
+      - ️🗒️ Note
+      summary: Update specific note by ID
+      operationId: updateNote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                situation_id:
+                  type: string
+                  format: uuid
+                full_text:
+                  type: string
+                  example: Somewhere over the rainbow.
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+    delete:
+      tags:
+      - ️🗒️ Note
+      summary: Delete specific note by ID
+      operationId: deleteNoteByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid                                                              
+  /note/developer/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID of a specific developer
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - ️🗒️ Note
+      summary: Read notes for specific developer
+      operationId: getNoteByDeveloperID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    developer_id:
+                      type: string
+                      format: uuid
+                    situation_id:
+                      type: string
+                      format: uuid
+                    situation_name:
+                      type: string
+                      example: Theater
+                    full_text:
+                      type: string
+                      example: Somewhere over the rainbow.
+components:
+  schemas:
+    Note:
+      required:
+      - developer_id
+      - situation_id
+      - full_text
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid
+        situation_id:
+          type: string
+          format: uuid
+        full_text:
+          type: string
+          example: Somewhere over the rainbow.
+          

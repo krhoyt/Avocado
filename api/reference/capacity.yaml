@@ -1,0 +1,224 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🧱 Capacity
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🧱 Capacity
+  description: Capacity in which developer contributed
+paths:
+  /capacity:
+    get:
+      tags:
+      - 🧱 Capacity
+      summary: Read all available capacities
+      operationId: getCapacities
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: Book (Author)
+                    color_id:
+                      type: string
+                      format: uuid
+                    weight:
+                      type: integer
+                      example: 10
+                    count:
+                      type: integer
+                      example: 0
+    post:
+      tags:
+      - 🧱 Capacity
+      summary: Create a new capacity type
+      operationId: createCapacity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Book (Author)
+                color_id:
+                  type: string
+                  format: uuid
+                weight:
+                  type: integer
+                  example: 10
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Capacity'
+  /capacity/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired capacity
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🧱 Capacity
+      summary: Read specific capacity by ID
+      operationId: getCapacityByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Capacity'
+    put:
+      tags:
+      - 🧱 Capacity
+      summary: Update specific capacity by ID
+      operationId: updateCapacity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Book (Author)
+                color_id:
+                  type: string
+                  format: uuid
+                weight:
+                  type: integer
+                  example: 10
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Capacity'
+    delete:
+      tags:
+      - 🧱 Capacity
+      summary: Delete specific capacity by ID
+      operationId: deleteCapacityByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /capacity/name/{prefix}:
+    parameters:
+    - name: prefix
+      in: path
+      description: Prefix for a given capacity
+      required: true
+      schema:
+        type: string
+        example: Book
+    get:
+      tags:
+      - 🧱 Capacity
+      summary: Search for capacity with given value
+      operationId: searchCapacityByName
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: Book (Author)
+                    color_id:
+                      type: string
+                      format: uuid
+                    weight:
+                      type: integer
+                      example: 10
+components:
+  schemas:
+    Capacity:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: Book (Author)
+        color_id:
+          type: string
+          format: uuid
+        weight:
+          type: integer
+          example: 10

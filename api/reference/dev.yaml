@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🔥 DEV Community
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🔥 Dev
+  description: DEV Community accounts to aggregate (Dev.to)
+paths:
+  /dev:
+    get:
+      tags:
+      - 🔥 Dev
+      summary: Read all available DEV Community accounts
+      operationId: getDevCommunity
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dev'
+    post:
+      tags:
+      - 🔥 Dev
+      summary: Create a new DEV Community account
+      operationId: createDevCommunity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                user_name:
+                  type: string
+                  example: boneskull
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dev'   
+  /dev/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired DEV Community account
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 🔥 Dev
+      summary: Read specific DEV Community account by ID
+      operationId: getDevCommunityID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dev'      
+    put:
+      tags:
+      - 🔥 Dev
+      summary: Update specific DEV Community account by ID
+      operationId: updateDevCommunity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                user_name:
+                  type: string
+                  example: boneskull
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dev'
+    delete:
+      tags:
+      - 🔥 Dev
+      summary: Delete specific DEV Community account by ID
+      operationId: deleteDevCommunityID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid                                                              
+components:
+  schemas:
+    Dev:
+      required:
+      - developer_id
+      - user_name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid          
+        user_name:
+          type: string
+          example: boneskull
+          

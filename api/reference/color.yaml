@@ -1,0 +1,182 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🌈 Color
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+security:
+- ApiKeyAuth: []
+tags:
+- name: 🌈 Color
+  description: Available system colors
+paths:
+  /color:
+    get:
+      tags:
+      - 🌈 Color
+      summary: Read all available colors
+      operationId: getColors
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: Blue
+                    foreground:
+                      type: string
+                      example: '#ffffff'
+                    background:
+                      type: string
+                      example: '#ffffff'
+    post:
+      tags:
+      - 🌈 Color
+      summary: Create a new color
+      operationId: createColor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Blue
+                foreground:
+                  type: string
+                  example: '#ffffff'
+                background:
+                  type: string
+                  example: '#ffffff'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+  /color/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired color
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🌈 Color
+      summary: Read specific color by ID
+      operationId: getColorByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+    put:
+      tags:
+      - 🌈 Color
+      summary: Update specific color by ID
+      operationId: updateColor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Blue
+                foreground:
+                  type: string
+                  example: '#ffffff'
+                background:
+                  type: string
+                  example: '#ffffff'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+    delete:
+      tags:
+      - 🌈 Color
+      summary: Delete specific color by ID
+      operationId: deleteColorByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Avocado
+  schemas:
+    Color:
+      required:
+      - name
+      - foreground
+      - background
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        name:
+          type: string
+          example: Blue
+        foreground: 
+          type: string
+          example: '#ffffff'
+        background:
+          type: string
+          example: '#ffffff'

@@ -1,0 +1,342 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🐦 ✒️ Twitter Status
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🐦 ✒️ Twitter Status
+  description: Status update to a Twitter account
+paths:
+  /twitter/status:
+    get:
+      tags:
+      - 🐦 ✒️ Twitter Status
+      summary: Read all available account updates
+      operationId: getTwitterStatuses
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TwitterStatus'
+    post:
+      tags:
+      - 🐦 ✒️ Twitter Status
+      summary: Create a new Twitter status update
+      operationId: createTwitterStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                twitter_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                status:
+                  type: string
+                  example: '1175855334558068736'
+                link:
+                  type: string
+                  example: http://something.com
+                full_text:
+                  type: string
+                  example: Tweet, tweet!
+                favorite:
+                  type: integer
+                  example: 0
+                retweet:
+                  type: integer
+                  example: 0
+                hashtags:
+                  type: array
+                  items:
+                    type: string
+                  example: ['developers', 'rock']
+                mentions:
+                  type: array
+                  items:
+                    type: string
+                  example: ['somebody', 'that_person']
+                urls:
+                  type: array
+                  items:
+                    type: string
+                  example: ['http://something.com', 'http://else.com']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwitterStatus'
+  /twitter/status/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired Twitter status
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🐦 ✒️ Twitter Status
+      summary: Read specific Twitter status by ID
+      operationId: getTwitterStatusByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwitterStatus'
+    put:
+      tags:
+      - 🐦 ✒️ Twitter Status
+      summary: Update specific Twitter status by ID
+      operationId: updateTwitterStatus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                twitter_id:
+                  type: string
+                  format: uuid
+                published_at:
+                  type: string
+                  format: date-time
+                status:
+                  type: string
+                  example: '1175855334558068736'
+                link:
+                  type: string
+                  example: http://something.com
+                full_text:
+                  type: string
+                  example: Tweet, tweet!
+                favorite:
+                  type: integer
+                  example: 0
+                retweet:
+                  type: integer
+                  example: 0
+                hashtags:
+                  type: array
+                  items:
+                    type: string
+                  example: ['developers', 'rock']
+                mentions:
+                  type: array
+                  items:
+                    type: string
+                  example: ['somebody', 'that_person']
+                urls:
+                  type: array
+                  items:
+                    type: string
+                  example: ['http://something.com', 'http://else.com']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwitterStatus'
+    delete:
+      tags:
+      - 🐦 ✒️ Twitter Status
+      summary: Delete specific Twitter status by ID
+      operationId: deleteTwitterStatusByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /twitter/status/id/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: Twitter-specific status ID
+      required: true
+      schema:
+        type: string
+        example: '1175855334558068736'
+    get:
+      tags:
+      - 🐦 ✒️ Twitter Status
+      summary: Read specific Twitter status by Twitter-specific ID
+      operationId: getTwitterStatusFromID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwitterStatus'
+  /twitter/status/{id}/media:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for specific Twitter status
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🐦 ✒️ Twitter Status
+      summary: Read all available media for given Twitter status
+      operationId: getTwitterStatusMedia
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: 'media.yaml#/components/schemas/Media'
+    post:
+      tags:
+      - 🐦 ✒️ Twitter Status
+      summary: Create a new reference between a Twitter status and media
+      operationId: createTwitterStatusMedia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                media_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  post_id:
+                    type: string
+                    format: uuid
+                  media_id:
+                    type: string
+                    format: uuid
+components:
+  schemas:
+    TwitterStatus:
+      required:
+      - twitter_id
+      - published_at
+      - status
+      - link
+      - full_text
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        twitter_id:
+          type: string
+          format: uuid
+        published_at:
+          type: string
+          format: date-time
+        status:
+          type: string
+          example: '1175855334558068736'
+        link:
+          type: string
+          example: http://something.com
+        full_text:
+          type: string
+          example: Tweet, tweet!
+        favorite:
+          type: integer
+          example: 0
+        retweet:
+          type: integer
+          example: 0
+        hashtags:
+          type: array
+          items:
+            type: string
+          example: ['developers', 'rock']
+        mentions:
+          type: array
+          items:
+            type: string
+          example: ['somebody', 'that_person']
+        urls:
+          type: array
+          items:
+            type: string
+          example: ['http://something.com', 'http://else.com']
+    TwitterStatusMedia:
+      required:
+      - status_id
+      - media_id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        uuid:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        status_id:
+          type: string
+          format: uuid
+        media_id:
+          type: string
+          format: uuid

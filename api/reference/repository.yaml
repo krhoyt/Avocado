@@ -1,0 +1,223 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🗄️ Repository
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🗄️ Repository
+  description: Specific GitHub repositories to monitor
+paths:
+  /repository:
+    get:
+      tags:
+      - 🗄️ Repository
+      summary: Read all available repositories
+      operationId: getRepos
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repository'
+    post:
+      tags:
+      - 🗄️ Repository
+      summary: Create a new repository
+      operationId: createRepo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  example: krhoyt/Avocado
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repository'
+  /repository/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired repository
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🗄️ Repository
+      summary: Read specific repository by ID
+      operationId: getRepoByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repository'
+    patch:
+      tags:
+      - 🗄️ Repository
+      summary: Update repository based on API data
+      operationId: updateRepoData
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repository'
+    put:
+      tags:
+      - 🗄️ Repository
+      summary: Update specific repository by ID
+      operationId: updateRepo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                repository:
+                  type: integer
+                  example: 0
+                name:
+                  type: string
+                  example: Avocado
+                full_name:
+                  type: string
+                  example: krhoyt/Avocado
+                description:
+                  type: string
+                  example: Developer relations in a box.
+                is_fork:
+                  type: boolean
+                  example: true
+                started_at:
+                  type: string
+                  format: date-time
+                pushed_at:
+                  type: string
+                  format: date-time
+                size:
+                  type: integer
+                  example: 0
+                stargazers:
+                  type: integer
+                  example: 0
+                watchers:
+                  type: integer
+                  example: 0
+                forks:
+                  type: integer
+                  example: 0
+                issues:
+                  type: integer
+                  example: 0
+                network:
+                  type: integer
+                  example: 0
+                subscribers:
+                  type: integer
+                  example: 0
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repository'
+    delete:
+      tags:
+      - 🗄️ Repository
+      summary: Delete specific repository by ID
+      operationId: deleteRepoByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+components:
+  schemas:
+    Repository:
+      required:
+      - full_name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        repository:
+          type: integer
+          example: 0
+        name:
+          type: string
+          example: Avocado
+        full_name:
+          type: string
+          example: krhoyt/Avocado
+        description:
+          type: string
+          example: Developer relations in a box.
+        is_fork:
+          type: boolean
+          example: true
+        started_at:
+          type: string
+          format: date-time
+        pushed_at:
+          type: string
+          format: date-time
+        size:
+          type: integer
+          example: 0
+        stargazers:
+          type: integer
+          example: 0
+        watchers:
+          type: integer
+          example: 0
+        forks:
+          type: integer
+          example: 0
+        issues:
+          type: integer
+          example: 0
+        network:
+          type: integer
+          example: 0
+        subscribers:
+          type: integer
+          example: 0

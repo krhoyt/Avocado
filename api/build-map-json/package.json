@@ -1,0 +1,14 @@
+{
+  "name": "build-map-json",
+  "version": "1.0.0",
+  "description": "build static jason for map UI",
+  "main": "build-json.js",
+  "scripts": {
+    "start": "node build-map-json.js"
+  },
+  "author": "John Holtman",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}

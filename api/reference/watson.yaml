@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🧠 Watson
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🧠 Watson
+  description: Watson machine learning features
+paths:
+ /watson/language/{url}:
+    parameters:
+    - name: url
+      in: path
+      description: URL of the document to analyze (Base64, UTF-8)
+      required: true
+      schema:
+        type: string
+        format: byte 
+    get:    
+      tags:
+      - 🧠 Watson
+      summary: Use natural language understanding on a document
+      operationId: getWatsonLanguage
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  keywords:
+                    type: array
+                    items:
+                      type: string
+                    example: ['ibm', 'cloud', 'devrel']
+                  concepts:
+                    type: array
+                    items:
+                      type: string
+                    example: ['ibm', 'cloud', 'devrel']                    
+                  entities:
+                    type: array
+                    items:
+                      type: string
+                    example: ['ibm', 'cloud', 'devrel'] 
+ /watson/vision/{url}:
+    parameters:
+    - name: url
+      in: path
+      description: URL of the image to analyze (Base64, UTF-8)
+      required: true
+      schema:
+        type: string
+        format: byte 
+    get:    
+      tags:
+      - 🧠 Watson
+      summary: Use visual recognition on an image
+      operationId: getWatsonImage
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                example: ['ibm', 'cloud', 'devrel']              

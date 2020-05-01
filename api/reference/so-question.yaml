@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📚 ❓ Stack Overflow Question
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📚 ❓ Stack Overflow Question
+  description: Question proposed by a Stack Overflow account
+paths:
+  /so/question/id/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: Stack Overflow question ID
+      required: true
+      schema:
+        type: string
+        example: '38583348'
+    get:
+      tags:
+      - 📚 ❓ Stack Overflow Question
+      summary: Read specific question by ID
+      operationId: getStackQuestionByQuestionID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/StackOverflowQuestion'
+components:
+  schemas:
+    StackOverflowQuestion:
+      type: object
+      properties:
+        tags:
+          type: array
+          items: 
+            type: string
+          example: ['python', 'ibm', 'serverless']
+        owner:
+          type: object
+        is_answered:
+          type: boolean
+        view_count:
+          type: integer
+          example: 0
+        answer_count:
+          type: integer
+          example: 0
+        score:
+          type: integer
+          example: 0
+        last_activity_date:
+          type: integer
+          example: 0
+        creation_date:
+          type: integer
+          example: 0
+        question_id:
+          type: integer
+          example: 0
+        link:
+          type: string
+          example: http://something.com
+        title:
+          type: string
+          example: 'This is a question?'

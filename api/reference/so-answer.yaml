@@ -1,0 +1,295 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📚 ✋ Stack Overflow Answer
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📚 ✋ Stack Overflow Answer
+  description: Answer made by a Stack Overflow account
+paths:
+  /so/answer:
+    get:
+      tags:
+      - 📚 ✋ Stack Overflow Answer
+      summary: Read all available Stack Overflow answers
+      operationId: getStackAnswerAll
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StackOverflowAnswer'
+    post:
+      tags:
+      - 📚 ✋ Stack Overflow Answer
+      summary: Create a new answer
+      operationId: createStackAnswer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                so_id:
+                  type: string
+                  format: uuid
+                answer:
+                  type: integer
+                  example: 56961215
+                question:
+                  type: integer
+                  example: 56960996
+                active_at:
+                  type: string
+                  format: date-time
+                accepted:
+                  type: integer
+                  example: 0
+                score:
+                  type: integer
+                  example: 0
+                views:
+                  type: integer
+                  example: 0                  
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: How do I do this?
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: ['some', 'technology', 'here']                    
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                concepts:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                entities:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StackOverflowAnswer'
+  /so/answer/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired answer
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 📚 ✋ Stack Overflow Answer
+      summary: Read specific answer by ID
+      operationId: getStackAnswerByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StackOverflowAnswer'
+    put:
+      tags:
+      - 📚 ✋ Stack Overflow Answer
+      summary: Update specific answer by ID
+      operationId: updateStackAnswer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                so_id:
+                  type: string
+                  format: uuid
+                answer:
+                  type: integer
+                  example: 56961215
+                question:
+                  type: integer
+                  example: 56960996
+                active_at:
+                  type: string
+                  format: date-time
+                accepted:
+                  type: integer
+                  example: 0
+                score:
+                  type: integer
+                  example: 0
+                views:
+                  type: integer
+                  example: 0
+                link:
+                  type: string
+                  example: http://something.com
+                title:
+                  type: string
+                  example: How do I do this?
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: ['some', 'technology', 'here']                    
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                concepts:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+                entities:
+                  type: array
+                  items:
+                    type: string
+                  example: ['natural', 'language', 'understanding']
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StackOverflowAnswer'
+    delete:
+      tags:
+      - 📚 ✋ Stack Overflow Answer
+      summary: Delete specific answer by ID
+      operationId: deleteStackAnswerByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /so/answer/id/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: Stack Overflow answer ID
+      required: true
+      schema:
+        type: string
+        example: '56961215'
+    get:
+      tags:
+      - 📚 ✋ Stack Overflow Answer
+      summary: Read specific answer by ID
+      operationId: getStackAnswerByAnswerID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StackOverflowAnswer'
+components:
+  schemas:
+    StackOverflowAnswer:
+      required:
+      - so_id
+      - answer
+      - question
+      - active_at
+      - accepted
+      - score
+      - views
+      - link
+      - title
+      - tags
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        so_id:
+          type: string
+          format: uuid
+        answer:
+          type: integer
+          example: 56961215
+        question:
+          type: integer
+          example: 56960996
+        active_at:
+          type: string
+          format: date-time
+        accepted:
+          type: integer
+          example: 0
+        score:
+          type: integer
+          example: 0
+        views:
+          type: integer
+          example: 0
+        link:
+          type: string
+          example: http://something.com
+        title:
+          type: string
+          example: How do I do this?
+        tags:
+          type: array
+          items:
+            type: string
+          example: ['some', 'technology', 'here']                    
+        keywords:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+        concepts:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']
+        entities:
+          type: array
+          items:
+            type: string
+          example: ['natural', 'language', 'understanding']

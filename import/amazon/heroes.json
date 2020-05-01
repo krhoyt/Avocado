@@ -1,0 +1,1885 @@
+{
+  "metadata": {
+    "count": 15,
+    "totalHits": 142
+  },
+  "fieldTypes": {
+    "featureFlag": "Text",
+    "heroSinceDate": "Text",
+    "heroImageAltText": "Text",
+    "description": "LongText",
+    "heroCategory": "Text",
+    "heroBioURL": "URL",
+    "heroName": "Text",
+    "sortPosition": "Number",
+    "heroImageURL": "URL",
+    "heroLocation": "Text"
+  },
+  "items": [
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "blogger",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:22+0000",
+          "description": "Blogger",
+          "id": "community-heroes#activities#blogger"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "trainer-educator",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:34+0000",
+          "description": "Trainer / Educator",
+          "id": "community-heroes#activities#trainer-educator"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "community",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:27+0000",
+          "description": "AWS Community Hero",
+          "id": "community-heroes#heroes#community"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "namer",
+          "dateUpdated": "2020-02-27T18:40:47+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:23+0000",
+          "description": "North America",
+          "id": "community-heroes#location#namer"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:48+0000",
+        "score": 0.0,
+        "name": "austin-loveless",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:40:54+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Austin is a Cloud Architect at Photobucket and Founder of the AWSMeetupGroup…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/austin-loveless/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Austin Loveless",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/austin-loveless/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Community Hero",
+          "heroName": "Austin Loveless",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/austin-loveless.90df529a364f103a009ae03b911b93b79695a17b.png",
+          "sortPosition": "1",
+          "heroLocation": "Denver, USA"
+        },
+        "id": "community-heroes#austin-loveless",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "blogger",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:22+0000",
+          "description": "Blogger",
+          "id": "community-heroes#activities#blogger"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "trainer-educator",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:34+0000",
+          "description": "Trainer / Educator",
+          "id": "community-heroes#activities#trainer-educator"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "community",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:27+0000",
+          "description": "AWS Community Hero",
+          "id": "community-heroes#heroes#community"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "latam",
+          "dateUpdated": "2020-02-27T18:40:47+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:36+0000",
+          "description": "Latin America",
+          "id": "community-heroes#location#latam"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "namer",
+          "dateUpdated": "2020-02-27T18:40:47+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:23+0000",
+          "description": "North America",
+          "id": "community-heroes#location#namer"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:27+0000",
+        "score": 0.0,
+        "name": "filipe-barretto",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:41:58+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Filipe is one of the founders of Solvimm, an AWS Consulting Partner since 2013. His main goal…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/filipe-barretto/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Filipe Barretto",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/filipe-barretto/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Community Hero",
+          "heroName": "Filipe Barretto",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/filipe-barretto.5c3361ca034a5c4ff8c382ea4182f465f37410d9.png",
+          "sortPosition": "2",
+          "heroLocation": "Rio de Janiero, Brazil"
+        },
+        "id": "community-heroes#filipe-barretto",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "blogger",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:22+0000",
+          "description": "Blogger",
+          "id": "community-heroes#activities#blogger"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "community",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:27+0000",
+          "description": "AWS Community Hero",
+          "id": "community-heroes#heroes#community"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "emea",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:12+0000",
+          "description": "Europe, Middle East, & Africa",
+          "id": "community-heroes#location#emea"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:09+0000",
+        "score": 0.0,
+        "name": "nofar-asselman",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:42:53+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Nofar Asselman is the Head of Business Development at Epsagon - an automated tracing platform…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/nofar-asselman/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Nofar Asselman",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/nofar-asselman/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Community Hero",
+          "heroName": "Nofar Asselman",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/nofar-asselman.de925eead1aad4f701b944c1a2f27485b00dd5c9.png",
+          "sortPosition": "3",
+          "heroLocation": "Tel Aviv, Israel"
+        },
+        "id": "community-heroes#nofar-asselman",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "tech-author",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:47+0000",
+          "description": "Technical Author",
+          "id": "community-heroes#activities#tech-author"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "trainer-educator",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:34+0000",
+          "description": "Trainer / Educator",
+          "id": "community-heroes#activities#trainer-educator"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "stokeand",
+          "name": "iot",
+          "dateUpdated": "2020-02-27T18:40:43+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2020-02-27T18:40:43+0000",
+          "description": "AWS IoT Hero",
+          "id": "community-heroes#heroes#iot"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "namer",
+          "dateUpdated": "2020-02-27T18:40:47+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:23+0000",
+          "description": "North America",
+          "id": "community-heroes#location#namer"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:04+0000",
+        "score": 0.0,
+        "name": "stephen-borsay",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:43:08+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Stephen Borsay is a Degreed Computer Engineer and electronic hobbyist with a passion to make IoT…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/stephen-borsay/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Stephen Borsay",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/stephen-borsay/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS IoT Hero",
+          "heroName": "Stephen Borsay",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/stephen-borsay.683cccee7d4db0d040904ee0bbea4edd9e518e15.png",
+          "sortPosition": "4",
+          "heroLocation": "Portland, USA"
+        },
+        "id": "community-heroes#stephen-borsay",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "blogger",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:22+0000",
+          "description": "Blogger",
+          "id": "community-heroes#activities#blogger"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "trainer-educator",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:34+0000",
+          "description": "Trainer / Educator",
+          "id": "community-heroes#activities#trainer-educator"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "serverless",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:36+0000",
+          "description": "AWS Serverless Hero",
+          "id": "community-heroes#heroes#serverless"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "apac",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:06+0000",
+          "description": "Asia Pacific",
+          "id": "community-heroes#location#apac"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:43+0000",
+        "score": 0.0,
+        "name": "dhaval-nagar",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:41:10+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Dhaval is founder and director of cloud consulting firm AppGambit, based in India. He…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/dhaval-nagar/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Dhaval Nagar",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/dhaval-nagar/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Serverless Hero",
+          "heroName": "Dhaval Nagar",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/dhaval-nagar.b5b24a60dd8a59e405b329d2b39900ad4af16deb.png",
+          "sortPosition": "5",
+          "heroLocation": "Surat, India"
+        },
+        "id": "community-heroes#dhaval-nagar",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "blogger",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:22+0000",
+          "description": "Blogger",
+          "id": "community-heroes#activities#blogger"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "tech-author",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:47+0000",
+          "description": "Technical Author",
+          "id": "community-heroes#activities#tech-author"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "community",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:27+0000",
+          "description": "AWS Community Hero",
+          "id": "community-heroes#heroes#community"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "emea",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:12+0000",
+          "description": "Europe, Middle East, & Africa",
+          "id": "community-heroes#location#emea"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:31+0000",
+        "score": 0.0,
+        "name": "ewere-diagboya",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:41:49+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>From his humble beginning of as a software engineer in junior high school, Ewere started building…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/ewere-diagboya/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Ewere Diagboya",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/ewere-diagboya/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Community Hero",
+          "heroName": "Ewere Diagboya",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/ewere-diagboya.52f1b1e5be2b95b80f6e709de06e1db1fbe7302a.png",
+          "sortPosition": "6",
+          "heroLocation": "Lagos, Nigeria"
+        },
+        "id": "community-heroes#ewere-diagboya",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "tech-author",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:47+0000",
+          "description": "Technical Author",
+          "id": "community-heroes#activities#tech-author"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "trainer-educator",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:34+0000",
+          "description": "Trainer / Educator",
+          "id": "community-heroes#activities#trainer-educator"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "community",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:27+0000",
+          "description": "AWS Community Hero",
+          "id": "community-heroes#heroes#community"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "namer",
+          "dateUpdated": "2020-02-27T18:40:47+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:23+0000",
+          "description": "North America",
+          "id": "community-heroes#location#namer"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:12+0000",
+        "score": 0.0,
+        "name": "namrata-shah",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:42:46+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Nam is a dynamic passionate technical leader based in the New York/New Jersey Area focused on…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/namrata-shah/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Namrata Shah",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/namrata-shah/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Community Hero",
+          "heroName": "Namrata Shah",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/namrata-shah.07fedef7dd456c08c23dfa34d7680e18010cb506.png",
+          "sortPosition": "7",
+          "heroLocation": "New York, USA"
+        },
+        "id": "community-heroes#namrata-shah",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "tech-author",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:47+0000",
+          "description": "Technical Author",
+          "id": "community-heroes#activities#tech-author"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "trainer-educator",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:34+0000",
+          "description": "Trainer / Educator",
+          "id": "community-heroes#activities#trainer-educator"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "community",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:27+0000",
+          "description": "AWS Community Hero",
+          "id": "community-heroes#heroes#community"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "apac",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:06+0000",
+          "description": "Asia Pacific",
+          "id": "community-heroes#location#apac"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:33+0000",
+        "score": 0.0,
+        "name": "ernest-chiang",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:41:42+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Ernest Chiang, also known as Deng-Wei Chiang, started his AWS journey in 2008. He is...</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/ernest-chiang/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Ernest Chiang",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/ernest-chiang/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Community Hero",
+          "heroName": "Ernest Chiang",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/ernest-chiang.7080e163e723e58f05856cfce9207dd01b497be2.png",
+          "sortPosition": "8",
+          "heroLocation": "Taipei City, Taiwan"
+        },
+        "id": "community-heroes#ernest-chiang",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "blogger",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:22+0000",
+          "description": "Blogger",
+          "id": "community-heroes#activities#blogger"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "trainer-educator",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:34+0000",
+          "description": "Trainer / Educator",
+          "id": "community-heroes#activities#trainer-educator"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "community",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:27+0000",
+          "description": "AWS Community Hero",
+          "id": "community-heroes#heroes#community"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "emea",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:12+0000",
+          "description": "Europe, Middle East, & Africa",
+          "id": "community-heroes#location#emea"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:38+0000",
+        "score": 0.0,
+        "name": "dzenan-dzevlan",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:41:26+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Dzenan is currently a Cloud and DevOps expert at TN-TECH, where he's working as a part…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/dzenan-dzevlan/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Dzenan Dzevlan",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/dzenan-dzevlan/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Community Hero",
+          "heroName": "Dzenan Dzevlan",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/dzenan-dzevlan.3bc5fd7c9c9a29eecf4f7b869e05e9ef5c247396.png",
+          "sortPosition": "9",
+          "heroLocation": "Mostar, Bosnia and Herzegovina"
+        },
+        "id": "community-heroes#dzenan-dzevlan",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "blogger",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:22+0000",
+          "description": "Blogger",
+          "id": "community-heroes#activities#blogger"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "open-source-contributor",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:21+0000",
+          "description": "Open Source Contributor",
+          "id": "community-heroes#activities#open-source-contributor"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "tech-author",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:47+0000",
+          "description": "Technical Author",
+          "id": "community-heroes#activities#tech-author"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "trainer-educator",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:34+0000",
+          "description": "Trainer / Educator",
+          "id": "community-heroes#activities#trainer-educator"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "serverless",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:36+0000",
+          "description": "AWS Serverless Hero",
+          "id": "community-heroes#heroes#serverless"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "emea",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:12+0000",
+          "description": "Europe, Middle East, & Africa",
+          "id": "community-heroes#location#emea"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:25+0000",
+        "score": 0.0,
+        "name": "gunnar-grosch",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:42:06+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Gunnar is an evangelist at Opsio based in Sweden. He has previously worked as both a…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/gunnar-grosch/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Gunnar Grosch",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/gunnar-grosch/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Serverless Hero",
+          "heroName": "Gunnar Grosch",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/gunnar-grosch.f05ee761c36c2499a020cbb77dbde67919168f7c.png",
+          "sortPosition": "10",
+          "heroLocation": "Karlstad, Sweden"
+        },
+        "id": "community-heroes#gunnar-grosch",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "blogger",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:22+0000",
+          "description": "Blogger",
+          "id": "community-heroes#activities#blogger"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "open-source-contributor",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:21+0000",
+          "description": "Open Source Contributor",
+          "id": "community-heroes#activities#open-source-contributor"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "tech-author",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:47+0000",
+          "description": "Technical Author",
+          "id": "community-heroes#activities#tech-author"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "stokeand",
+          "name": "iot",
+          "dateUpdated": "2020-02-27T18:40:43+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2020-02-27T18:40:43+0000",
+          "description": "AWS IoT Hero",
+          "id": "community-heroes#heroes#iot"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "apac",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:06+0000",
+          "description": "Asia Pacific",
+          "id": "community-heroes#location#apac"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:22+0000",
+        "score": 0.0,
+        "name": "hein-tibosch",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:42:16+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Hein Tibosch is a skilled software developer, specializing in embedded applications and…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/hein-tibosch/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Hein Tibosch",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/hein-tibosch/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS IoT Hero",
+          "heroName": "Hein Tibosch",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/hein-tibosch.04c6298d565fb64ab8cf9aca561a6c3b435456de.png",
+          "sortPosition": "11",
+          "heroLocation": "Bali, Indonesia"
+        },
+        "id": "community-heroes#hein-tibosch",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "tech-author",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:47+0000",
+          "description": "Technical Author",
+          "id": "community-heroes#activities#tech-author"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "ml",
+          "dateUpdated": "2020-02-27T18:40:43+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:44+0000",
+          "description": "AWS Machine Learning Hero",
+          "id": "community-heroes#heroes#ml"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "apac",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:06+0000",
+          "description": "Asia Pacific",
+          "id": "community-heroes#location#apac"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:20+0000",
+        "score": 0.0,
+        "name": "joshua-arvin-lat",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:42:23+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Joshua Arvin Lat is the Chief Technology Officer (CTO) at Complete Business Online…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/joshua-arvin-lat/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Joshua Arvin Lat",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/joshua-arvin-lat/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Machine Learning Hero",
+          "heroName": "Joshua Arvin Lat",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/joshua-lat.8293fd79c2db3830ef32a1dddf1bc7f1bbca7fb5.png",
+          "sortPosition": "12",
+          "heroLocation": "National Capital Region, Philippines"
+        },
+        "id": "community-heroes#joshua-arvin-lat",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "meetup-organizer",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:01+0000",
+          "description": "Meetup Organizer",
+          "id": "community-heroes#activities#meetup-organizer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "open-source-contributor",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:21+0000",
+          "description": "Open Source Contributor",
+          "id": "community-heroes#activities#open-source-contributor"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "tech-author",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:47+0000",
+          "description": "Technical Author",
+          "id": "community-heroes#activities#tech-author"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "serverless",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:36+0000",
+          "description": "AWS Serverless Hero",
+          "id": "community-heroes#heroes#serverless"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "namer",
+          "dateUpdated": "2020-02-27T18:40:47+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:23+0000",
+          "description": "North America",
+          "id": "community-heroes#location#namer"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "jarfaa",
+        "dateUpdated": "2020-03-04T05:54:35+0000",
+        "score": 0.0,
+        "name": "ken-collins",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:42:31+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Ken Collins is a Staff Engineer at Custom Ink, focusing on DevOps and their Ecommerce Platform&hellip;</p>\r\n\r\n<p><a href=\"https://aws.amazon.com/developer/community/heroes/ken-collins/?did=dh_card-body&amp;trk=dh_card-body\" target=\"_blank\">Learn more &raquo;</a></p>\r\n",
+          "heroImageAltText": "Picture of Ken Collins",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/ken-collins/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Serverless Hero",
+          "heroName": "Ken Collins",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/ken-collins.c841f1c9a78543dc8767d7cf94b684daf47b4095.png",
+          "sortPosition": "13",
+          "heroLocation": "Norfolk, USA"
+        },
+        "id": "community-heroes#ken-collins",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "jarfaa"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "open-source-contributor",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:21+0000",
+          "description": "Open Source Contributor",
+          "id": "community-heroes#activities#open-source-contributor"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "tech-author",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:47+0000",
+          "description": "Technical Author",
+          "id": "community-heroes#activities#tech-author"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "trainer-educator",
+          "dateUpdated": "2020-02-27T18:40:38+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:34+0000",
+          "description": "Trainer / Educator",
+          "id": "community-heroes#activities#trainer-educator"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "community",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:27+0000",
+          "description": "AWS Community Hero",
+          "id": "community-heroes#heroes#community"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "apac",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:06+0000",
+          "description": "Asia Pacific",
+          "id": "community-heroes#location#apac"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:15+0000",
+        "score": 0.0,
+        "name": "mike-rahmati",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:42:38+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Mike is an entrepreneur, investor, and advisor for several incubators and startups…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/mike-rahmati/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Mike Rahmati",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/mike-rahmati/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Community Hero",
+          "heroName": "Mike Rahmati",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/mike-rahmati.8dde058e1acaadd38522edd360fc7071c6d157f1.png",
+          "sortPosition": "14",
+          "heroLocation": "Sydney, Australia"
+        },
+        "id": "community-heroes#mike-rahmati",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    },
+    {
+      "tags": [
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "blogger",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:22+0000",
+          "description": "Blogger",
+          "id": "community-heroes#activities#blogger"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "conf-speaker",
+          "dateUpdated": "2020-02-27T18:40:37+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:41:33+0000",
+          "description": "Conference Speaker",
+          "id": "community-heroes#activities#conf-speaker"
+        },
+        {
+          "tagNamespaceId": "community-heroes#activities",
+          "createdBy": "jenbar",
+          "name": "open-source-contributor",
+          "dateUpdated": "2020-02-27T18:40:39+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:42:21+0000",
+          "description": "Open Source Contributor",
+          "id": "community-heroes#activities#open-source-contributor"
+        },
+        {
+          "tagNamespaceId": "community-heroes#flag",
+          "createdBy": "jenbar",
+          "name": "new",
+          "dateUpdated": "2020-02-27T18:40:40+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:00:24+0000",
+          "description": "New",
+          "id": "community-heroes#flag#new"
+        },
+        {
+          "tagNamespaceId": "community-heroes#heroes",
+          "createdBy": "jenbar",
+          "name": "serverless",
+          "dateUpdated": "2020-02-27T18:40:41+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:02:36+0000",
+          "description": "AWS Serverless Hero",
+          "id": "community-heroes#heroes#serverless"
+        },
+        {
+          "tagNamespaceId": "community-heroes#location",
+          "createdBy": "jenbar",
+          "name": "emea",
+          "dateUpdated": "2020-02-27T18:40:46+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-02-14T19:01:12+0000",
+          "description": "Europe, Middle East, & Africa",
+          "id": "community-heroes#location#emea"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "2020",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-06T21:23:22+0000",
+          "description": "2020",
+          "id": "community-heroes#year#2020"
+        },
+        {
+          "tagNamespaceId": "community-heroes#year",
+          "createdBy": "jenbar",
+          "name": "3000",
+          "dateUpdated": "2020-02-27T18:40:48+0000",
+          "locale": "en_US",
+          "lastUpdatedBy": "stokeand",
+          "dateCreated": "2019-03-08T21:39:09+0000",
+          "description": "3000",
+          "id": "community-heroes#year#3000"
+        }
+      ],
+      "item": {
+        "createdBy": "stokeand",
+        "locale": "en_US",
+        "author": "stokeand",
+        "dateUpdated": "2020-02-27T20:17:35+0000",
+        "score": 0.0,
+        "name": "efi-merdler-kravitz",
+        "numImpressions": 0,
+        "dateCreated": "2020-02-27T18:41:35+0000",
+        "additionalFields": {
+          "featureFlag": "New",
+          "heroSinceDate": "Hero since 2020",
+          "description": "<p>Efi is Director of Engineering at Lumigo.io, a monitoring and debugging platform for…</p><p><a href=\"https://aws.amazon.com/developer/community/heroes/efi-merdler-kravitz/?did=dh_card-body&trk=dh_card-body\" target=\"_blank\">Learn more »</a></p>",
+          "heroImageAltText": "Picture of Efi Merdler-Kravitz",
+          "heroBioURL": "https://aws.amazon.com/developer/community/heroes/efi-merdler-kravitz/?did=dh_card&trk=dh_card",
+          "heroCategory": "AWS Serverless Hero",
+          "heroName": "Efi Merdler-Kravitz",
+          "heroImageURL": "https://d1.awsstatic.com/Developer%20Marketing/developer-center/efi-merdler.53185b103a02e56146643255e493346b0f4dca64.png",
+          "sortPosition": "15",
+          "heroLocation": "Tel Aviv, Israel"
+        },
+        "id": "community-heroes#efi-merdler-kravitz",
+        "directoryId": "community-heroes",
+        "lastUpdatedBy": "stokeand"
+      }
+    }
+  ]
+}

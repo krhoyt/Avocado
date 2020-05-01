@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📓 Blog
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📓 Blog
+  description: Blog feeds to aggregate
+paths:
+  /blog:
+    get:
+      tags:
+      - 📓 Blog
+      summary: Read all available blog feeds
+      operationId: getBlogs
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Blog'
+    post:
+      tags:
+      - 📓 Blog
+      summary: Create a new blog feed source
+      operationId: createBlog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                url:
+                  type: string
+                  example: http://something.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'   
+  /blog/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired blog feed
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 📓 Blog
+      summary: Read specific blog feed by ID
+      operationId: getBlogByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'      
+    put:
+      tags:
+      - 📓 Blog
+      summary: Update specific blog feed by ID
+      operationId: updateBlog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                url:
+                  type: string
+                  example: http://something.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blog'
+    delete:
+      tags:
+      - 📓 Blog
+      summary: Delete specific blog feed by ID
+      operationId: deleteBlogByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid                                                              
+components:
+  schemas:
+    Blog:
+      required:
+      - developer_id
+      - url
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid          
+        url:
+          type: string
+          example: http://something.com
+          

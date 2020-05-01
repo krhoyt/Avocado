@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🖼️ Media
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🖼️ Media
+  description: Media (image files) associated with content aggregation
+paths:
+  /media:
+    get:
+      tags:
+      - 🖼️ Media
+      summary: Read all available media
+      operationId: getMedias
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Media'
+    post:
+      tags:
+      - 🖼️ Media
+      summary: Create a new media reference
+      operationId: createMedia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  example: http://something.com
+                keywords:
+                  type: array
+                  items: 
+                    type: string
+                  example: ['eagle', 'landed', 'moon']                
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Media'   
+  /media/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired media reference
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 🖼️ Media
+      summary: Read specific media reference by ID
+      operationId: getMediaByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Media'      
+    put:
+      tags:
+      - 🖼️ Media
+      summary: Update specific media reference by ID
+      operationId: updateMedia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  example: http://something.com
+                keywords:
+                  type: array
+                  items: 
+                    type: string
+                  example: ['eagle', 'landed', 'moon'] 
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Media'
+    delete:
+      tags:
+      - 🖼️ Media
+      summary: Delete specific media reference by ID
+      operationId: deleteMediaByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid      
+  /media/url/{url}:        
+    parameters:
+    - name: url
+      in: path
+      description: URL field for desired media reference
+      required: true
+      schema:
+        type: string
+        example: http://something.com
+    get:
+      tags:
+      - 🖼️ Media
+      summary: Read specific media reference by URL
+      operationId: getMediaByURL
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Media'                                                                                  
+components:
+  schemas:
+    Media:
+      required:
+      - url
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+          example: http://something.com
+        keywords:
+          type: array
+          items: 
+            type: string
+          example: ['eagle', 'landed', 'moon']                        
+          

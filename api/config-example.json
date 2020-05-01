@@ -1,0 +1,38 @@
+{
+  "esri": {
+    "key": "_ARCGIS_CLIENT_ID_",
+    "secret": "_ARCGIS_CLIENT_SECRET_",
+    "storage": true
+  },
+  "github": {
+    "access_token": "_GITHUB_ACCESS_TOKEN_"
+  },  
+  "google": {
+    "youtube": "_YOUTUBE_API_KEY_"
+  },  
+  "server": {
+    "mode": "development",
+    "database": {
+      "development": "avocado_dev.sqlite3",
+      "production": "avocado.sqlite3"
+    },
+    "port": 3000
+  },
+  "stackoverflow": {
+    "key": "_STACK_APPS_KEY_"
+  },  
+  "twitter": {
+    "key": "_TWITTER_KEY_",
+    "secret": "_TWITTER_SECRET_"
+  },
+  "watson": {
+    "language": {
+      "key": "apikey",
+      "secret": "_WATSON_NLU_SECRET_"      
+    },
+    "vision": {
+      "key": "apikey",
+      "secret": "_WATSON_RECOGNITION_SECRET_"
+    }
+  }
+}

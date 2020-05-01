@@ -1,0 +1,239 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🐙 GitHub
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🐙 GitHub
+  description: GitHub accounts to aggregate
+paths:
+  /github:
+    get:
+      tags:
+      - 🐙 GitHub
+      summary: Read all available GitHub accounts
+      operationId: getGitHubs
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GitHub'
+    post:
+      tags:
+      - 🐙 GitHub
+      summary: Create a new GitHub account
+      operationId: createGitHub
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                login:
+                  type: string
+                  example: krhoyt         
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitHub'   
+  /github/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired GitHub account
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 🐙 GitHub
+      summary: Read specific GitHub acount by ID
+      operationId: getGitHubByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitHub'      
+    patch:
+      tags:
+      - 🐙 GitHub
+      summary: Update GitHub account based on API data
+      operationId: updateGitHubAccount
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitHub'                
+    put:
+      tags:
+      - 🐙 GitHub
+      summary: Update specific GitHub account by ID
+      operationId: updateGitHub
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                developer_id:
+                  type: string
+                  format: uuid
+                login:
+                  type: string
+                  example: krhoyt
+                name:
+                  type: string
+                  example: Kevin Hoyt
+                company:
+                  type: string
+                  example: IBM
+                blog:
+                  type: string
+                  example: http://something.com
+                location:
+                  type: string
+                  example: The Interwebs!
+                email:
+                  type: string
+                  example: krhoyt@us.ibm.com
+                hireable:
+                  type: boolean
+                  example: 0
+                repositories:
+                  type: integer
+                  example: 0
+                gists:
+                  type: integer
+                  example: 0
+                followers:
+                  type: integer
+                  example: 0
+                following:
+                  type: integer
+                  example: 0
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GitHub'
+    delete:
+      tags:
+      - 🐙 GitHub
+      summary: Delete specific GitHub account by ID
+      operationId: deleteGitHubByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid         
+  /github/activity/{login}:        
+    parameters:
+    - name: login
+      in: path
+      description: Login of GitHub account
+      required: true
+      schema:
+        type: string
+        example: krhoyt
+    get:
+      tags:
+      - 🐙 GitHub
+      summary: Get events for specific GitHub login
+      operationId: getGitHubActivity
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+components:
+  schemas:
+    GitHub:
+      required:
+      - developer_id
+      - login
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        developer_id:
+          type: string
+          format: uuid          
+        login:
+          type: string
+          example: krhoyt
+        name:
+          type: string
+          example: Kevin Hoyt
+        company:
+          type: string
+          example: IBM
+        blog:
+          type: string
+          example: http://something.com
+        location:
+          type: string
+          example: The Interwebs!
+        email:
+          type: string
+          example: krhoyt@us.ibm.com
+        hireable:
+          type: boolean
+          example: 0
+        repositories:
+          type: integer
+          example: 0
+        gists:
+          type: integer
+          example: 0
+        followers:
+          type: integer
+          example: 0
+        following:
+          type: integer
+          example: 0
+      

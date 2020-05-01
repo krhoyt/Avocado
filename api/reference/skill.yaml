@@ -1,0 +1,207 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🔧 Skill
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+security:
+- ApiKeyAuth: []
+tags:
+- name: 🔧 Skill
+  description: Skills available to developers (tagging)
+paths:
+  /skill:
+    get:
+      tags:
+      - 🔧 Skill
+      summary: Read all available skills
+      operationId: getSkills
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    name:
+                      type: string
+                      example: JavaScript
+                    color:
+                      type: string
+                      example: '#ffffff'
+                    count:
+                      type: integer
+                      example: 0
+    post:
+      tags:
+      - 🔧 Skill
+      summary: Create a new skill
+      operationId: createSkill
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: JavaScript
+                color:
+                  type: string
+                  example: '#ffffff'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Skill'
+  /skill/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired skill
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🔧 Skill
+      summary: Read specific skill by ID
+      operationId: getSkillByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Skill'
+    put:
+      tags:
+      - 🔧 Skill
+      summary: Update specific skill by ID
+      operationId: updateSkill
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: JavaScript
+                color:
+                  type: string
+                  example: '#ffffff'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Skill'
+    delete:
+      tags:
+      - 🔧 Skill
+      summary: Delete specific skill by ID
+      operationId: deleteSkillByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /skill/name/{prefix}:
+    parameters:
+    - name: prefix
+      in: path
+      description: Prefix for a given skill
+      required: true
+      schema:
+        type: string
+        example: Java
+    get:
+      tags:
+      - 🔧 Skill
+      summary: Search for skill with given value
+      operationId: searchSkillByName
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    name:
+                      type: string
+                      example: JavaScript
+                    color:
+                      type: string
+                      example: '#ffffff'
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Avocado
+  schemas:
+    Skill:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        name:
+          type: string
+          example: JavaScript
+        color: 
+          type: string
+          example: '#ffffff'

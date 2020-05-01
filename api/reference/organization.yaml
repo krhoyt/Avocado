@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🏢 Organization
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+security:
+- ApiKeyAuth: []
+tags:
+- name: 🏢 Organization
+  description: Logical groupings of developers (tagging)
+paths:
+  /organization:
+    get:
+      tags:
+      - 🏢 Organization
+      summary: Read all available organizations
+      operationId: getOrganizations
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: IBM
+                    color_id:
+                      type: string
+                      format: uuid
+                    count:
+                      type: integer
+                      example: 0
+    post:
+      tags:
+      - 🏢 Organization
+      summary: Create a new organization
+      operationId: createOrganization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: IBM
+                color_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+  /organization/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired organization
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🏢 Organization
+      summary: Read specific organization by ID
+      operationId: getOrganizationByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+    put:
+      tags:
+      - 🏢 Organization
+      summary: Update specific organization by ID
+      operationId: updateOrganization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: IBM
+                color_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+    delete:
+      tags:
+      - 🏢 Organization
+      summary: Delete specific organization by ID
+      operationId: deleteOrganizationByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /organization/name/{prefix}:
+    parameters:
+    - name: prefix
+      in: path
+      description: Prefix for a given organization
+      required: true
+      schema:
+        type: string
+        example: IB
+    get:
+      tags:
+      - 🏢 Organization
+      summary: Search for organization with given value
+      operationId: searchOrganizationByName
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: IBM
+                    color_id:
+                      type: string
+                      format: uuid
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Avocado
+  schemas:
+    Organization:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        name:
+          type: string
+          example: IBM
+        color_id:
+          type: string
+          format: uuid

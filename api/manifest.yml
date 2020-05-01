@@ -1,0 +1,5 @@
+---
+applications:
+ - name: Insights API
+   host: insights-api
+   memory: 256M 

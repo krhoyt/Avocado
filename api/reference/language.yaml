@@ -1,0 +1,200 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 💬 ️Language
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 💬 ️Language
+  description: Languages spoken by developers around the world
+paths:
+  /language:
+    get:
+      tags:
+      - 💬 ️Language
+      summary: Read all available languages
+      operationId: getLanguages
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: English
+                    count:
+                      type: integer
+                      example: 0
+    post:
+      tags:
+      - 💬 ️Language
+      summary: Create a new language
+      operationId: createLanguage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: English
+                color_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Language'
+  /language/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired language
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 💬 ️Language
+      summary: Read specific language by ID
+      operationId: getLanguageByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Language'
+    put:
+      tags:
+      - 💬 ️Language
+      summary: Update specific language by ID
+      operationId: updateLanguage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: English
+                color_id:
+                  type: string
+                  format: uuid
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Language'
+    delete:
+      tags:
+      - 💬 ️Language
+      summary: Delete specific language by ID
+      operationId: deleteLanguageByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /language/name/{prefix}:
+    parameters:
+    - name: prefix
+      in: path
+      description: Prefix for a given language
+      required: true
+      schema:
+        type: string
+        example: Eng
+    get:
+      tags:
+      - 💬 ️Language
+      summary: Search for language with given value
+      operationId: searchLanguageByName
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: English
+components:
+  schemas:
+    Language:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: English

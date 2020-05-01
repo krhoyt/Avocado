@@ -1,0 +1,251 @@
+    @font-face {
+      font-family: "icons-ibm-v12";
+      src: url("https://1.www.s81c.com/common/fonts/icons-ibm-v12.eot");
+      src: url("https://1.www.s81c.com/common/fonts/icons-ibm-v12.woff") format("woff"), url("https://1.www.s81c.com/common/fonts/icons-ibm-v12.ttf") format("truetype"), url("https://1.www.s81c.com/common/fonts/icons-ibm-v12.svg#icons-ibm-v12") format("svg");
+      font-weight: normal;
+      font-style: normal;
+    }
+    
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      @font-face {
+        font-family: "icons-ibm-v12";
+        src: url("https://1.www.s81c.com/common/fonts/icons-ibm-v12.svg#icons-ibm-v12") format("svg");
+      }
+    }
+    
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    
+    div#actions {
+      visibility: hidden;
+      min-width: 200px;
+    }
+    
+    #filterToggle {
+      display: block;
+      padding: 15px 0 15px 5px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    #filterToggle.showing {
+      padding: 15px 0 0 5px;
+    }
+    
+    #filterToggle:hover {
+      cursor: pointer;
+    }
+    
+    #filterToggle:after {
+      display: block;
+      font-size: 1.5rem;
+      padding: 0 15px;
+      font-weight: 600;
+      float: right;
+      background: none;
+      border: none;
+      content: "\f19c";
+      font-family: icons-ibm-v12;
+    }
+    
+    #filterToggle.showing:after {
+      content: "\f19f";
+    }
+    
+    button.esri-button {
+      margin-bottom: 10px;
+    }
+    
+    button.esri-button:hover {
+      background-color: #785793;
+      border: 1px solid #FFF;
+    }
+    
+    #filterList {
+      padding-bottom: 10px;
+    }
+    
+    #filterContainer ul {
+      list-style: none;
+      padding-top: 10px;
+      padding-left: 0;
+      padding-bottom: 0;
+    }
+    
+    #filterContainer ul li {
+      padding-bottom: 8px;
+    }
+    
+    #filterContainer ul li label {
+      padding-left: 8px;
+    }
+    
+    #actions {
+      padding: 10px 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+    
+    #info-display {
+      display: none;
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      padding: 0 20px;
+      background-color: rgba(100, 100, 100, 0.5);
+      font-family: Arial, Helvetica, sans-serif;
+      color: #FFF;
+    }
+    
+    #info-display p {
+      margin: 5px;
+    }
+    
+    div.esri-feature__main-container div div.esri-feature__media:first-child {
+      max-height: 150px;
+    }
+    
+    div.esri-feature__main-container div div.esri-feature__media:first-child div.esri-feature__media-item-container div.esri-feature__media-item img {
+      border-radius: 50%;
+      max-height: 120px;
+    }
+    
+    div.esri-feature__media div.esri-feature__media-item-container div.esri-feature__media-item img {
+      max-width: 120px;
+    }
+    
+    .loader-bars:before,
+    .loader-bars:after,
+    .loader-bars {
+      background: #0079c1;
+      animation: load 0.8s infinite ease-in-out;
+      width: 0.85rem;
+      height: 2rem;
+    }
+    
+    .loader-bars:before,
+    .loader-bars:after {
+      position: absolute;
+      top: 0;
+      content: '';
+    }
+    
+    @keyframes load {
+      0%,
+      80%,
+      100% {
+        opacity: .75;
+        box-shadow: 0 0 #0079c1;
+        height: 2rem;
+      }
+      40% {
+        opacity: 1;
+        box-shadow: 0 -0.5rem #0079c1;
+        height: 2.5rem;
+      }
+    }
+    
+    .loader {
+      position: absolute;
+      top: 30%;
+      left: 45%;
+      z-index: 100;
+    }
+    
+    .loader.is-active {
+      display: block;
+    }
+    
+    .loader-bars {
+      text-indent: -9999em;
+      margin: auto;
+      position: absolute;
+      right: calc(50% - 0.425rem);
+      font-size: 11px;
+      animation-delay: 0.16s;
+    }
+    
+    .loader-bars:before {
+      left: -1.25rem;
+    }
+    
+    .loader-bars:after {
+      left: 1.25rem;
+      animation-delay: 0.32s;
+    }
+    
+    .loader-text {
+      text-align: center;
+      padding-top: 4rem;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #888;
+      font-size: 1.5rem;
+    }
+    
+    .padding-leader-3 {
+      padding-top: 4.5rem;
+    }
+    
+    .padding-trailer-3 {
+      padding-bottom: 4.5rem;
+    }
+    
+    .fade-in {
+      animation: fadeIn ease 1s;
+      -webkit-animation: fadeIn ease 1s;
+      -moz-animation: fadeIn ease 1s;
+      -o-animation: fadeIn ease 1s;
+      -ms-animation: fadeIn ease 1s;
+    }
+    
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    
+    @-moz-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    
+    @-webkit-keyframes fadeIn {
+      0% {
+        opacity: 01;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    
+    @-o-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    
+    @-ms-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
