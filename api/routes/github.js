@@ -16,12 +16,10 @@ router.get( '/activity/:login', async ( req, res ) => {
   let events = await rp( {
     url: `https://api.github.com/users/${req.params.login}/events/public`,
     headers: {
+      'Authorization': 'token ' + req.config.github.access_token,
       'User-Agent': 'IBM Developer'
     },
     method: 'GET',
-    qs: {
-      access_token: req.config.github.access_token
-    },
     json: true      
   } );
 
@@ -59,6 +57,23 @@ router.get( '/:id', async ( req, res ) => {
     record = null;
   }
 
+  res.json( record );
+} );
+
+// Read repository details
+router.get( '/repository/:name', async ( req, res ) => {
+  const buffer = Buffer.from( req.params.name, 'base64' );
+  const decoded = buffer.toString( 'utf8' );
+
+  const record = await rp( {
+    url: 'https://api.github.com/repos/' + decoded,
+    method: 'GET',
+    headers: {
+      'Authorization': 'token ' + req.config.github.access_token,
+      'User-Agent': 'IBM Developer'
+    },
+    json: true
+  } );
   res.json( record );
 } );
 
@@ -150,10 +165,8 @@ router.post( '/', async ( req, res ) => {
       url: `https://api.github.com/users/${record.login}`,
       method: 'GET',
       headers: {
+        'Authorization': 'token ' + req.config.github.access_token,
         'User-Agent': 'IBM Developer'
-      },
-      qs: {
-        access_token: req.config.github.access_token
       },
       json: true
     } );
@@ -264,10 +277,8 @@ router.patch( '/:id', async ( req, res ) => {
     url: `https://api.github.com/users/${record.login}`,
     method: 'GET',
     headers: {
+      'Authorization': 'token ' + req.config.github.access_token,
       'User-Agent': 'IBM Developer'
-    },
-    qs: {
-      access_token: req.config.github.access_token
     },
     json: true
   } );

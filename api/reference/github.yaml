@@ -4,7 +4,7 @@ info:
   title: 🐙 GitHub
   description: Paths and components
   contact:
-    email: parkerkrhoyt@gmail.com  
+    email: parkerkrhoyt@gmail.com
   license:
     name: MIT
 externalDocs:
@@ -48,15 +48,15 @@ paths:
                   format: uuid
                 login:
                   type: string
-                  example: krhoyt         
+                  example: krhoyt
       responses:
         200:
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GitHub'   
-  /github/{id}:        
+                $ref: '#/components/schemas/GitHub'
+  /github/{id}:
     parameters:
     - name: id
       in: path
@@ -64,7 +64,7 @@ paths:
       required: true
       schema:
         type: string
-        format: uuid      
+        format: uuid
     get:
       tags:
       - 🐙 GitHub
@@ -76,7 +76,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GitHub'      
+                $ref: '#/components/schemas/GitHub'
     patch:
       tags:
       - 🐙 GitHub
@@ -88,7 +88,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GitHub'                
+                $ref: '#/components/schemas/GitHub'
     put:
       tags:
       - 🐙 GitHub
@@ -159,8 +159,8 @@ paths:
                 properties:
                   id:
                     type: string
-                    format: uuid         
-  /github/activity/{login}:        
+                    format: uuid
+  /github/activity/{login}:
     parameters:
     - name: login
       in: path
@@ -183,6 +183,27 @@ paths:
                 type: array
                 items:
                   type: object
+  /github/repository/{name}:
+    parameters:
+    - name: name
+      in: path
+      description: Path to repository (without URL)
+      required: true
+      schema:
+        type: string
+        format: byte
+    get:
+      tags:
+      - 🐙 GitHub
+      summary: Get details about a repository
+      operationId: getGitHubRepository
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
 components:
   schemas:
     GitHub:
@@ -202,7 +223,7 @@ components:
           format: date-time
         developer_id:
           type: string
-          format: uuid          
+          format: uuid
         login:
           type: string
           example: krhoyt
@@ -236,4 +257,3 @@ components:
         following:
           type: integer
           example: 0
-      

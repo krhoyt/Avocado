@@ -1348,7 +1348,6 @@ paths:
                   id:
                     type: string
                     format: uuid
-<<<<<<< HEAD:api/public/api/insights.yaml
   "/relationship/name/{prefix}":
     parameters:
       - name: prefix
@@ -1392,17 +1391,6 @@ paths:
                       type: string
                       format: uuid
   /role:
-=======
-  "/developer/{id}/social":
-    parameters:
-      - name: id
-        in: path
-        description: ID field for desired developer
-        required: true
-        schema:
-          type: string
-          format: uuid
->>>>>>> master:api/avocado.yaml
     get:
       tags:
         - 👔 Role
