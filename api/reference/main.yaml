@@ -19,17 +19,17 @@ tags:
 - name: 📒 Account
   description: Account ownership of data sets
 - name: 🌈 Color
-  description: Available system colors  
+  description: Available system colors
 - name: 🤝 Situation
   description: Different types of developer interactions
 - name: 💬 ️Language
-  description: Languages spoken by developers around the world  
+  description: Languages spoken by developers around the world
 - name: 🏢 Organization
   description: Logical groupings of developers (tagging)
 - name: 🖇️ Relationship
   description: Business connections between stakeholders
 - name: 👔 Role
-  description: Logical groupings of developers (tagging)  
+  description: Logical groupings of developers (tagging)
 - name: 🔧 Skill
   description: Skills available to developers (tagging)
 - name: 🖥️ Developer
@@ -37,11 +37,11 @@ tags:
 - name: 🖼️ Media
   description: Media (image files) associated with content aggregation
 - name: ️🗒️ Note
-  description: Notes associated with developer activities  
+  description: Notes associated with developer activities
 - name: 🏗️ Contribution
   description: Contributions made by developers
 - name: 🧱 Capacity
-  description: Capacity in which developer contributed    
+  description: Capacity in which developer contributed
 - name: 📓 Blog
   description: Blog feeds to aggregate
 - name: 📓 📝 Blog Post
@@ -55,17 +55,17 @@ tags:
 - name: 🐙 🐱 GitHub Event
   description: Public GitHub repository interactions
 - name: 📸 Instagram
-  description: Developer Instagram account   
+  description: Developer Instagram account
 - name: 📇 LinkedIn
-  description: Developer LinkedIn account  
+  description: Developer LinkedIn account
 - name: 🔮 Medium
   description: Medium feeds to aggregate
 - name: 🔮 📝 Medium Post
   description: Post made to a Medium account
 - name: 👽 Reddit
-  description: Reddit accounts to aggregate  
+  description: Reddit accounts to aggregate
 - name: 👽 📝 Reddit Post
-  description: Post made to a Reddit account  
+  description: Post made to a Reddit account
 - name: 📚 Stack Overflow
   description: Stack Overflow accounts to aggregate
 - name: 📚 ✋ Stack Overflow Answer
@@ -102,11 +102,11 @@ paths:
   /account/login:
     $ref: 'account.yaml#/paths/~1account~1login'
   /account/token/{token}:
-    $ref: 'account.yaml#/paths/~1account~1token~1{token}'        
+    $ref: 'account.yaml#/paths/~1account~1token~1{token}'
   /color:
     $ref: 'color.yaml#/paths/~1color'
   /color/{id}:
-    $ref: 'color.yaml#/paths/~1color~1{id}'          
+    $ref: 'color.yaml#/paths/~1color~1{id}'
   /situation:
     $ref: 'situation.yaml#/paths/~1situation'
   /situation/{id}:
@@ -116,37 +116,37 @@ paths:
   /language/{id}:
     $ref: 'language.yaml#/paths/~1language~1{id}'
   /language/name/{prefix}:
-    $ref: 'language.yaml#/paths/~1language~1name~1{prefix}'        
+    $ref: 'language.yaml#/paths/~1language~1name~1{prefix}'
   /organization:
     $ref: 'organization.yaml#/paths/~1organization'
   /organization/{id}:
     $ref: 'organization.yaml#/paths/~1organization~1{id}'
   /organization/name/{prefix}:
-    $ref: 'organization.yaml#/paths/~1organization~1name~1{prefix}' 
+    $ref: 'organization.yaml#/paths/~1organization~1name~1{prefix}'
   /relationship:
     $ref: 'relationship.yaml#/paths/~1relationship'
   /relationship/{id}:
     $ref: 'relationship.yaml#/paths/~1relationship~1{id}'
   /relationship/name/{prefix}:
-    $ref: 'relationship.yaml#/paths/~1relationship~1name~1{prefix}'     
+    $ref: 'relationship.yaml#/paths/~1relationship~1name~1{prefix}'
   /role:
     $ref: 'role.yaml#/paths/~1role'
   /role/{id}:
     $ref: 'role.yaml#/paths/~1role~1{id}'
   /role/name/{prefix}:
-    $ref: 'role.yaml#/paths/~1role~1name~1{prefix}'       
+    $ref: 'role.yaml#/paths/~1role~1name~1{prefix}'
   /skill:
     $ref: 'skill.yaml#/paths/~1skill'
   /skill/{id}:
     $ref: 'skill.yaml#/paths/~1skill~1{id}'
   /skill/name/{prefix}:
-    $ref: 'skill.yaml#/paths/~1skill~1name~1{prefix}'        
+    $ref: 'skill.yaml#/paths/~1skill~1name~1{prefix}'
   /developer:
     $ref: 'developer.yaml#/paths/~1developer'
   /developer/{id}:
     $ref: 'developer.yaml#/paths/~1developer~1{id}'
   /developer/{id}/social:
-    $ref: 'developer.yaml#/paths/~1developer~1{id}~1social'    
+    $ref: 'developer.yaml#/paths/~1developer~1{id}~1social'
   /developer/{id}/{model}:
     $ref: 'developer.yaml#/paths/~1developer~1{id}~1{model}'
   /developer/{developer_id}/{model}/{model_id}:
@@ -160,23 +160,23 @@ paths:
   /note:
     $ref: 'note.yaml#/paths/~1note'
   /note/{id}:
-    $ref: 'note.yaml#/paths/~1note~1{id}'    
+    $ref: 'note.yaml#/paths/~1note~1{id}'
   /note/developer/{id}:
-    $ref: 'note.yaml#/paths/~1note~1developer~1{id}' 
+    $ref: 'note.yaml#/paths/~1note~1developer~1{id}'
   /contribution:
     $ref: 'contribution.yaml#/paths/~1contribution'
   /contribution/{id}:
-    $ref: 'contribution.yaml#/paths/~1contribution~1{id}'    
+    $ref: 'contribution.yaml#/paths/~1contribution~1{id}'
   /contribution/developer/{id}:
-    $ref: 'contribution.yaml#/paths/~1contribution~1developer~1{id}'            
+    $ref: 'contribution.yaml#/paths/~1contribution~1developer~1{id}'
   /contribution/{id}/role:
-    $ref: 'contribution.yaml#/paths/~1contribution~1{id}~1role'    
+    $ref: 'contribution.yaml#/paths/~1contribution~1{id}~1role'
   /contribution/{contribution_id}/role/{role_id}:
-    $ref: 'contribution.yaml#/paths/~1contribution~1{contribution_id}~1role~1{role_id}'    
+    $ref: 'contribution.yaml#/paths/~1contribution~1{contribution_id}~1role~1{role_id}'
   /capacity:
     $ref: 'capacity.yaml#/paths/~1capacity'
   /capacity/{id}:
-    $ref: 'capacity.yaml#/paths/~1capacity~1{id}'    
+    $ref: 'capacity.yaml#/paths/~1capacity~1{id}'
   /blog:
     $ref: 'blog.yaml#/paths/~1blog'
   /blog/{id}:
@@ -213,14 +213,16 @@ paths:
     $ref: 'github-event.yaml#/paths/~1github~1event~1id~1{id}'
   /github/activity/{login}:
     $ref: 'github.yaml#/paths/~1github~1activity~1{login}'
+  /github/repository/{name}:
+    $ref: 'github.yaml#/paths/~1github~1repository~1{name}'
   /instagram:
     $ref: 'instagram.yaml#/paths/~1instagram'
   /instagram/{id}:
-    $ref: 'instagram.yaml#/paths/~1instagram~1{id}'            
+    $ref: 'instagram.yaml#/paths/~1instagram~1{id}'
   /linkedin:
     $ref: 'linkedin.yaml#/paths/~1linkedin'
   /linkedin/{id}:
-    $ref: 'linkedin.yaml#/paths/~1linkedin~1{id}'        
+    $ref: 'linkedin.yaml#/paths/~1linkedin~1{id}'
   /medium:
     $ref: 'medium.yaml#/paths/~1medium'
   /medium/{id}:
@@ -236,13 +238,13 @@ paths:
   /reddit:
     $ref: 'reddit.yaml#/paths/~1reddit'
   /reddit/{id}:
-    $ref: 'reddit.yaml#/paths/~1reddit~1{id}'    
+    $ref: 'reddit.yaml#/paths/~1reddit~1{id}'
   /reddit/post:
     $ref: 'reddit-post.yaml#/paths/~1reddit~1post'
   /reddit/post/{id}:
     $ref: 'reddit-post.yaml#/paths/~1reddit~1post~1{id}'
   /reddit/post/guid/{id}:
-    $ref: 'reddit-post.yaml#/paths/~1reddit~1post~1guid~1{id}'    
+    $ref: 'reddit-post.yaml#/paths/~1reddit~1post~1guid~1{id}'
   /so:
     $ref: 'so.yaml#/paths/~1so'
   /so/{id}:
@@ -274,7 +276,7 @@ paths:
   /website:
     $ref: 'website.yaml#/paths/~1website'
   /website/{id}:
-    $ref: 'website.yaml#/paths/~1website~1{id}'    
+    $ref: 'website.yaml#/paths/~1website~1{id}'
   /youtube:
     $ref: 'youtube.yaml#/paths/~1youtube'
   /youtube/{id}:
@@ -298,7 +300,7 @@ paths:
   /utility/images/{url}:
     $ref: 'utility.yaml#/paths/~1utility~1images~1{url}'
   /utility/geocode:
-    $ref: 'utility.yaml#/paths/~1utility~1geocode'    
+    $ref: 'utility.yaml#/paths/~1utility~1geocode'
 components:
   securitySchemes:
     ApiKeyAuth:
@@ -315,11 +317,11 @@ components:
     BlogPostMedia:
       $ref: 'blog-post.yaml#/components/schemas/BlogPostMedia'
     Capacity:
-      $ref: 'capacity.yaml#/components/schemas/Capacity'   
+      $ref: 'capacity.yaml#/components/schemas/Capacity'
     Color:
-      $ref: 'color.yaml#/components/schemas/Color'                        
+      $ref: 'color.yaml#/components/schemas/Color'
     Contribution:
-      $ref: 'contribution.yaml#/components/schemas/Contribution'         
+      $ref: 'contribution.yaml#/components/schemas/Contribution'
     Dev:
       $ref: 'dev.yaml#/components/schemas/Dev'
     Developer:
@@ -333,11 +335,11 @@ components:
     GitHubEvent:
       $ref: 'github-event.yaml#/components/schemas/GitHubEvent'
     Language:
-      $ref: 'language.yaml#/components/schemas/Language' 
+      $ref: 'language.yaml#/components/schemas/Language'
     Instagram:
-      $ref: 'instagram.yaml#/components/schemas/Instagram'      
+      $ref: 'instagram.yaml#/components/schemas/Instagram'
     LinkedIn:
-      $ref: 'linkedin.yaml#/components/schemas/LinkedIn'            
+      $ref: 'linkedin.yaml#/components/schemas/LinkedIn'
     Media:
       $ref: 'media.yaml#/components/schemas/Media'
     Medium:
@@ -347,23 +349,23 @@ components:
     MediumPostMedia:
       $ref: 'medium-post.yaml#/components/schemas/MediumPostMedia'
     Note:
-      $ref: 'note.yaml#/components/schemas/Note'      
+      $ref: 'note.yaml#/components/schemas/Note'
     Organization:
-      $ref: 'organization.yaml#/components/schemas/Organization'      
+      $ref: 'organization.yaml#/components/schemas/Organization'
     Reddit:
-      $ref: 'reddit.yaml#/components/schemas/Reddit'      
+      $ref: 'reddit.yaml#/components/schemas/Reddit'
     RedditPost:
-      $ref: 'reddit-post.yaml#/components/schemas/RedditPost'            
+      $ref: 'reddit-post.yaml#/components/schemas/RedditPost'
     Relationship:
-      $ref: 'relationship.yaml#/components/schemas/Relationship'            
+      $ref: 'relationship.yaml#/components/schemas/Relationship'
     Repository:
       $ref: 'repository.yaml#/components/schemas/Repository'
     Role:
-      $ref: 'role.yaml#/components/schemas/Role' 
+      $ref: 'role.yaml#/components/schemas/Role'
     Situation:
-      $ref: 'situation.yaml#/components/schemas/Situation'      
+      $ref: 'situation.yaml#/components/schemas/Situation'
     Skill:
-      $ref: 'skill.yaml#/components/schemas/Skill'      
+      $ref: 'skill.yaml#/components/schemas/Skill'
     StackOverflow:
       $ref: 'so.yaml#/components/schemas/StackOverflow'
     StackOverflowAnswer:
@@ -377,7 +379,7 @@ components:
     TwitterStatusMedia:
       $ref: 'twitter-status.yaml#/components/schemas/TwitterStatusMedia'
     Website:
-      $ref: 'website.yaml#/components/schemas/Website'      
+      $ref: 'website.yaml#/components/schemas/Website'
     YouTube:
       $ref: 'youtube.yaml#/components/schemas/YouTube'
     YouTubeVideo:
