@@ -96,7 +96,7 @@ paths:
   /account/{id}:
     $ref: 'account.yaml#/paths/~1account~1{id}'
   /account/{id}/token/refresh:
-    $ref: 'account.yaml#paths/~1account~1{id}~1token~1refresh'
+    $ref: 'account.yaml#/paths/~1account~1{id}~1token~1refresh'
   /account/email/{email}:
     $ref: 'account.yaml#/paths/~1account~1email~1{email}'
   /account/email:

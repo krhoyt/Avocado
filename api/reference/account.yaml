@@ -328,7 +328,7 @@ paths:
       required: true
       schema:
         type: string
-        format: thedude@biglebowski.com   
+        example: thedude@biglebowski.com   
     get: 
       tags:
       - 📒 Account

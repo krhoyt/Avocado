@@ -27,6 +27,8 @@ tags:
     description: Different types of developer interactions
   - name: 💬 ️Language
     description: Languages spoken by developers around the world
+  - name: 🕹️ Level
+    description: Levels that can be obtained by developers
   - name: 🏢 Organization
     description: Logical groupings of developers (tagging)
   - name: 🖇️ Relationship
@@ -294,7 +296,31 @@ paths:
                   id:
                     type: string
                     format: uuid
-  "/account/{id}/token/refresh": {}
+  "/account/{id}/token/refresh":
+    parameters:
+      - name: id
+        in: path
+        description: ID of a specific account
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - 📒 Account
+      summary: Refresh the token for a given account
+      operationId: accountRefreshToken
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    format: uuid
   "/account/email/{email}":
     parameters:
       - name: email
@@ -303,7 +329,7 @@ paths:
         required: true
         schema:
           type: string
-          format: thedude@biglebowski.com
+          example: thedude@biglebowski.com
     get:
       tags:
         - 📒 Account
@@ -978,6 +1004,233 @@ paths:
                     name:
                       type: string
                       example: English
+  /level:
+    get:
+      tags:
+        - 🕹️ Level
+      summary: Read all available levels
+      operationId: getLevels
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: Book (Author)
+                    low:
+                      type: integer
+                      example: 0
+                    high:
+                      type: integer
+                      example: 10
+                    count:
+                      type: integer
+                      example: 0
+    post:
+      tags:
+        - 🕹️ Level
+      summary: Create a new level
+      operationId: createLevel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Ambassador
+                low:
+                  type: integer
+                  example: 0
+                high:
+                  type: integer
+                  example: 10
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                required:
+                  - name
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  account_id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                    example: Ambassadors
+                  low:
+                    type: integer
+                    example: 0
+                  weight:
+                    type: integer
+                    example: 10
+  "/level/{id}":
+    parameters:
+      - name: id
+        in: path
+        description: ID field for desired level
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - 🕹️ Level
+      summary: Read specific level details by ID
+      operationId: getLevelByID
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                required:
+                  - name
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  account_id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                    example: Ambassadors
+                  low:
+                    type: integer
+                    example: 0
+                  weight:
+                    type: integer
+                    example: 10
+    put:
+      tags:
+        - 🕹️ Level
+      summary: Update specific level by ID
+      operationId: updateLevel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Ambassadors
+                low:
+                  type: integer
+                  example: 0
+                weight:
+                  type: integer
+                  example: 10
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/paths/~1level~1%7Bid%7D/get/responses/200/content/applicat\
+                  ion~1json/schema"
+    delete:
+      tags:
+        - 🕹️ Level
+      summary: Delete specific level by ID
+      operationId: deleteLevelByID
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  "/level/name/{prefix}":
+    parameters:
+      - name: prefix
+        in: path
+        description: Prefix for a given level
+        required: true
+        schema:
+          type: string
+          example: Ambassador
+    get:
+      tags:
+        - 🕹️ Level
+      summary: Search for level with given value
+      operationId: searchLevelByName
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: Book (Author)
+                    low:
+                      type: integer
+                      example: 0
+                    weight:
+                      type: integer
+                      example: 10
   /organization:
     get:
       tags:
@@ -2108,95 +2361,6 @@ paths:
                   id:
                     type: string
                     format: uuid
-  "/developer/organization/{id}":
-    parameters:
-      - name: private
-        in: query
-        description: Include developers marked as private
-        required: false
-        schema:
-          type: boolean
-          default: false
-      - name: id
-        in: path
-        description: ID field for desired organization
-        required: true
-        schema:
-          type: string
-          format: uuid
-    get:
-      tags:
-        - 🖥️ Developer
-      summary: Read developers for a given organization
-      operationId: getDevelopersByOrganizationID
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  required:
-                    - name
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                    created_at:
-                      type: string
-                      format: date-time
-                    updated_at:
-                      type: string
-                      format: date-time
-                    name:
-                      type: string
-                      example: Monty Burns
-                    email:
-                      type: string
-                      example: smithers@burns.com
-                    title:
-                      type: string
-                      example: Fancy pants CEO
-                    description:
-                      type: string
-                      example: Excellent!
-                    image:
-                      type: string
-                      example: http://something.com
-                    location:
-                      type: string
-                      example: Armonk, NY
-                    latitude:
-                      type: number
-                      format: float
-                      example: 41.1328412
-                    longitude:
-                      type: number
-                      format: float
-                      example: -73.7492039
-                    address:
-                      type: string
-                      example: 123 Something Pl
-                    city:
-                      type: string
-                      example: Armonk
-                    region:
-                      type: string
-                      example: New York
-                    postal:
-                      type: string
-                      example: "12345"
-                    country:
-                      type: string
-                      example: USA
-                    public:
-                      type: integer
-                      example: 0
-                    internal:
-                      type: string
-                      example: internalID
   "/developer/{id}/social":
     parameters:
       - name: id
@@ -5291,6 +5455,27 @@ paths:
                 type: array
                 items:
                   type: object
+  "/github/repository/{name}":
+    parameters:
+      - name: name
+        in: path
+        description: Path to repository (without URL)
+        required: true
+        schema:
+          type: string
+          format: byte
+    get:
+      tags:
+        - 🐙 GitHub
+      summary: Get details about a repository
+      operationId: getGitHubRepository
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
   /instagram:
     get:
       tags:
@@ -9865,6 +10050,32 @@ components:
         name:
           type: string
           example: English
+    Level:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: Ambassadors
+        low:
+          type: integer
+          example: 0
+        weight:
+          type: integer
+          example: 10
     Instagram:
       required:
         - developer_id
