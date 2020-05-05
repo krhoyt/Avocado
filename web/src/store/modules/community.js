@@ -278,6 +278,7 @@ export default {
       }                           
       
       let member = await Member.create( context.rootGetters.TOKEN, {
+        level_id: null,
         name: name,
         email: email,
         title: title,
@@ -447,6 +448,7 @@ export default {
 
       let member = await Member.update( context.rootGetters.TOKEN, {
         id: context.getters.MEMBER_ID,
+        level_id: null,
         name: name,
         email: email,
         title: title,
