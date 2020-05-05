@@ -92,6 +92,7 @@ app.use( '/api/reports', require( './routes/reports' ) );
 app.use( '/api/color', require( './routes/color' ) );
 app.use( '/api/situation', require( './routes/situation' ) );
 app.use( '/api/language', require( './routes/language' ) );
+app.use( '/api/level', require( './routes/level' ) );
 app.use( '/api/organization', require( './routes/organization' ) );
 app.use( '/api/relationship', require( './routes/relationship' ) );
 app.use( '/api/role', require( './routes/role' ) );

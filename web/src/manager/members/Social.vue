@@ -297,7 +297,7 @@ export default {
   background-image: url( /img/launch.svg );
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 20px;
+  background-size: 16px;
   border: none;
   cursor: pointer;
   height: 46px;  

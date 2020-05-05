@@ -1,0 +1,224 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🕹️ Level
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 🕹️ Level
+  description: Levels that can be obtained by developers
+paths:
+  /level:
+    get:
+      tags:
+      - 🕹️ Level
+      summary: Read all available levels
+      operationId: getLevels
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: Book (Author)
+                    low:
+                      type: integer
+                      example: 0
+                    high:
+                      type: integer
+                      example: 10
+                    count:
+                      type: integer
+                      example: 0
+    post:
+      tags:
+      - 🕹️ Level
+      summary: Create a new level
+      operationId: createLevel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Ambassador
+                low:
+                  type: integer
+                  example: 0
+                high:
+                  type: integer
+                  example: 10
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Level'
+  /level/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired level
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 🕹️ Level
+      summary: Read specific level details by ID
+      operationId: getLevelByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Level'
+    put:
+      tags:
+      - 🕹️ Level
+      summary: Update specific level by ID
+      operationId: updateLevel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Ambassadors
+                low:
+                  type: integer
+                  example: 0
+                weight:
+                  type: integer
+                  example: 10
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Level'
+    delete:
+      tags:
+      - 🕹️ Level
+      summary: Delete specific level by ID
+      operationId: deleteLevelByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /level/name/{prefix}:
+    parameters:
+    - name: prefix
+      in: path
+      description: Prefix for a given level
+      required: true
+      schema:
+        type: string
+        example: Ambassador
+    get:
+      tags:
+      - 🕹️ Level
+      summary: Search for level with given value
+      operationId: searchLevelByName
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: Book (Author)
+                    low:
+                      type: integer
+                      example: 0
+                    weight:
+                      type: integer
+                      example: 10
+components:
+  schemas:
+    Level:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: Ambassadors
+        low:
+          type: integer
+          example: 0
+        weight:
+          type: integer
+          example: 10

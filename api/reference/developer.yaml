@@ -107,39 +107,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Developer'
-<<<<<<< HEAD:api/reference/developer.yaml
-  /developer/organization/{id}:
-    parameters:
-    - name: private
-      in: query
-      description: Include developers marked as private
-      required: false
-      schema:
-        type: boolean
-        default: false
-    - name: id
-      in: path
-      description: ID field for desired organization
-      required: true
-      schema:
-        type: string
-        format: uuid
-    get:
-      tags:
-      - 🖥️ Developer
-      summary: Read developers for a given organization
-      operationId: getDevelopersByOrganizationID
-      responses:
-        200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:                
-                  $ref: '#/components/schemas/Developer'                                    
-=======
->>>>>>> master:api/developer.yaml
   /developer/{id}:
     parameters:
     - name: id

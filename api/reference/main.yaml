@@ -24,6 +24,8 @@ tags:
   description: Different types of developer interactions
 - name: 💬 ️Language
   description: Languages spoken by developers around the world
+- name: 🕹️ Level
+  description: Levels that can be obtained by developers  
 - name: 🏢 Organization
   description: Logical groupings of developers (tagging)
 - name: 🖇️ Relationship
@@ -117,6 +119,12 @@ paths:
     $ref: 'language.yaml#/paths/~1language~1{id}'
   /language/name/{prefix}:
     $ref: 'language.yaml#/paths/~1language~1name~1{prefix}'
+  /level:
+    $ref: 'level.yaml#/paths/~1level'
+  /level/{id}:
+    $ref: 'level.yaml#/paths/~1level~1{id}'
+  /level/name/{prefix}:
+    $ref: 'level.yaml#/paths/~1level~1name~1{prefix}'    
   /organization:
     $ref: 'organization.yaml#/paths/~1organization'
   /organization/{id}:
@@ -336,6 +344,8 @@ components:
       $ref: 'github-event.yaml#/components/schemas/GitHubEvent'
     Language:
       $ref: 'language.yaml#/components/schemas/Language'
+    Level:
+      $ref: 'level.yaml#/components/schemas/Level'      
     Instagram:
       $ref: 'instagram.yaml#/components/schemas/Instagram'
     LinkedIn:

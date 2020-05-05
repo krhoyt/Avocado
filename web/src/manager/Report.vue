@@ -163,7 +163,6 @@
         <highcharts
           :options="byLevel">
         </highcharts>
-        <!--
         <Label
           background="#e0e0e0"
           :weight="600"
@@ -174,7 +173,7 @@
         <highcharts
           :options="loveAndReach">
         </highcharts>
-        -->
+        <!--
         <Label
           background="#e0e0e0"
           :weight="600"
@@ -197,6 +196,7 @@
             999   
           </Label>                         
         </Box>
+        -->
         <Label
           background="#e0e0e0"
           :weight="600"
@@ -420,7 +420,7 @@ export default {
         {name: 'Observers', data: [], color: this.colors[0]},
         {name: 'Users', data: [], color: this.colors[1]},
         {name: 'Fans', data: [], color: this.colors[2]},
-        {name: 'Ambassadors', data: [], color: this.colors[3]},                        
+        {name: 'Ambassadors', data: [], color: this.colors[3]}
       ];
 
       for( let r = 0; r < this.report.length; r++ ) {
@@ -493,6 +493,79 @@ export default {
 
       return total;
     },    
+    loveAndReach: function() {
+      let series = [
+        {name: 'Ambassadors', data: [], color: this.colors[3]},
+        {name: 'Fans', data: [], color: this.colors[2]},
+        {name: 'Users', data: [], color: this.colors[1]},
+        {name: 'Observers', data: [], color: this.colors[0]}
+      ];
+
+      for( let r = 0; r < this.report.length; r++ ) {
+        series[this.report[r].level - 1].data.push( [this.report[r].reach, this.report[r].love] );
+      }
+
+      return {
+        chart: {
+          type: 'scatter',
+          zoomType: 'xy',
+          height: 225,
+          spacing: 16,
+          style: {
+            fontFamily: 'IBM Plex Sans, sans-serif',
+            fontSize: '14px'
+          }                    
+        },
+        title: null,
+        credits: {
+          enabled: false
+        },      
+        legend: {
+          enabled: false
+        },
+        xAxis: {
+          allowDecimals: false,
+          min: 0,
+          title: {
+            enabled: true,
+            text: 'Reach'
+          }
+        },
+        yAxis: {
+          allowDecimals: false,
+          min: 0,
+          title: {
+            enabled: true,
+            text: 'Love'
+          }
+        },
+        plotOptions: {
+          scatter: {
+            marker: {
+              radius: 5,
+              states: {
+                hover: {
+                  enabled: true,
+                  lineColor: 'rgb( 100, 100, 100 )'
+                }
+              }
+            },
+            states: {
+              hover: {
+                marker: {
+                  enabled: false
+                }
+              }
+            },
+            tooltip: {
+              headerFormat: '<b>{series.name}</b><br>',
+              pointFormat: '{point.x} reach, {point.y} love'
+            }
+          }
+        },
+        series: series
+      };
+    },
     memberByLevelLocation: function() {
       const data = {};
       const observers = [];

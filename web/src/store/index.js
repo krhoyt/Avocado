@@ -9,6 +9,7 @@ Vue.use( Vuex );
 import Capacity from '../rpc/capacity.js';
 import Color from '../rpc/color.js';
 import Language from '../rpc/language.js';
+import Level from '../rpc/level.js';
 import Organization from '../rpc/organization.js';
 import Relationship from '../rpc/relationship.js';
 import Reports from '../rpc/reports.js';
@@ -28,6 +29,7 @@ export default new Vuex.Store( {
     capacities: [],
     colors: [],
     languages: [],
+    levels: [],
     organizations: [],
     relationships: [],
     report: [],
@@ -52,6 +54,9 @@ export default new Vuex.Store( {
     LANGUAGES: function( state ) {
       return state.languages;
     },    
+    LEVELS: function( state ) {
+      return state.levels;
+    },        
     ORGANIZATIONS: function( state ) {
       return state.organizations;
     },
@@ -90,6 +95,9 @@ export default new Vuex.Store( {
     SET_LANGUAGES: function( state, languages ) {
       state.languages = languages;
     },    
+    SET_LEVELS: function( state, levels ) {
+      state.levels = levels;
+    },        
     SET_ORGANIZATIONS: function( state, organizations ) {
       state.organizations = organizations;
     },    
@@ -135,6 +143,9 @@ export default new Vuex.Store( {
       let colors = await Color.browse( context.getters.TOKEN );
       context.commit( 'SET_COLORS', colors );
 
+      let levels = await Level.browse( context.getters.TOKEN );
+      context.commit( 'SET_LEVELS', levels );      
+
       let report = await Reports.orbit( context.getters.TOKEN );
       context.commit( 'SET_REPORT', report );      
     },
@@ -159,6 +170,7 @@ export default new Vuex.Store( {
       context.commit( 'SET_CAPACITIES', [] );
       context.commit( 'SET_COLORS', [] );
       context.commit( 'SET_LANGUAGES', [] );
+      context.commit( 'SET_LEVELS', [] );      
       context.commit( 'SET_ORGANIZATIONS', [] );
       context.commit( 'SET_RELATIONSHIPS', [] );
       context.commit( 'SET_REPORT', [] );

@@ -153,6 +153,6 @@ export default {
           break;
         }
       }            
-    },    
+    }
   }
 }
