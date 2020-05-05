@@ -83,56 +83,22 @@
       </Button>
     </Box>
 
-    <Box
-      direction="row"
+    <DataTable
+      @change="change( $event )"
+      :data="social"
+      :light="true"
+      :margin-bottom="24"
       :margin-left="16"
       :margin-right="16">
-
-      <Label
-        background="#e0e0e0"
-        :weight="600"
-        :height="47"
-        :padding-left="16"
-        :width="216">
-        Channel
-      </Label>
-      <Label
-        background="#e0e0e0"
-        :weight="600"
+      <DataTableColumn
+        field="channel"
+        text="Channel"
+        :width="220"/>
+      <DataTableColumn
+        field="endpoint"
         :grow="1"
-        :height="47"
-        :padding-left="16">
-        Endpoint
-      </Label>
-    </Box>
-
-    <div 
-      class="list">
-      <Box
-        class="item"
-        @click.native="change( index )"
-        direction="row"
-        :key="index"
-        v-for="( item, index ) in social">
-        <Label
-          :height="46"
-          :padding-left="16"
-          :width="216">
-          {{item.channel}}
-        </Label>
-        <Label
-          :grow="1"
-          :height="46"
-          :padding-left="16"
-          :width="200">
-          {{item.endpoint}}
-        </Label>        
-        <button
-          class="launch"
-          @click="link( item )">
-        </button>
-      </Box>
-    </div>
+        text="Endpoint"/>        
+    </DataTable>
 
   </Box>
 </template>
@@ -140,6 +106,8 @@
 <script>
 import Box from '../../containers/Box.vue';
 import Button from '../../controls/Button.vue';
+import DataTable from '../../controls/DataTable.vue';
+import DataTableColumn from '../../controls/DataTableColumn.vue';
 import Label from '../../controls/Label.vue';
 import Select from '../../controls/Select.vue';
 import TextInput from '../../controls/TextInput.vue';
@@ -150,6 +118,8 @@ export default {
   components: {
     Box,
     Button,
+    DataTable,
+    DataTableColumn,
     Label,
     Select,
     Spacer,
@@ -286,50 +256,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.launch {
-  visibility: hidden;
-}
-
-.item:hover button.launch {
-  background: none;
-  background-image: url( /img/launch.svg );
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 16px;
-  border: none;
-  cursor: pointer;
-  height: 46px;  
-  outline: none;
-  visibility: visible;
-  width: 47px;
-}
-
-.item {
-  border-bottom: solid 1px #e0e0e0;
-}
-
-.item:hover {
-  background-color: #e5e5e5;
-}
-
-.item.selected {
-  background-color: #e0e0e0;
-}
-
-.item.selected:hover {
-  background-color: #cacaca;
-}
-
-.list {
-  background-color: white; 
-  flex-basis: 0;    
-  flex-grow: 1;
-  margin-bottom: 24px;
-  margin-left: 16px;
-  margin-right: 16px;
-  margin-top: 0;
-  overflow: scroll;      
-}
-</style>
