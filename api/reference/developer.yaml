@@ -53,6 +53,9 @@ paths:
             schema:
               type: object
               properties:
+                level_id: 
+                  type: string
+                  format: uuid
                 name:
                   type: string
                   example: Monty Burns
@@ -140,6 +143,9 @@ paths:
             schema:
               type: object
               properties:
+                level_id: 
+                  type: string
+                  format: uuid
                 name:
                   type: string
                   example: Monty Burns
@@ -475,6 +481,12 @@ components:
         updated_at:
           type: string
           format: date-time
+        account_id:
+          type: string
+          format: uuid
+        level_id:
+          type: string
+          format: uuid
         name:
           type: string
           example: Monty Burns

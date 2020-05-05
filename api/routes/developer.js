@@ -39,6 +39,8 @@ router.get( '/organization/:id', async ( req, res ) => {
     'Developer.uuid AS id',
     'Developer.created_at', 
     'Developer.updated_at',
+    'Account.uuid AS account_id',
+    'Level.uuid AS level_id',
     'Developer.name',
     'Developer.email',
     'Developer.title',
@@ -59,6 +61,7 @@ router.get( '/organization/:id', async ( req, res ) => {
   .leftJoin( 'DeveloperOrganization', 'DeveloperOrganization.developer_id', 'Developer.id' )
   .leftJoin( 'Organization', 'Organization.id', 'DeveloperOrganization.organization_id' )
   .leftJoin( 'Account', 'Account.id', 'Developer.account_id' )
+  .leftJoin( 'Level', 'Level.id', 'Developer.level_id' )  
   .where( {
     'Account.id': req.account.id,
     'Organization.uuid': req.params.id
@@ -73,27 +76,6 @@ router.get( '/organization/:id', async ( req, res ) => {
   if( records === undefined ) {
     records = [];
   }
-  /*
-  else {
-    for( let r = 0; r < records.length; r++ ) {
-      if( fields.indexOf( 'roles' ) >= 0 ) {
-        records[r].roles = await req.db
-        .select(
-          'Role.uuid AS id',
-          'Role.created_at',
-          'Role.updated_at',
-          'Role.name'      
-        )
-        .from( 'Role' )
-        .leftJoin( 'DeveloperRole', 'DeveloperRole.role_id', 'Role.id' )
-        .leftJoin( 'Developer', 'Developer.id', 'DeveloperRole.developer_id' )
-        .where( {
-          'Developer.uuid': records[r].id 
-        } );
-      }    
-    }
-  }
-  */
 
   res.json( records );
 } );
@@ -365,6 +347,8 @@ router.get( '/:id', async ( req, res ) => {
     'Developer.uuid AS id',
     'Developer.created_at', 
     'Developer.updated_at',
+    'Account.uuid AS account_id',
+    'Level.uuid AS level_id',
     'Developer.name',
     'Developer.email',
     'Developer.title',
@@ -383,6 +367,7 @@ router.get( '/:id', async ( req, res ) => {
   )
   .from( 'Developer' )
   .leftJoin( 'Account', 'Account.id', 'Developer.account_id' )
+  .leftJoin( 'Level', 'Level.id', 'Developer.level_id' )
   .where( {
     'Developer.uuid': req.params.id,
     'Account.id': req.account.id
@@ -488,105 +473,7 @@ router.get( '/:id', async ( req, res ) => {
   .where( {
     'Developer.uuid': req.params.id 
   } );      
-/*
-  developer.notes = await req.db
-  .select(
-    'Note.uuid AS id',
-    'Note.created_at',
-    'Note.updated_at',
-    'Developer.uuid AS developer_id',
-    'Situation.uuid AS situation_id',
-    'Situation.name AS situation_name',
-    'Note.full_text'
-  )
-  .from( 'Note' )
-  .leftJoin( 'Developer', 'Developer.id', 'Note.developer_id' )
-  .leftJoin( 'Situation', 'Situation.id', 'Note.situation_id' )
-  .where( {
-    'Developer.uuid': req.params.id 
-  } );    
 
-  developer.contributions = await req.db
-  .select(
-    'Contribution.uuid AS id',
-    'Contribution.created_at',
-    'Contribution.updated_at',
-    'Developer.uuid AS developer_id',
-    'Contribution.contributed_at',
-    'Contribution.description',
-    'Contribution.link',
-    'Contribution.public',
-    'Capacity.uuid AS capacity_id',
-    'Capacity.name AS capacity_name'
-  )
-  .from( 'Contribution' )
-  .leftJoin( 'Capacity', 'Contribution.capacity_id', 'Capacity.id' )
-  .leftJoin( 'Developer', 'Contribution.developer_id', 'Developer.id' )
-  .where( {
-    'Developer.uuid': req.params.id
-  } )
-  .orderBy( 'Contribution.contributed_at', 'desc' ); 
-  
-  for( let c = 0; c < developer.contributions.length; c++ ) {
-    developer.contributions[c].roles = await req.db
-    .select(
-      'Role.uuid AS id',
-      'Role.created_at',
-      'Role.updated_at',
-      'Account.uuid AS account_id',
-      'Role.name',
-      'Color.uuid AS color_id',
-      'Color.foreground',
-      'Color.background'
-    ) 
-    .from( 'Contribution' )
-    .leftJoin( 'Developer', 'Developer.id', 'Contribution.developer_id' )
-    .leftJoin( 'Account', 'Account.id', 'Developer.account_id' )
-    .rightJoin( 'ContributionRole', 'ContributionRole.contribution_id', 'Contribution.id' )
-    .leftJoin( 'Role', 'Role.id', 'ContributionRole.role_id' )
-    .leftJoin( 'Color', 'Color.id', 'Role.color_id' )
-    .where( {
-      'Contribution.uuid': developer.contributions[c].id,
-      'Developer.uuid': req.params.id   
-    } )
-    .orderBy( 'Role.name', 'asc' );
-  }
-
-  let channels = [
-    {table: 'Blog', field: 'url', label: 'Blog', path: 'blog'},
-    {table: 'Dev', field: 'user_name', label: 'Dev.to', path: 'dev'},
-    {table: 'GitHub', field: 'login', label: 'GitHub', path: 'github'},
-    {table: 'LinkedIn', field: 'profile', label: 'LinkedIn', path: 'linkedin'},    
-    {table: 'Medium', field: 'user_name', label: 'Medium', path: 'medium'},
-    {table: 'Reddit', field: 'name', label: 'Reddit', path: 'reddit'},
-    {table: 'StackOverflow', field: 'user', label: 'Stack Overflow', path: 'so'},
-    {table: 'Twitter', field: 'screen_name', label: 'Twitter', path: 'twitter'},
-    {table: 'Website', field: 'url', label: 'Website', path: 'website'},
-    {table: 'YouTube', field: 'channel', label: 'YouTube', path: 'youtube'} 
-  ];
-
-  developer.social = [];
-
-  for( let c = 0; c < channels.length; c++ ) {
-    let social = await req.db
-    .select()
-    .from( channels[c].table )
-    .leftJoin( 'Developer', 'Developer.id', channels[c].table + '.developer_id' )
-    .where( {
-      'Developer.uuid': req.params.id
-    } );
-
-    for( let s = 0; s < social.length; s++ ) {
-      developer.social.push( {
-        id: social[s].uuid,
-        channel: channels[c].label,
-        endpoint: social[s][channels[c].field],
-        developer_id: req.params.id,
-        entity: channels[c].path
-      } );
-    }
-  }
-*/
   res.json( developer );
 } );
 
@@ -605,6 +492,8 @@ router.get( '/', async ( req, res ) => {
     'Developer.uuid AS id',
     'Developer.created_at', 
     'Developer.updated_at',
+    'Account.uuid AS account_id',
+    'Level.uuid AS level_id',
     'Developer.name',
     'Developer.email',
     'Developer.title',
@@ -623,6 +512,7 @@ router.get( '/', async ( req, res ) => {
   )
   .from( 'Developer' )
   .leftJoin( 'Account', 'Account.id', 'Developer.account_id' )
+  .leftJoin( 'Level', 'Level.id', 'Developer.level_id' )
   .where( 
     'Developer.public',
     private ? '>=' : '=',
@@ -771,6 +661,7 @@ router.post( '/', async ( req, res ) => {
     updated_at: new Date(),
     account_id: req.account.id,
     account_uuid: req.account.uuid,
+    level_uuid: req.body.level_id,
     name: req.body.name,
     email: req.body.email,
     title: req.body.title,
@@ -787,6 +678,18 @@ router.post( '/', async ( req, res ) => {
     public: req.body.public,
     internal: req.body.internal
   };
+
+  // Lookup level ID as needed
+  if( record.level_uuid !== null ) {
+    let level = await req.db
+    .select( 'id' )
+    .from( 'level' )
+    .where( 'uuid', record.level_uuid )
+    .first()
+    record.level_id = level.id;
+  } else {
+    record.level_id = null;
+  }
 
   // Location provided
   if( record.location !== null ) {
@@ -837,6 +740,7 @@ router.post( '/', async ( req, res ) => {
     created_at: record.created_at,
     updated_at: record.updated_at,
     account_id: record.account_id,
+    level_id: record.level_id,
     name: record.name,
     email: record.email,
     title: record.title,
@@ -858,6 +762,8 @@ router.post( '/', async ( req, res ) => {
     id: record.uuid,
     created_at: record.created_at,
     updated_at: record.updated_at,
+    account_id: record.account_uuid,
+    level_id: record.level_uuid,
     name: record.name,
     email: record.email,
     title: record.title,
@@ -1052,6 +958,7 @@ router.put( '/:id', async ( req, res ) => {
     updated_at: new Date(),
     account_id: req.account.id,
     account_uuid: req.account.uuid,
+    level_uuid: req.body.level_id,
     name: req.body.name,
     email: req.body.email,
     title: req.body.title,
@@ -1068,6 +975,17 @@ router.put( '/:id', async ( req, res ) => {
     public: req.body.public,
     internal: req.body.internal    
   };
+
+  if( record.level_uuid !== null ) {
+    let level = await req.db
+    .select( 'id' )
+    .from( 'level' )
+    .where( 'uuid', record.level_uuid )
+    .first();
+    record.level_id = level.id;
+  } else {
+    record.level_id = null;
+  }
 
   // Location provided
   if( record.location !== null ) {
@@ -1135,6 +1053,7 @@ router.put( '/:id', async ( req, res ) => {
   await req.db( 'Developer' )
   .update( {
     updated_at: record.updated_at,
+    level_id: record.level_id,
     name: record.name,
     email: record.email,
     title: record.title,
@@ -1160,6 +1079,8 @@ router.put( '/:id', async ( req, res ) => {
     'Developer.uuid AS id',
     'Developer.created_at',
     'Developer.updated_at',
+    'Account.uuid AS account_id',
+    'Level.uuid AS level_id',
     'Developer.name',
     'Developer.email',
     'Developer.title',
@@ -1178,6 +1099,7 @@ router.put( '/:id', async ( req, res ) => {
   )
   .from( 'Developer' )
   .leftJoin( 'Account', 'Account.id', 'Developer.account_id' )
+  .leftJoin( 'Level', 'Level.id', 'Developer.level_id' )  
   .where( {
     'Developer.uuid': record.uuid,
     'Account.id': record.account_id
