@@ -7,7 +7,6 @@
     :margin-top="marginTop"
     :grow="1">
     <Box
-      background="#e0e0e0"
       direction="row"
       ref="columns"
       v-show="headers">
@@ -18,7 +17,7 @@
       :class="{light: light}">      
       <Box
         class="item"
-        :class="{selected: selected === index ? true : false}"
+        :class="{selectable: selectable, selected: selected === index ? true : false}"
         @click.native="change( index )"
         direction="row"
         :grow="1"
@@ -27,13 +26,13 @@
         <Label
           :basis="0"
           :grow="column.grow"
-          :height="46"
+          :height="45"
           :key="column.name"
           :padding-left="16"
           :padding-right="16"
           v-for="( column ) in $refs.columns.$children"
           :width="column.width">
-          {{item[column.field]}}
+          {{format( item, column.label, column.field )}}
         </Label>
       </Box>
     </div>
@@ -64,7 +63,8 @@ export default {
     marginBottom: {type: Number, default: null},
     marginLeft: {type: Number, default: null},
     marginRight: {type: Number, default: null},
-    marginTop: {type: Number, default: null}
+    marginTop: {type: Number, default: null},
+    selectable: {type: Boolean, default: false}
   },
   data: function() {
     return {
@@ -75,11 +75,22 @@ export default {
   },
   methods: {
     change: function( index ) {
+      if( !this.selectable ) {
+        return;        
+      }
+
       if( this.selected !== index ) {
         this.selected = index;
         this.$emit( 'change', index );
       }
-    }
+    },
+    format: function( item, label, field ) {
+      if( label === null ) {
+        return item[field];
+      }
+
+      return this.$parent.$parent[label]( item[field] );
+    }    
   }
 }
 </script>
@@ -87,14 +98,20 @@ export default {
 <style scoped>
 .item {
   border-bottom: solid 1px #e0e0e0;
+  border-top: solid 1px transparent;
 }
 
-.item:hover {
+.item.selectable:hover {
   background-color: #e5e5e5;
 }
 
 .item.selected {
   background-color: #e0e0e0;
+  border-bottom: solid 1px #c6c6c6;
+}
+
+.item.selected:first-of-type {
+  border-top: solid 1px #c6c6c6;
 }
 
 .item.selected:hover {

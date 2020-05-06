@@ -85,74 +85,25 @@
       </Button>
     </Box>
 
-    <Box
-      background="#e0e0e0"
-      direction="row">
-      <Label
+    <DataTable
+      @change="change( $event )"
+      :data="items"
+      :margin-bottom="24"
+      :selectable="true">
+      <DataTableColumn
+        field="name"
         :grow="1"
-        :height="47"
-        :padding-left="16"
-        :padding-right="16"
-        :weight="600">
-        Name
-      </Label>
-      <Label
-        :weight="600"
-        :height="47"
-        :padding-left="16"
-        :padding-right="16"
-        :width="200">
-        Foreground
-      </Label>
-      <Spacer
-        :width="16"/>
-      <Label
-        :weight="600"
-        :height="47"
-        :padding-left="16"
-        :padding-right="16"
-        :width="200">
-        Background
-      </Label>
-    </Box>
-
-    <div
-      class="list">
-
-      <Box
-        class="item"
-        :class="{selected: id === item.id ? true : false}"
-        @click.native="change( index )"
-        direction="row"
-        :grow="1"
-        :key="item.id"
-        v-for="( item, index ) in items">
-        <Label
-          :grow="1"
-          :height="47"
-          :padding-left="16"
-          :padding-right="16">
-          {{item.name}}
-        </Label>
-        <Label
-          :height="47"
-          :width="200"
-          :padding-left="16"
-          :padding-right="16">
-          {{item.foreground}}
-        </Label>
-        <Spacer
-          :width="16"/>
-        <Label
-          :height="47"
-          :width="200"
-          :padding-left="16"
-          :padding-right="16">
-          {{item.background}}
-        </Label>
-      </Box>
-
-    </div>
+        :sortable="true"
+        text="Name"/>
+      <DataTableColumn
+        field="foreground"
+        text="Foreground"
+        :width="216"/>
+      <DataTableColumn
+        field="background"
+        text="Background"
+        :width="200"/>                
+    </DataTable>    
 
   </Box>
 </template>
@@ -160,6 +111,8 @@
 <script>
 import Box from '../../containers/Box.vue';
 import Button from '../../controls/Button.vue';
+import DataTable from '../../controls/DataTable.vue';
+import DataTableColumn from '../../controls/DataTableColumn.vue';
 import Label from '../../controls/Label.vue';
 import Spacer from '../../controls/Spacer.vue';
 import TextInput from '../../controls/TextInput.vue';
@@ -169,6 +122,8 @@ export default {
   components: {
     Box,
     Button,
+    DataTable,
+    DataTableColumn,
     Label,
     Spacer,
     TextInput
@@ -324,30 +279,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.item {
-  border-bottom: solid 1px #e0e0e0;
-}
-
-.item:hover {
-  background-color: #e5e5e5;
-}
-
-.item.selected {
-  background-color: #e0e0e0;
-}
-
-.item.selected:hover {
-  background-color: #cacaca;
-}
-
-.list {
-  background-color: #f4f4f4;
-  flex-basis: 0;
-  flex-grow: 1;
-  margin-bottom: 24px;
-  margin-top: 0;
-  overflow: scroll;
-}
-</style>

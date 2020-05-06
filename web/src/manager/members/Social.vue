@@ -89,9 +89,11 @@
       :light="true"
       :margin-bottom="24"
       :margin-left="16"
-      :margin-right="16">
+      :margin-right="16"
+      :selectable="true">
       <DataTableColumn
         field="channel"
+        :sortable="true"
         text="Channel"
         :width="220"/>
       <DataTableColumn
