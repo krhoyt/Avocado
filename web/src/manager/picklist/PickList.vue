@@ -7,38 +7,32 @@
       background="#f4f4f4"
       @change="select( $event.index )"
       :grow="0"
-      header="Pick List"
+      header="List Definitions"
       :data="lists"
       :width="325"/>
 
-    <Capacity
-      v-show="selected === 0"/>
     <Color
-      v-show="selected === 1"/>
+      v-show="selected === 0"/>
     <Language
-      v-show="selected === 2"/>
-    <Level
-      v-show="selected === 3"/>      
+      v-show="selected === 1"/>
     <Organization
-      v-show="selected === 4"/>                
+      v-show="selected === 2"/>                
     <Relationship
-      v-show="selected === 5"/>      
+      v-show="selected === 3"/>      
     <Role
-      v-show="selected === 6"/>        
+      v-show="selected === 4"/>        
     <Situation
-      v-show="selected === 7"/>                  
+      v-show="selected === 5"/>                  
     <Skill
-      v-show="selected === 8"/>                        
+      v-show="selected === 6"/>                        
 
   </Box>
 </template>
 
 <script>
 import Box from '../../containers/Box.vue';
-import Capacity from './Capacity.vue';
 import Color from './Color.vue';
 import Label from '../../controls/Label.vue';
-import Level from './Level.vue';
 import List from '../../controls/List.vue';
 import Language from './Language.vue';
 import Organization from './Organization.vue';
@@ -51,11 +45,9 @@ export default {
   name: 'PickList',
   components: {
     Box,
-    Capacity,
     Color,
     Label,
     Language,
-    Level,
     List,
     Organization,
     Relationship,
@@ -66,10 +58,8 @@ export default {
   data: function() {
     return {
       lists: [
-        {label: 'Capacity'},
         {label: 'Color'},
         {label: 'Language'},
-        {label: 'Level'},
         {label: 'Organization'},
         {label: 'Relationship'},
         {label: 'Role'},

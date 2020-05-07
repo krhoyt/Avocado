@@ -30,7 +30,7 @@
       <Spacer
         :width="16"/>
       <Select
-        label="Capacity"
+        label="Type"
         label-field="name"
         :options="capacities"
         :readonly="!editing"
@@ -152,7 +152,7 @@
         :height="47"
         :padding-left="16"
         :width="200">
-        Capacity
+        Type
       </Label>
       <Label
         background="#e0e0e0"

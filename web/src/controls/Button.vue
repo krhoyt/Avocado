@@ -17,7 +17,8 @@ export default {
     icon: {default: null, type: String},
     kind: {default: 'primary', type: String},
     size: {default: 'default', type: String},
-    title: {default: null, type: String}
+    title: {default: null, type: String},
+    width: {default: null, type: Number}
   },
   computed: {
     style: function() {
@@ -27,9 +28,10 @@ export default {
         path = this.disabledIcon;
       }
 
-      return `
-        background-image: ${path === null ? 'none' : 'url( ' + path + ' )'};
-      `;
+      return {
+        backgroundImage: path === null ? '' : `url( ${path} )`,
+        width: this.width === null ? '' : ( this.width + 'px' )
+      };
     }
   }
 }

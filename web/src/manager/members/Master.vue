@@ -9,7 +9,7 @@
       @change="select( $event.item )"
       :data="filter"
       :grow="1"
-      header="Community"
+      header="Members"
       label-field="name"/>
   </Box>
 </template>

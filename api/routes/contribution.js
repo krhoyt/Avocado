@@ -37,6 +37,7 @@ router.get( '/developer/:id', async ( req, res ) => {
   .orderBy( 'Contribution.contributed_at', 'desc' );  
 
   for( let r = 0; r < records.length; r++ ) {
+    /*
     let listing = await req.db
     .select( 
       'Role.uuid AS id',
@@ -56,6 +57,8 @@ router.get( '/developer/:id', async ( req, res ) => {
     } );    
 
     records[r].roles = listing.slice();
+    */
+   records[r].roles = [];
   }
 
   res.json( records );

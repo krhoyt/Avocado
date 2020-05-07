@@ -22,7 +22,7 @@
         direction="row"
         :grow="1"
         :key="index"
-        v-for="( item, index ) in data">
+        v-for="( item, index ) in filtered">
         <Label
           :basis="0"
           :grow="column.grow"
@@ -69,9 +69,15 @@ export default {
   data: function() {
     return {
       direction: null,
+      filtered: [],
       selected: null,
       sort: null
     };
+  },
+  watch: {
+    data: function( value, old ) {
+      this.filtered = this.data.slice();
+    }
   },
   methods: {
     change: function( index ) {
@@ -89,8 +95,31 @@ export default {
         return item[field];
       }
 
-      return this.$parent.$parent[label]( item[field] );
-    }    
+      let parent = this.$parent;
+
+      while( parent.$vnode.tag.indexOf( 'Box' ) >= 0 ) {
+        parent = parent.$parent
+      }
+
+      return parent[label]( item[field] );
+    },
+    sorted: function( field, direction ) {
+      if( direction === null ) {
+        this.filtered = this.data.slice();        
+      } else {
+        this.filtered.sort( ( a, b ) => {
+          if( a[field] > b[field] ) return direction === 'asc' ? 1 : -1;
+          if( a[field] < b[field] ) return direction === 'asc' ? -1 : 1;
+          return 0;        
+        } );        
+      }
+
+      for( let c = 0; c < this.$refs.columns.$children.length; c++ ) {
+        if( this.$refs.columns.$children[c].field !== field ) {
+          this.$refs.columns.$children[c].direction = null;
+        }
+      }
+    }
   }
 }
 </script>

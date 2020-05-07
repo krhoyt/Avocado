@@ -55,6 +55,7 @@
         v-model="count"
         :width="150"/>
     </Box>
+    
     <Box
       direction="row"
       :margin-bottom="16">

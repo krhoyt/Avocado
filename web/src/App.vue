@@ -10,10 +10,14 @@
 
     <Members
       v-show="feature === 'community'"/>
+    <Query
+      v-show="feature === 'activity'"/>
+    <Reach
+      v-show="feature === 'reach'"/>      
+    <Report
+      v-show="feature === 'report'"/>      
     <PickList
       v-show="feature === 'list'"/>
-    <Report
-      v-show="feature === 'report'"/>
     <Map
       v-show="feature === 'map'"/>
     <Login
@@ -34,10 +38,10 @@ import Header from './manager/Header.vue';
 import Login from './manager/Login.vue';
 import Map from './manager/Map.vue';
 import Members from './manager/members/Members.vue';
+import Reach from './manager/picklist/Reach.vue';
 import Report from './manager/Report.vue';
 import PickList from './manager/picklist/PickList.vue';
-
-import {mapGetters} from 'vuex';
+import Query from './manager/picklist/Query.vue';
 
 export default {
   name: 'App',
@@ -49,6 +53,8 @@ export default {
     Map,
     Members,    
     PickList,
+    Query,
+    Reach,
     Report    
   },
   data: function() {
@@ -58,9 +64,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters( {
-      account: 'ACCOUNT'
-    } ),    
     decorate: function() {
       return this.account === null ? false : true;
     }
@@ -70,9 +73,8 @@ export default {
       this.feature = tag;
       this.menu = false;
     },
-    login: function( account ) {
+    login: function() {
       this.feature = 'community';      
-      this.$store.dispatch( 'LOAD' );      
     },
     logout: function() {
       this.feature = 'login';

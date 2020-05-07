@@ -1,109 +1,48 @@
 <template>
+
   <Box
     direction="row"
     :grow="1">
 
     <Box
-      background="#f4f4f4"
+      :basis="0"
       :grow="1">
 
-      <Box
-        background="#e0e0e0"
-        direction="row">
-        <Label
+      <DataTable
+        :data="report"
+        :selectable="true">
+        <DataTableColumn
+          field="name"
           :grow="1"
-          :weight="600"
-          :height="47"
-          :padding-left="16">
-          Name
-        </Label>
-        <Label
-          :weight="600"
-          :height="47"
-          :padding-left="16"
-          :width="150">
-          Level
-        </Label>          
-        <Label
-          :weight="600"
-          :height="47"
-          :padding-left="16"
-          :width="125">
-          Love
-        </Label>                  
-        <Label
-          :weight="600"
-          :height="47"
-          :padding-left="16"
-          :width="125">
-          Reach
-        </Label>
-        <Label
-          :weight="600"
-          :height="47"
-          :padding-left="16"
-          :width="125">
-          Activity
-        </Label>           
-        <Label
-          :weight="600"
-          :height="47"
-          :padding-left="16"
-          :width="125">
-          Gravity
-        </Label>
-      </Box>
-
-      <div
-        class="list">
-
-        <Box
-          class="item"
-          direction="row"
-          v-for="( item, index ) in report"
-          :key="index">
-
-          <Label
-            :grow="1"
-            :height="47"
-            :padding-left="16">
-            {{item.name}}
-          </Label>
-          <Label
-            :height="47"
-            :padding-left="16"
-            :width="150">
-            {{item.level}}
-            -
-            {{item.level | level}}
-          </Label>          
-          <Label
-            :height="47"
-            :padding-left="16"
-            :width="125">
-            {{item.love}}
-          </Label>
-          <Label
-            :height="47"
-            :padding-left="16"
-            :width="125">
-            {{item.reach}}
-          </Label>
-          <Label
-            :height="47"
-            :padding-left="16"
-            :width="125">
-            {{item.activity}}
-          </Label>                               
-          <Label
-            :height="47"
-            :padding-left="16"
-            :width="125">
-            {{item.gravity}}
-          </Label>
-        </Box>        
-
-      </div>
+          :sortable="true"
+          text="Name"/>
+        <DataTableColumn
+          field="level"
+          label="level"
+          :sortable="true"
+          text="Level"
+          :width="150"/>        
+        <DataTableColumn
+          field="love"
+          :sortable="true"
+          text="Love"
+          :width="125"/>        
+        <DataTableColumn
+          field="reach"
+          :sortable="true"
+          text="Reach"
+          :width="125"/>                      
+        <DataTableColumn
+          field="activity"
+          :sortable="true"
+          text="Activity"
+          :width="125"/>                      
+        <DataTableColumn
+          field="gravity"
+          :sortable="true"
+          text="Gravity"
+          :width="125"/>                                            
+      </DataTable>
 
       <Box
         background="#e0e0e0"
@@ -274,6 +213,8 @@
 
 <script>
 import Box from '../containers/Box.vue';
+import DataTable from '../controls/DataTable.vue';
+import DataTableColumn from '../controls/DataTableColumn.vue';
 import Label from '../controls/Label.vue';
 import Spacer from '../controls/Spacer.vue';
 
@@ -281,6 +222,8 @@ export default {
   name: 'Report',
   components: {
     Box,
+    DataTable,
+    DataTableColumn,
     Label,
     Spacer
   },
@@ -658,53 +601,27 @@ export default {
       }
     }
   },
-  filters: {
+  methods: {
     level: function( value ) {
       let result = null;
 
       switch( value ) {
         case 4:
-          result = 'Observer';
+          result = '4 - Observer';
           break;
         case 3:
-          result = 'User';
+          result = '3 - User';
           break;
         case 2:
-          result = 'Fan';
+          result = '2 - Fan';
           break;
         case 1:
-          result = 'Ambassador';
+          result = '1 - Ambassador';
           break;
       }
 
       return result;
-    }
+    }    
   }
 }
 </script>
-
-<style scoped>
-.item {
-  border-bottom: solid 1px #e0e0e0;
-}
-
-.item:hover {
-  background-color: #e5e5e5;
-}
-
-.item.selected {
-  background-color: #e0e0e0;
-}
-
-.item.selected:hover {
-  background-color: #cacaca;
-}
-
-.list {
-  background-color: #f4f4f4;
-  flex-basis: 0;
-  flex-grow: 1;
-  margin: 0;
-  overflow: scroll;
-}
-</style>

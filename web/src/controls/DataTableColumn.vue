@@ -16,7 +16,8 @@ export default {
     Label
   },
   props: {
-    field: {type: String, default: null},
+    compare: {type: String, default: null},
+    field: {type: String, default: 'label'},
     grow: {type: Number, default: null},
     label: {type: String, default: null},
     sortable: {type: Boolean, default: false},
@@ -30,10 +31,26 @@ export default {
     };
   },
   computed: {
-    direction: function() {
-      if( this.ascending ) return 'asc';
-      if( this.descending ) return 'desc';
-      return null; 
+    direction: {
+      get: function() {
+        if( this.ascending ) return 'asc';
+        if( this.descending ) return 'desc';
+        return null; 
+      },
+      set: function( value ) {
+        if( value === null ) {
+          this.ascending = false;
+          this.descending = false;
+        } else {
+          if( value === 'asc' ) {
+            this.ascending = true;
+            this.descending = false;
+          } else {
+            this.ascending = false;
+            this.descending = true;
+          }
+        }
+      }
     },
     style: function() {
       return {
@@ -59,6 +76,22 @@ export default {
       } else {
         this.ascending = false;
         this.descending = false;
+      }
+
+      let parent = this.$parent;
+
+      if( this.compare !== null ) {
+        while( parent.$vnode.tag.indexOf( 'Box' ) >= 0 ) {
+          parent = parent.$parent
+        }
+
+        parent[this.compare]( this );
+      } else {
+        while( parent.$vnode.tag.indexOf( 'DataTable' ) === -1 ) {
+          parent = parent.$parent
+        }
+
+        parent.sorted( this.field, this.direction );
       }
     }
   }

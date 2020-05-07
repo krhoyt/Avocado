@@ -28,6 +28,75 @@ export default new Vuex.Store( {
     },    
     capacities: [],
     colors: [],
+    conditions: [
+      {label: 'Contains'},        
+      {label: 'Exists'},
+      {label: 'Equals'},
+      {label: 'Is Not Equal'},
+      {label: 'Greater Than'},
+      {label: 'Less Than'},
+      {label: 'Greater Than or Equal'},        
+      {label: 'Less Than or Equal'}
+    ],    
+    entities: [
+      {label: 'Blog'},
+      {label: 'Dev.to'},
+      {label: 'GitHub'},
+      {label: 'Medium'},
+      {label: 'Stack Overflow'},
+      {label: 'Twitter'},
+      {label: 'YouTube'}
+    ],
+    fields: {
+      'Blog': [
+        {label: 'Title'},
+        {label: 'Summary'},
+        {label: 'Category'},
+        {label: 'Keyword'}
+      ],
+      'Dev.to': [
+        {label: 'Title'},
+        {label: 'Summary'},
+        {label: 'Likes'},
+        {label: 'Reading'},
+        {label: 'Unicorn'},
+        {label: 'Keyword'}        
+      ],
+      'GitHub': [
+        {label: 'Event Name'},
+        {label: 'Repository Name'},
+      ],
+      'Medium': [
+        {label: 'Title'},
+        {label: 'Summary'},
+        {label: 'Claps'},
+        {label: 'Category'},
+        {label: 'Keyword'}        
+      ],
+      'Stack Overflow': [
+        {label: 'Accepted'},
+        {label: 'Score'},
+        {label: 'Views'},
+        {label: 'Title'},
+        {label: 'Tags'},
+        {label: 'Keywords'}
+      ],
+      'Twitter': [
+        {label: 'Status'},
+        {label: 'Favorite'},
+        {label: 'Retweet'},
+        {label: 'Hashtags'},
+        {label: 'Mentions'},
+        {label: 'URLs'}
+      ],
+      'YouTube': [
+        {label: 'Title'},
+        {label: 'Views'},
+        {label: 'Stars'},
+        {label: 'Duration (sec)'},
+        {label: 'Summary'}
+      ]
+    },
     languages: [],
     levels: [],
     organizations: [],
@@ -51,6 +120,15 @@ export default new Vuex.Store( {
     COLORS: function( state ) {
       return state.colors;
     },
+    CONDITIONS: function( state ) {
+      return state.conditions;
+    },    
+    ENTITIES: function( state ) {
+      return state.entities;
+    },
+    FIELDS: function( state ) {
+      return state.fields;
+    },    
     LANGUAGES: function( state ) {
       return state.languages;
     },    

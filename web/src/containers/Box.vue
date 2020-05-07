@@ -31,20 +31,20 @@ export default {
       return {
         alignItems: this.align,
         backgroundColor: this.background,
-        basis: this.basis === null ? 'auto' : this.basis,
+        basis: this.basis === null ? '' : this.basis,
         cursor: this.cursor,
         flexDirection: this.direction,
-        flexBasis: this.basis === null ? 'auto' : this.basis,
+        flexBasis: this.basis === null ? '' : this.basis,
         flexGrow: this.grow,
-        height: this.height === null ? 'auto' : ( this.height + 'px' ),
-        justifyContent: this.justify === null ? 'auto' : this.justify,
-        minWidth: this.width === null ? 'auto' : ( this.width + 'px' ),
+        height: this.height === null ? '' : ( this.height + 'px' ),
+        justifyContent: this.justify === null ? '' : this.justify,
+        minWidth: this.width === null ? '' : ( this.width + 'px' ),
         marginBottom: this.marginBottom === 0 ? 0 : ( this.marginBottom + 'px' ),
         marginLeft: this.marginLeft === 0 ? 0 : ( this.marginLeft + 'px' ),        
         marginRight: this.marginRight === 0 ? 0 : ( this.marginRight + 'px' ),        
         marginTop: this.marginTop === 0 ? 0 : ( this.marginTop + 'px' ),
         position: this.position,
-        width: this.width === null ? 'auto' : ( this.width + 'px' ),
+        width: this.width === null ? '' : ( this.width + 'px' ),
       };
     }
   }

@@ -3,13 +3,31 @@
     <button
       class="developer"
       @click="select( 'community' )">
-      <p>Community</p>
+      <p>Members</p>
       <p>All the people in your community</p>
     </button>
     <button
+      class="activity"
+      @click="select( 'activity' )">
+      <p>Activity Types</p>
+      <p>How to contribute to the community</p>
+    </button>    
+    <button
+      class="reach"
+      @click="select( 'reach' )">
+      <p>Reach Elements</p>
+      <p>Define influence in the community</p>
+    </button>        
+    <button
+      class="report"
+      @click="select( 'report' )">
+      <p>Report</p>
+      <p>Community love, reach, and gravity</p>
+    </button>    
+    <button
       class="category"
       @click="select( 'list' )">
-      <p>Pick List</p>
+      <p>List Definitions</p>
       <p>Categories for lists and tags</p>
     </button>    
     <button
@@ -17,13 +35,7 @@
       @click="select( 'map' )"
       disabled>
       <p>Map</p>
-      <p>Geographical overview and quick edit</p>
-    </button>
-    <button
-      class="report"
-      @click="select( 'report' )">
-      <p>Report</p>
-      <p>Community activity and influence</p>
+      <p>Geographical view of the community</p>
     </button>
   </div>
 </template>
@@ -107,19 +119,27 @@ div {
   width: 325px;
 }
 
+.activity {
+  background-image: url( /img/user-love.svg );
+}
+
+.developer {
+  background-image: url( /img/group.svg );
+}
+
 .category {
-  background-image: url( /img/category.svg );
+  background-image: url( /img/list-dropdown.svg );
 }
 
 .map {
   background-image: url( /img/map-disabled.svg );
 }
 
-.report {
-  background-image: url( /img/report.svg );
+.reach {
+  background-image: url( /img/bloch-sphere.svg );
 }
 
-.developer {
-  background-image: url( /img/group.svg );
+.report {
+  background-image: url( /img/report.svg );
 }
 </style>
