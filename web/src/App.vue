@@ -74,6 +74,9 @@ export default {
       this.menu = false;
     },
     login: function() {
+      this.$store.dispatch( 'LOAD' );
+      this.$store.dispatch( 'community/LOAD' );
+
       this.feature = 'community';      
     },
     logout: function() {

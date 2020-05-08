@@ -1,13 +1,15 @@
 <template>
-
   <Box
+    :basis="0"
     direction="row"
     :grow="1">
 
+    <!-- Left side -->
+    <!-- Data side -->
     <Box
-      :basis="0"
       :grow="1">
 
+      <!-- Table -->
       <DataTable
         :data="report"
         :selectable="true">
@@ -44,6 +46,7 @@
           :width="125"/>                                            
       </DataTable>
 
+      <!-- Summary footer -->
       <Box
         background="#e0e0e0"
         direction="row">
@@ -88,124 +91,150 @@
 
     </Box>
 
-    <Box>
-      <div 
-        class="list" 
-        style="background-color: #ffffff; width: 425px;">
+    <!-- Right side -->
+    <!-- Chart side -->
+    <Box
+      background="#ffffff"
+      display="block"
+      overflow="scroll"
+      :width="425">
+
+      <!-- Members by Level -->
+      <Label
+        background="#e0e0e0"
+        :weight="600"
+        :height="47"
+        :padding-left="16">
+        Members by Level
+      </Label>       
+      <highcharts
+        :options="byLevel">
+      </highcharts>
+
+      <!-- Love and Reach -->
+      <Label
+        background="#e0e0e0"
+        :weight="600"
+        :height="47"
+        :padding-left="16">        
+        Love and Reach
+      </Label>       
+      <highcharts
+        :options="loveAndReach">
+      </highcharts>
+
+      <!-- Most Active Organizations -->
+      <!--
+      <Label
+        background="#e0e0e0"
+        :weight="600"
+        :height="47"
+        :padding-left="16">
+        Most Active Organizations
+      </Label>       
+      <Box
+        direction="row">
         <Label
-          background="#e0e0e0"
-          :weight="600"
+          :grow="1"
           :height="47"
           :padding-left="16">
-          Members by Level
-        </Label>       
-        <highcharts
-          :options="byLevel">
-        </highcharts>
+          IBM   
+        </Label>   
         <Label
-          background="#e0e0e0"
-          :weight="600"
           :height="47"
-          :padding-left="16">        
-          Love and Reach
-        </Label>       
-        <highcharts
-          :options="loveAndReach">
-        </highcharts>
-        <!--
-        <Label
-          background="#e0e0e0"
-          :weight="600"
-          :height="47"
-          :padding-left="16">
-          Most Active Organizations
-        </Label>       
+          :padding-right="16"
+          :width="100">
+          999   
+        </Label>                         
+      </Box>
+      -->
+
+      <!-- Cound by Level and Location -->
+      <Label
+        background="#e0e0e0"
+        :weight="600"
+        :height="47"
+        :padding-left="16">
+        Member Count by Level and Location
+      </Label>       
+      <highcharts
+        :options="memberByLevelLocation">
+      </highcharts>
+
+      <!-- Gravity by Level and Location -->
+      <Label
+        background="#e0e0e0"
+        :weight="600"
+        :height="47"
+        :padding-left="16">
+        Gravity by Level and Location
+      </Label>       
+      <highcharts
+        :options="gravityByLevelLocation">
+      </highcharts>
+
+      <!-- Gravity by Location and Level -->
+      <Label
+        background="#e0e0e0"
+        :weight="600"
+        :height="47"
+        :padding-left="16">
+        Gravity by Location and Level
+      </Label>       
+      <highcharts
+        :options="gravityByLocationLevel">
+      </highcharts>
+
+      <!-- Top Ten -->
+      <Label
+        background="#e0e0e0"
+        :weight="600"
+        :height="47"
+        :padding-left="16">
+        Highest Love Members (10)
+      </Label>       
+
+      <!-- Inline scrolling -->
+      <!-- Card eventually to be more complex -->
+      <!-- Include photo, appropriate labels -->
+      <Box
+        display="block"
+        :max-height="225"
+        overflow="scroll">
+
+        <!-- Member card -->
         <Box
-          direction="row">
+          class="item"
+          direction="row"
+          v-for="( member, index ) in highestLove"
+          :key="index">
           <Label
             :grow="1"
             :height="47"
             :padding-left="16">
-            IBM   
-          </Label>   
+            {{member.name}}
+          </Label>      
           <Label
             :height="47"
             :padding-right="16"
-            :width="100">
-            999   
-          </Label>                         
+            :width="70">
+            {{member.love === null ? 0 : member.love.toLocaleString()}}   
+          </Label>
+          <Label
+            :height="47"
+            :padding-right="16"
+            :width="70">
+            {{member.twitter === null ? 0 : member.twitter.toLocaleString()}}   
+          </Label>
+          <Label
+            :height="47"
+            :padding-right="16"
+            :width="70">
+            {{member.github === null ? 0 : member.github.toLocaleString()}}   
+          </Label>                              
         </Box>
-        -->
-        <Label
-          background="#e0e0e0"
-          :weight="600"
-          :height="47"
-          :padding-left="16">
-          Member Count by Level and Location
-        </Label>       
-        <highcharts
-          :options="memberByLevelLocation">
-        </highcharts>
-        <Label
-          background="#e0e0e0"
-          :weight="600"
-          :height="47"
-          :padding-left="16">
-          Gravity by Level and Location
-        </Label>       
-        <highcharts
-          :options="gravityByLevelLocation">
-        </highcharts>
-        <Label
-          background="#e0e0e0"
-          :weight="600"
-          :height="47"
-          :padding-left="16">
-          Gravity by Location and Level
-        </Label>       
-        <highcharts
-          :options="gravityByLocationLevel">
-        </highcharts>
-        <Label
-          background="#e0e0e0"
-          :weight="600"
-          :height="47"
-          :padding-left="16">
-          Highest Love Members (10)
-        </Label>       
-        <div class="list" style="background-color: #ffffff; max-height: 225px;">
-          <Box
-            class="item"
-            direction="row"
-            v-for="( member, index ) in highestLove"
-            :key="index">
-            <Label
-              :grow="1"
-              :height="47"
-              :padding-left="16">
-              {{member.name}}
-            </Label>      
-            <Label
-              :height="47"
-              :padding-right="16"
-              :width="70">
-              {{member.love === null ? 0 : member.love.toLocaleString()}}   
-            </Label>
-            <Label
-              :height="47"
-              :padding-right="16"
-              :width="70">
-              {{member.twitter === null ? 0 : member.twitter.toLocaleString()}}   
-            </Label>
-            <Label
-              :height="47"
-              :padding-right="16"
-              :width="70">
-              {{member.github === null ? 0 : member.github.toLocaleString()}}   
-            </Label>                              
-          </Box>
-        </div>
-      </div>
+      </Box>
+
     </Box>
 
   </Box>

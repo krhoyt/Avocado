@@ -231,8 +231,6 @@ export default {
             this.error = 'Email and password do not match';
           } else {
             this.$store.dispatch( 'SET_ACCOUNT', account );
-            this.$store.dispatch( 'LOAD' );
-            this.$store.dispatch( 'community/LOAD' );
 
             this.$emit( 'login' );
             this.reset();
