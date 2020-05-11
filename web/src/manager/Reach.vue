@@ -209,14 +209,14 @@
 </template>
 
 <script>
-import Box from '../../containers/Box.vue';
-import Button from '../../controls/Button.vue';
-import DataTable from '../../controls/DataTable.vue';
-import DataTableColumn from '../../controls/DataTableColumn.vue';
-import Label from '../../controls/Label.vue';
-import Select from '../../controls/Select.vue';
-import Spacer from '../../controls/Spacer.vue';
-import TextInput from '../../controls/TextInput.vue';
+import Box from '../containers/Box.vue';
+import Button from '../controls/Button.vue';
+import DataTable from '../controls/DataTable.vue';
+import DataTableColumn from '../controls/DataTableColumn.vue';
+import Label from '../controls/Label.vue';
+import Select from '../controls/Select.vue';
+import Spacer from '../controls/Spacer.vue';
+import TextInput from '../controls/TextInput.vue';
 
 export default {
   name: 'Capacity',
@@ -244,24 +244,25 @@ export default {
       id: null,
       name: null,
       rule: false,
-      weight: '0'
+      weight: '0',
+      line_one_entity: 0
     };
   },
   computed: {
     color: {
       get: function() {
-        return this.$store.getters['picklist/capacity/COLOR'];
+        return this.$store.getters['capacity/COLOR'];
       },
       set: function( value ) {
-        this.$store.dispatch( 'picklist/capacity/SET_COLOR', value );
+        this.$store.dispatch( 'capacity/SET_COLOR', value );
       }
     },
     color_id: {
       get: function() {
-        return this.$store.getters['picklist/capacity/COLOR_ID'];
+        return this.$store.getters['capacity/COLOR_ID'];
       },
       set: function( value ) {
-        this.$store.dispatch( 'picklist/capacity/SET_COLOR_ID', value );
+        this.$store.dispatch( 'capacity/SET_COLOR_ID', value );
       }
     },
     colors: {
@@ -273,20 +274,20 @@ export default {
       }
     },
     conditions: function() {
-      return this.$store.getters.CONDITIONS;
+      return this.$store.getters['capacity/CONDITIONS'];
     },
     entities: function() {
-      return this.$store.getters.ENTITIES;
+      return this.$store.getters['capacity/ENTITIES'];
     },
     fields: function() {
-      return this.$store.getters.FIELDS[this.$store.getters.ENTITIES[this.entity].label];
+      return this.$store.getters['capacity/FIELDS'][this.$store.getters['capacity/ENTITIES'][this.line_one_entity].label];
     },
     items: {
       get: function() {
-        return this.$store.getters.CAPACITIES;
+        return this.$store.getters['capacity/CAPACITIES'];
       },
       set: function( value ) {
-        this.$store.dispatch( 'SET_CAPACITIES', value );
+        this.$store.dispatch( 'capacity/SET_CAPACITIES', value );
       }
     },
   },

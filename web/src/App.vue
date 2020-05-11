@@ -4,13 +4,13 @@
     :grow="1">
 
     <Header
-      :decorate="decorate"
+      :decorate="account === null ? false : true"
       @logout="logout"
       @menu="menu = !menu"/>
 
     <Members
       v-show="feature === 'community'"/>
-    <Query
+    <Capacity
       v-show="feature === 'activity'"/>
     <Reach
       v-show="feature === 'reach'"/>      
@@ -26,6 +26,7 @@
 
     <FeatureMenu
       @change="change( $event )"
+      @dismiss="menu = false"
       v-show="menu"/>
 
   </Box>
@@ -33,27 +34,27 @@
 
 <script>
 import Box from './containers/Box.vue';
+import Capacity from './manager/Capacity.vue';
 import FeatureMenu from './manager/FeatureMenu.vue';
 import Header from './manager/Header.vue';
 import Login from './manager/Login.vue';
 import Map from './manager/Map.vue';
 import Members from './manager/members/Members.vue';
-import Reach from './manager/picklist/Reach.vue';
+import Reach from './manager/Reach.vue';
 import Report from './manager/Report.vue';
 import PickList from './manager/picklist/PickList.vue';
-import Query from './manager/picklist/Query.vue';
 
 export default {
   name: 'App',
   components: {
     Box,
+    Capacity,
     FeatureMenu,
     Header,
     Login,
     Map,
     Members,    
     PickList,
-    Query,
     Reach,
     Report    
   },
@@ -64,8 +65,8 @@ export default {
     };
   },
   computed: {
-    decorate: function() {
-      return this.account === null ? false : true;
+    account: function() {
+      return this.$store.getters.ACCOUNT;
     }
   },
   methods: {
@@ -75,8 +76,6 @@ export default {
     },
     login: function() {
       this.$store.dispatch( 'LOAD' );
-      this.$store.dispatch( 'community/LOAD' );
-
       this.feature = 'community';      
     },
     logout: function() {

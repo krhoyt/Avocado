@@ -114,6 +114,7 @@ button {
   font-size: 14px;
   font-weight: 600;
   height: 47px;
+  margin: 0;
   outline: solid 2px transparent;
   outline-offset: -2px;  
   padding-left: 16px;

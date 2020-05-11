@@ -1,4 +1,3 @@
-import capacities from './capacities.js';
 import colors from './colors.js';
 import languages from './languages.js';
 import levels from './levels.js';
@@ -12,7 +11,6 @@ export default {
   namespaced: true,
   state: {},
   modules: {
-    capacities,
     colors,
     languages,
     levels,

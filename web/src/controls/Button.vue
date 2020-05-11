@@ -73,9 +73,11 @@ button.field {
 button.modal {
   background-color: #0f62fe; 
   background-position: right 16px top 16px; 
+  box-sizing: border-box;
   color: #ffffff;            
   flex-basis: 0;
   flex-grow: 1;
+  min-height: 64px;
   height: 64px;
   padding: 16px 60px 24px 12px;
 }

@@ -1,42 +1,49 @@
 <template>
-  <div>
-    <button
-      class="developer"
-      @click="select( 'community' )">
-      <p>Members</p>
-      <p>All the people in your community</p>
-    </button>
-    <button
-      class="activity"
-      @click="select( 'activity' )">
-      <p>Activity Types</p>
-      <p>How to contribute to the community</p>
-    </button>    
-    <button
-      class="reach"
-      @click="select( 'reach' )">
-      <p>Reach Elements</p>
-      <p>Define influence in the community</p>
-    </button>        
-    <button
-      class="report"
-      @click="select( 'report' )">
-      <p>Report</p>
-      <p>Community love, reach, and gravity</p>
-    </button>    
-    <button
-      class="category"
-      @click="select( 'list' )">
-      <p>List Definitions</p>
-      <p>Categories for lists and tags</p>
-    </button>    
-    <button
-      class="map"
-      @click="select( 'map' )"
-      disabled>
-      <p>Map</p>
-      <p>Geographical view of the community</p>
-    </button>
+  <div 
+    class="block"
+    @click="$emit( 'dismiss' )">
+
+    <div 
+      class="menu">
+      <button
+        class="developer"
+        @click="select( 'community' )">
+        <p>Members</p>
+        <p>All the people in your community</p>
+      </button>
+      <button
+        class="activity"
+        @click="select( 'activity' )">
+        <p>Activity Types</p>
+        <p>How to contribute to the community</p>
+      </button>    
+      <button
+        class="reach"
+        @click="select( 'reach' )">
+        <p>Reach Elements</p>
+        <p>Define influence in the community</p>
+      </button>        
+      <button
+        class="report"
+        @click="select( 'report' )">
+        <p>Report</p>
+        <p>Community love, reach, and gravity</p>
+      </button>    
+      <button
+        class="category"
+        @click="select( 'list' )">
+        <p>List Definitions</p>
+        <p>Categories for lists and tags</p>
+      </button>    
+      <button
+        class="map"
+        @click="select( 'map' )"
+        disabled>
+        <p>Map</p>
+        <p>Geographical view of the community</p>
+      </button>
+    </div>
+
   </div>
 </template>
 
@@ -106,7 +113,7 @@ button:disabled p {
   color: #d8d8d8;
 }
 
-div {
+div.menu {
   background-color: #ffffff;
   box-shadow: 0 2px 6px rgba( 0, 0, 0, 0.30 );
   display: flex;
@@ -117,6 +124,14 @@ div {
   position: absolute;
   top: 47px;
   width: 325px;
+}
+
+div.block {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .activity {

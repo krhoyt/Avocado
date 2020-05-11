@@ -18,13 +18,16 @@ router.get( '/:id', async ( req, res ) => {
     'Capacity.updated_at',
     'Capacity.name',
     'Color.uuid AS color_id',
-    'Capacity.weight'
+    'Color.foreground',
+    'Color.background',
+    'Capacity.weight',
+    'Capacity.criteria'
   )
   .from( 'Capacity' )
   .leftJoin( 'Color', 'Color.id', 'Capacity.color_id' )
   .leftJoin( 'Account', 'Account.id', 'Capacity.account_id' )
   .where( {
-    uuid: req.params.id
+    'Capacity.uuid': req.params.id
   } )
   .first();
 
@@ -44,7 +47,10 @@ router.get( '/name/:prefix', async ( req, res ) => {
     'Capacity.updated_at',
     'Capacity.name',
     'Color.uuid AS color_id',
-    'Capacity.weight'
+    'Color.foreground',
+    'Color.background',
+    'Capacity.weight',
+    'Capacity.criteria'
   )
   .from( 'Capacity' )
   .leftJoin( 'Account', 'Account.id', 'Capacity.account_id' ) 
@@ -69,7 +75,10 @@ router.get( '/', async ( req, res ) => {
     'Account.uuid AS account_id',
     'Capacity.name',
     'Color.uuid AS color_id',
-    'Capacity.weight'
+    'Color.foreground',
+    'Color.background',
+    'Capacity.weight',
+    'Capacity.criteria'
   )
   .count( 'Contribution.id AS count' )
   .from( 'Capacity' )
@@ -77,7 +86,7 @@ router.get( '/', async ( req, res ) => {
   .leftJoin( 'Account', 'Account.id', 'Capacity.account_id' )
   .leftJoin( 'Color', 'Color.id', 'Capacity.color_id' )
   .where( {
-    'Capacity.account_id': req.account.id    
+    'Capacity.account_id': req.account.id,
   } )
   .orWhere( 'Capacity.account_id', null )
   .groupBy( 'Capacity.id' )
@@ -97,7 +106,8 @@ router.post( '/', async ( req, res ) => {
     account_id: req.account.id,
     name: req.body.name.trim(),
     color_uuid: req.body.color_id,
-    weight: req.body.weight
+    weight: req.body.weight,
+    criteria: req.body.criteria
   };
 
   let existing = null;
@@ -112,7 +122,10 @@ router.post( '/', async ( req, res ) => {
         'Account.uuid AS account_id',
         'Capacity.name',
         'Color.uuid AS color_id',
-        'Capacity.weight'
+        'Color.foreground',
+        'Color.background',
+        'Capacity.weight',
+        'Capacity.criteria'
       )
       .from( 'Capacity' )
       .leftJoin( 'Account', 'Account.id', 'Capacity.account_id' )
@@ -131,12 +144,21 @@ router.post( '/', async ( req, res ) => {
 
   if( existing === null ) {
     // Color lookup
-    let color = await req.db
-    .select( 'id' )
-    .from( 'Color' )
-    .where( 'uuid', record.color_uuid )
-    .first();
-    record.color_id = color.id;
+    if( record.color_uuid !== null ) {
+      let color = await req.db
+      .select( 'id', 'foreground', 'background' )
+      .from( 'Color' )
+      .where( 'uuid', record.color_uuid )
+      .first();
+
+      record.color_id = color.id;
+      record.foreground = color.foreground;
+      record.background = color.background;
+    } else {
+      record.color_id = null;
+      record.foreground = null;
+      record.background = null;
+    }
 
     // SQLite does not support date objects
     // Store as string
@@ -155,7 +177,8 @@ router.post( '/', async ( req, res ) => {
       account_id: record.account_id,
       name: record.name,
       color_id: record.color_id,
-      weight: record.weight
+      weight: record.weight,
+      criteria: record.criteria
     } );
 
     // Response
@@ -166,7 +189,10 @@ router.post( '/', async ( req, res ) => {
       account_id: record.account_uuid,
       name: record.name,
       color_id: record.color_uuid,
-      weight: record.weight
+      foreground: record.foreground,
+      background: record.background,
+      weight: record.weight,
+      criteria: record.criteria
     };    
   } else {
     record = existing;
@@ -184,16 +210,21 @@ router.put( '/:id', async ( req, res ) => {
     account_id: req.account.id,
     name: req.body.name,
     color_uuid: req.body.color_id,
-    weight: req.body.weight
+    weight: req.body.weight,
+    criteria: req.body.criteria
   };
 
   // Color lookup
-  let color = await req.db
-  .select( 'id' )
-  .from( 'Color' )
-  .where( 'uuid', record.color_uuid )
-  .first();
-  record.color_id = color.id;  
+  if( record.color_uuid !== null ) {
+    let color = await req.db
+    .select( 'id' )
+    .from( 'Color' )
+    .where( 'uuid', record.color_uuid )
+    .first();
+    record.color_id = color.id;  
+  } else {
+    record.color_id = null;
+  }
 
   // SQLite does not support date objects
   // Store as string
@@ -207,7 +238,8 @@ router.put( '/:id', async ( req, res ) => {
     updated_at: record.updated_at,
     name: record.name,
     color_id: record.color_id,
-    weight: record.weight
+    weight: record.weight,
+    criteria: record.criteria
   } )
   .where( {
     uuid: record.uuid
@@ -224,7 +256,8 @@ router.put( '/:id', async ( req, res ) => {
     'Color.uuid AS color_id',
     'Color.foreground',
     'Color.background',
-    'Capacity.weight'
+    'Capacity.weight',
+    'Capacity.criteria'
   )
   .from( 'Capacity' )
   .leftJoin( 'Account', 'Account.id', 'Capacity.account_id' )

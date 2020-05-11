@@ -43,7 +43,7 @@ export default {
         height: this.height === null ? '' : ( this.height + 'px' ),
         justifyContent: this.justify === null ? '' : this.justify,
         maxHeight: this.maxHeight === null ? '' : ( this.maxHeight + 'px' ),
-        minHeight: 0,
+        minHeight: this.height === null ? 0 : ( this.height + 'px' ),
         minWidth: this.width === null ? '' : ( this.width + 'px' ),
         marginBottom: this.marginBottom === 0 ? 0 : ( this.marginBottom + 'px' ),
         marginLeft: this.marginLeft === 0 ? 0 : ( this.marginLeft + 'px' ),        

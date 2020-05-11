@@ -3536,6 +3536,9 @@ paths:
                     weight:
                       type: integer
                       example: 10
+                    criteria:
+                      type: string
+                      example: 1,2,Term,3,4
                     count:
                       type: integer
                       example: 0
@@ -3560,6 +3563,9 @@ paths:
                 weight:
                   type: integer
                   example: 10
+                criteria:
+                  type: string
+                  example: 1,2,Term,3,4
       responses:
         "200":
           description: successful operation
@@ -3591,6 +3597,9 @@ paths:
                   weight:
                     type: integer
                     example: 10
+                  criteria:
+                    type: string
+                    example: 1,2,Term,3,4
   "/capacity/{id}":
     parameters:
       - name: id
@@ -3636,6 +3645,9 @@ paths:
                   weight:
                     type: integer
                     example: 10
+                  criteria:
+                    type: string
+                    example: 1,2,Term,3,4
     put:
       tags:
         - 🧱 Capacity
@@ -3657,6 +3669,9 @@ paths:
                 weight:
                   type: integer
                   example: 10
+                criteria:
+                  type: string
+                  example: 1,2,Term,3,4
       responses:
         "200":
           description: successful operation
@@ -9723,6 +9738,9 @@ components:
         weight:
           type: integer
           example: 10
+        criteria:
+          type: string
+          example: 1,2,Term,3,4
     Color:
       required:
         - name

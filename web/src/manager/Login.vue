@@ -4,17 +4,26 @@
     background="#f4f4f4"
     :grow="1"
     justify="center">    
+
+    <!-- Dialog -->
+    <!-- Visual box (panel) -->
     <Box
       background="#ffffff"
       :width="450">
+
+      <!-- Header -->
       <Box
         :margin-bottom="48"
         :margin-left="16"
         :margin-top="16">
+
+        <!-- Title -->
         <Label
           :size="20">
           Log in
         </Label>
+
+        <!-- Create account -->
         <Box
           direction="row"
           :margin-top="4"
@@ -31,6 +40,8 @@
             Create an account
           </LinkButton>
         </Box>
+
+        <!-- Change login user ID -->
         <Box
           direction="row"
           :margin-top="4"
@@ -45,22 +56,34 @@
             :margin-left="6">
             Not you?
           </LinkButton>
-        </Box>        
+        </Box>      
+
       </Box>
+
+      <!-- Header rule -->
+      <Spacer
+        background="#e0e0e0"
+        :margin-left="16"
+        :margin-right="16"
+        :height="1"/>
+
+      <!-- Form (Step 1: Email) -->
       <Box
         :margin-left="16"
         :margin-right="16"
         v-show="step === 'email'">
-        <Spacer
-          background="#e0e0e0"
-          :height="1"/>
+
+        <!-- Email label -->
+        <!-- Includes forgot -->
         <Box
           direction="row"
           :margin-bottom="6"
           :margin-top="11"         >
           <Label
             color="#393939"
-            :size="12">Email address</Label>
+            :size="12">
+            Email address
+          </Label>
           <Spacer
             :grow="1"/>
           <LinkButton
@@ -70,27 +93,34 @@
             Forgot email?
           </LinkButton>
         </Box>
+
+        <!-- Email -->
         <TextInput
           @enter="emailStep"
           :error="error"
           placeholder="Email address"
           ref="email"
           v-model="email"/>
+
       </Box>
+
+      <!-- Form (Step 2: Password) -->
       <Box
         :margin-left="16"
         :margin-right="16"
         v-show="step === 'password'">
-        <Spacer
-          background="#e0e0e0"
-          :height="1"/>
+
+        <!-- Password label -->
+        <!-- Includes forgot -->
         <Box
           direction="row"
           :margin-bottom="6"
           :margin-top="11">
           <Label
             color="#393939"
-            :size="12">Password</Label>
+            :size="12">
+            Password
+          </Label>
           <Spacer
             :grow="1"/>
           <LinkButton
@@ -99,6 +129,8 @@
             Forgot password?
           </LinkButton>
         </Box>
+
+        <!-- Password -->
         <TextInput
           @enter="passwordStep"
           :error="error"
@@ -107,40 +139,51 @@
           type="password"
           v-model="password"/>
       </Box>      
+      
+      <!-- Buttons -->
       <Box
         :basis="0"
         direction="row"
         :grow="1"
         :margin-top="21">
+
+        <!-- Nothing on the left side -->
+        <!-- TODO: Consider back button -->
         <Spacer
-          :grow="1"/>
-        <Box
           :basis="0"
-          :grow="1">
-          <Button
-            @click.native="emailStep"
-            icon="/img/arrow.svg"
-            kind="modal"
-            v-show="step === 'email'">
-            Continue
-          </Button>          
-          <Button
-            @click.native="passwordStep"
-            :disabled="network"
-            disabledIcon="/img/arrow-disabled.svg"
-            icon="/img/arrow.svg"
-            kind="modal"
-            v-show="step === 'password'">
-            Log in
-          </Button>          
-        </Box>
+          :grow="1"/>
+
+        <!-- Continue -->
+        <!-- Visible in email step -->
+        <Button
+          @click.native="emailStep"
+          icon="/img/arrow.svg"
+          kind="modal"
+          v-show="step === 'email'">
+          Continue
+        </Button>          
+
+        <!-- Login -->
+        <!-- Visible in password step -->
+        <Button
+          @click.native="passwordStep"
+          :disabled="network"
+          disabledIcon="/img/arrow-disabled.svg"
+          icon="/img/arrow.svg"
+          kind="modal"
+          v-show="step === 'password'">
+          Log in
+        </Button>          
+
       </Box>
     </Box>
+
+    <!-- Help -->
+    <!-- After dialog (visible box) -->
     <Box
       direction="row"
       :margin-left="16"
       :margin-top="16"
-      :size="12"
       :width="450">
       <Label
         color="#393939">
@@ -153,6 +196,7 @@
         Contact the team
       </LinkButton>
     </Box>
+
   </Box>
 </template>
 

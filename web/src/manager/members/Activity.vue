@@ -270,7 +270,7 @@ export default {
   },
   computed: {
     capacities: function() {
-      return this.$store.getters.CAPACITIES;
+      return this.$store.getters['capacity/CAPACITIES'];
     },
     capacity: {
       get: function() {

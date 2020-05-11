@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import capacity from './modules/capacity.js';
 import community from './modules/community.js';
 import picklist from './modules/picklist.js';
 
 Vue.use( Vuex );
 
-import Capacity from '../rpc/capacity.js';
 import Color from '../rpc/color.js';
 import Language from '../rpc/language.js';
 import Level from '../rpc/level.js';
@@ -26,77 +26,7 @@ export default new Vuex.Store( {
       role: null,
       token: null
     },    
-    capacities: [],
     colors: [],
-    conditions: [
-      {label: 'Contains'},        
-      {label: 'Exists'},
-      {label: 'Equals'},
-      {label: 'Is Not Equal'},
-      {label: 'Greater Than'},
-      {label: 'Less Than'},
-      {label: 'Greater Than or Equal'},        
-      {label: 'Less Than or Equal'}
-    ],    
-    entities: [
-      {label: 'Blog'},
-      {label: 'Dev.to'},
-      {label: 'GitHub'},
-      {label: 'Medium'},
-      {label: 'Stack Overflow'},
-      {label: 'Twitter'},
-      {label: 'YouTube'}
-    ],
-    fields: {
-      'Blog': [
-        {label: 'Title'},
-        {label: 'Summary'},
-        {label: 'Category'},
-        {label: 'Keyword'}
-      ],
-      'Dev.to': [
-        {label: 'Title'},
-        {label: 'Summary'},
-        {label: 'Likes'},
-        {label: 'Reading'},
-        {label: 'Unicorn'},
-        {label: 'Keyword'}        
-      ],
-      'GitHub': [
-        {label: 'Event Name'},
-        {label: 'Repository Name'},
-      ],
-      'Medium': [
-        {label: 'Title'},
-        {label: 'Summary'},
-        {label: 'Claps'},
-        {label: 'Category'},
-        {label: 'Keyword'}        
-      ],
-      'Stack Overflow': [
-        {label: 'Accepted'},
-        {label: 'Score'},
-        {label: 'Views'},
-        {label: 'Title'},
-        {label: 'Tags'},
-        {label: 'Keywords'}
-      ],
-      'Twitter': [
-        {label: 'Status'},
-        {label: 'Favorite'},
-        {label: 'Retweet'},
-        {label: 'Hashtags'},
-        {label: 'Mentions'},
-        {label: 'URLs'}
-      ],
-      'YouTube': [
-        {label: 'Title'},
-        {label: 'Views'},
-        {label: 'Stars'},
-        {label: 'Duration (sec)'},
-        {label: 'Summary'}
-      ]
-    },
     languages: [],
     levels: [],
     organizations: [],
@@ -114,21 +44,9 @@ export default new Vuex.Store( {
     ACCOUNT: function( state ) {
       return state.account.id;
     },
-    CAPACITIES: function( state ) {
-      return state.capacities;
-    },
     COLORS: function( state ) {
       return state.colors;
     },
-    CONDITIONS: function( state ) {
-      return state.conditions;
-    },    
-    ENTITIES: function( state ) {
-      return state.entities;
-    },
-    FIELDS: function( state ) {
-      return state.fields;
-    },    
     LANGUAGES: function( state ) {
       return state.languages;
     },    
@@ -164,9 +82,6 @@ export default new Vuex.Store( {
     SET_ACCOUNT: function( state, account ) {
       state.account = account;
     },
-    SET_CAPACITIES: function( state, capacities ) {
-      state.capacities = capacities;
-    },    
     SET_COLORS: function( state, colors ) {
       state.colors = colors;
     },
@@ -197,6 +112,9 @@ export default new Vuex.Store( {
   },
   actions: {
     LOAD: async function( context ) {
+      context.dispatch( 'community/LOAD' );
+      context.dispatch( 'capacity/LOAD' );
+
       let languages = await Language.browse( context.getters.TOKEN );
       context.commit( 'SET_LANGUAGES', languages );                  
 
@@ -212,9 +130,6 @@ export default new Vuex.Store( {
       let skills = await Skill.browse( context.getters.TOKEN );
       context.commit( 'SET_SKILLS', skills );                        
 
-      let capacities = await Capacity.browse( context.getters.TOKEN );
-      context.commit( 'SET_CAPACITIES', capacities );
-
       let situations = await Situation.browse( context.getters.TOKEN );
       context.commit( 'SET_SITUATIONS', situations );
 
@@ -229,9 +144,6 @@ export default new Vuex.Store( {
     },
     SET_ACCOUNT: function( context, account ) {
       context.commit( 'SET_ACCOUNT', account );
-    },
-    SET_CAPACITIES: function( context, capacities ) {
-      context.commit( 'SET_CAPACITIES', capacities );
     },
     SET_COLOR: function( context, colors ) {
       context.commit( 'SET_COLOR', colors );
@@ -257,9 +169,11 @@ export default new Vuex.Store( {
       context.commit( 'SET_SKILLS', [] );    
       
       context.dispatch( 'community/UNLOAD' );
+      context.dispatch( 'capacity/UNLOAD' );
     }
   },
   modules: {
+    capacity: capacity,
     community: community,
     picklist: picklist
   }
