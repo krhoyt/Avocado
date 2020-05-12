@@ -15,6 +15,8 @@ export default {
     color: {type: String, default: '#161616'},
     crop: {type: Boolean, default: false},
     cursor: {type: String, default: 'default'},
+    disabled: {type: Boolean, default: false},
+    disabledColor: {type: String, default: '#c6c6c6'},
     grow: {type: Number, default: 0},
     height: {type: Number, default: null},
     marginBottom: {type: Number, default: 0},
@@ -35,7 +37,7 @@ export default {
     style: function() {
       return {
         backgroundColor: this.background,
-        color: this.color,
+        color: this.disabled ? this.disabledColor : this.color,
         cursor: this.cursor,
         flexGrow: this.grow,
         height: this.height === null ? '' : ( this.height + 'px' ),

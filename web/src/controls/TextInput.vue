@@ -6,6 +6,7 @@
     <Label 
       color="#393939" 
       cursor="default"
+      :disabled="disabled"
       :margin-bottom="helper === null ? 6 : 8"
       :size="12"       
       v-show="label">
@@ -13,6 +14,7 @@
     </Label>
     <Label 
       color="#6f6f6f" 
+      :disabled="disabled"
       :margin-bottom="6" 
       :margin-top="-6"
       :size="12"       

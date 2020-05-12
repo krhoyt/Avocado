@@ -16,7 +16,7 @@
       :margin-top="16">
       <TextInput
         :error="error"
-        helper="Type of involvement during an activity"        
+        helper="Descriptive label to help distinguish reach"        
         label="Name"
         placeholder="Name"
         :readonly="!editing"
@@ -24,7 +24,7 @@
       <Spacer
         :width="16"/>
       <Select
-        helper="Easily distinguish tags"
+        helper="Visually distinguish tags"
         label="Color"
         label-field="name"
         :options="colors"
@@ -51,7 +51,7 @@
         justify="flex-end">
         <Button
           @click.native="rule === true ? extra = true : rule = true"
-          :disabled="extra"
+          :disabled="!editing || extra"
           icon="/img/add.svg"
           size="field"
           :width="110">
@@ -61,77 +61,114 @@
     </Box>
     
     <Box
+      align="flex-end"
       direction="row"
-      :margin-bottom="5"
-      v-show="rule">
+      :margin-bottom="5">
       <Select
+        :readonly="rule && !editing"      
+        :disabled="!rule"
+        label="Source"
+        helper="Where reach takes place"
         :options="entities"
-        v-model="entity"
-        :width="170"/>
+        v-model="line_one_entity"
+        :width="210"/>
       <Spacer
         :width="16"/>
       <Select
+        :disabled="!rule"
+        :readonly="rule && !editing"      
+        label="Field"
+        helper="Specific stuff"
         :options="fields"
-        v-model="field"
+        v-model="line_one_field"
         :width="170"/>        
       <Spacer
         :width="16"/>
       <Select
+        :disabled="!rule"
+        :readonly="rule && !editing"      
+        label="Condition"
+        helper="How to evaluate contents"
         :options="conditions"
-        v-model="expression"
+        v-model="line_one_condition"
         :width="200"/>        
       <Spacer
         :width="16"/>
       <TextInput
-        :disabled="expression === 1 ? true : false"/>
+        :readonly="rule && !editing"      
+        label="Value"
+        helper="Comparison made against the condition (case-insensitive)"
+        :disabled="line_one_condition === 1 || !rule ? true : false"
+        placeholder="Value"
+        v-model="line_one_value"
+        :error="line_one_error"/>
       <Spacer
         :width="16"/>
-      <Button
-        @click.native="rule = false"
-        icon="/img/subtract.svg"      
-        kind="tertiary"
-        size="field"
-        v-show="!extra"
-        :width="110">
-        Clear
-      </Button>
+      <Box
+        :margin-bottom="19"
+        v-show="ruleButton">
+        <Button
+          @click.native="clearRule"
+          icon="/img/subtract.svg"      
+          kind="tertiary"
+          size="field"
+          :width="110">
+          Clear
+        </Button>        
+      </Box>
       <Spacer
-        v-show="extra"
+        v-show="ruleSpacer"
         :width="110"/>
     </Box>
 
     <Box
       direction="row"
-      :margin-bottom="5"
-      v-show="extra">
+      :margin-bottom="5">
       <Select
-        :options="[{label: 'And'}]"
-        :v-model="clause"
-        :width="170"/>
+        :disabled="!extra"
+        :readonly="extra && !editing"      
+        :options="operators"
+        v-model="line_two_clause"
+        :width="210"/>
       <Spacer
         :width="16"/>
       <Select
+        :readonly="extra && !editing"      
+        :disabled="!extra"
         :options="fields"
+        v-model="line_two_field"
         :width="170"/>
       <Spacer
         :width="16"/>
       <Select
+        :disabled="!extra"
+        :readonly="extra && !editing"      
         :options="conditions"
+        v-model="line_two_condition"
         :width="200"/>
       <Spacer
         :width="16"/>
-      <TextInput/>        
+      <TextInput
+        :disabled="!extra"
+        :readonly="extra && !editing"
+        placeholder="Value"
+        v-model="line_two_value"
+        :error="line_two_error"/>        
       <Spacer
         :width="16"/>
       <Button
-        @click.native="extra = false"
+        @click.native="clearExtra"
         icon="/img/subtract.svg"
         kind="tertiary"
         size="field"
-        :width="110">
+        :width="110"
+        v-show="editing && extra">
         Clear
       </Button>
-    </Box>    
+      <Spacer
+        :width="110"
+        v-show="!editing || !extra"/>
+    </Box>
 
     <Box
       direction="row"
@@ -165,7 +202,8 @@
         :disabled="account === null"
         disabled-icon="/img/edit-disabled.svg"
         icon="/img/edit.svg"
-        v-show="id !== null && !editing">
+        v-show="id !== null && !editing"
+        :width="110">
         Edit
       </Button>      
       <Button
@@ -198,11 +236,6 @@
         :sortable="true"
         text="Weight"
         :width="166"/>        
-      <DataTableColumn
-        field="count"
-        :sortable="true"
-        text="Count"
-        :width="110"/>                        
     </DataTable>
 
   </Box>
@@ -219,7 +252,7 @@ import Spacer from '../controls/Spacer.vue';
 import TextInput from '../controls/TextInput.vue';
 
 export default {
-  name: 'Capacity',
+  name: 'Reach',
   components: {
     Box,
     Button,
@@ -232,37 +265,46 @@ export default {
   },
   data: function() {
     return {
-      account: null,
-      clause: 0,
-      condition: 0,
-      editing: true,
-      entity: 0,
+      editing: false,
       error: null,
-      expression: 0,
       extra: false,
-      field: 0,
-      id: null,
-      name: null,
       rule: false,
-      weight: '0',
-      line_one_entity: 0
+
+      line_one_entity: 0,
+      line_one_field: 0,
+      line_one_condition: 0,
+      line_one_value: null,
+      line_one_error: null,
+      line_two_clause: 0,
+      line_two_field: 0,
+      line_two_condition: 0,
+      line_two_value: null,
+      line_two_error: null
     };
   },
   computed: {
-    color: {
+    account: {
       get: function() {
-        return this.$store.getters['capacity/COLOR'];
+        return this.$store.getters['reach/ACCOUNT'];
       },
       set: function( value ) {
-        this.$store.dispatch( 'capacity/SET_COLOR', value );
+        this.$store.dispatch( 'reach/SET_ACCOUNT', value );
+      }
+    },
+    color: {
+      get: function() {
+        return this.$store.getters['reach/COLOR'];
+      },
+      set: function( value ) {
+        this.$store.dispatch( 'reach/SET_COLOR', value );
       }
     },
     color_id: {
       get: function() {
-        return this.$store.getters['capacity/COLOR_ID'];
+        return this.$store.getters['reach/COLOR_ID'];
       },
       set: function( value ) {
-        this.$store.dispatch( 'capacity/SET_COLOR_ID', value );
+        this.$store.dispatch( 'reach/SET_COLOR_ID', value );
       }
     },
     colors: {
@@ -274,25 +316,215 @@ export default {
       }
     },
     conditions: function() {
-      return this.$store.getters['capacity/CONDITIONS'];
-    },
-    entities: function() {
-      return this.$store.getters['capacity/ENTITIES'];
-    },
-    fields: function() {
-      return this.$store.getters['capacity/FIELDS'][this.$store.getters['capacity/ENTITIES'][this.line_one_entity].label];
-    },
-    items: {
+      return this.$store.getters['reach/CONDITIONS'];
+    },    
+    count: {
       get: function() {
-        return this.$store.getters['capacity/CAPACITIES'];
+        return this.$store.getters['reach/COUNT'].toString();
       },
       set: function( value ) {
-        this.$store.dispatch( 'capacity/SET_CAPACITIES', value );
+        this.$store.dispatch( 'reach/SET_COUNT', value );
       }
     },
+    criteria: {
+      get: function() {
+        return this.$store.getters['reach/CRITERIA'];
+      },
+      set: function( value ) {
+        this.$store.dispatch( 'reach/SET_CRITERIA', value );
+        
+        let result = value;
+
+        if( result !== null ) {
+          result = value.split( ',' );
+
+          this.rule = true;
+
+          this.line_one_entity = parseInt( result[0] );
+          this.line_one_field = parseInt( result[1] );
+          this.line_one_condition = parseInt( result[2] );
+          this.line_one_value = result[3];          
+
+          if( result.length > 4 ) {
+            this.extra = true;
+
+            this.line_two_clause = parseInt( result[4] );
+            this.line_two_field = parseInt( result[5] );
+            this.line_two_condition = parseInt( result[6] );
+            this.line_two_value = result[7];
+          }          
+        } else {
+          this.rule = false;
+          this.line_one_entity = 0;
+          this.line_one_field = 0;
+          this.line_one_condition = 0;
+          this.line_one_value = null;
+
+          this.extra = false;
+          this.line_two_clause = 0;
+          this.line_two_field = 0;
+          this.line_two_condition = 0;
+          this.line_two_value = null;
+        }
+      }
+    },
+    entities: function() {
+      return this.$store.getters['reach/ENTITIES'];
+    },
+    fields: function() {
+      return this.$store.getters['reach/FIELDS'][this.$store.getters['reach/ENTITIES'][this.line_one_entity].label];
+    },
+    id: {
+      get: function() {
+        return this.$store.getters['reach/ID'];
+      },
+      set: function( value ) {
+        return this.$store.dispatch( 'reach/SET_ID', value );
+      }
+    },        
+    items: {
+      get: function() {
+        return this.$store.getters['reach/ELEMENTS'];
+      },
+      set: function( value ) {
+        this.$store.dispatch( 'reach/SET_ELEMENTS', value );
+      }
+    },
+    operators: function() {
+      return this.$store.getters['reach/OPERATORS'];
+    },
+    name: {
+      get: function() {
+        return this.$store.getters['reach/NAME'];
+      },
+      set: function( value ) {
+        this.$store.dispatch( 'reach/SET_NAME', value );
+      }
+    },
+    original: {
+      get: function() {
+        return this.$store.getters['reach/ORIGINAL'];
+      },
+      set: function( value ) {
+        this.$store.dispatch( 'reach/SET_ORIGINAL', value );
+      }
+    },
+    ruleButton: function() {
+      let result = false;
+
+      if( this.editing ) {
+        if( this.rule ) {
+          if( this.extra ) {
+            result = false;
+          } else {
+            result = true;
+          }
+        } else {
+          result = false;
+        }
+      } else {
+        result = false;
+      }
+
+      return result;
+    },  
+    ruleSpacer: function() {
+      let result = false;
+
+      if( this.editing ) {
+        if( this.rule ) {
+          if( this.extra ) {
+            result = true;
+          } else {
+            result = false;
+          }
+        } else {
+          result = true;
+        }
+      } else {
+        result = true;
+      }
+
+      return result;
+    },     
+    weight: {
+      get: function() {
+        return this.$store.getters['reach/WEIGHT'].toString();
+      },
+      set: function( value ) {
+        this.$store.dispatch( 'reach/SET_WEIGHT', value );
+      }
+    }
   },
   methods: {
-    change: function( index ) {},
+    add: function() {
+      this.id = null;
+      this.account = null;
+      this.name = null;
+      this.weight = 0;
+      this.criteria = null;
+      this.count = 0;
+
+      this.editing = true;
+    },
+    cancel: function() {
+      this.editing = false;
+      this.error = null;
+      this.line_one_error = null;
+      this.line_two_error = null;
+      this.rule = false;
+      this.extra = false;
+
+      if( this.id === null ) {
+        this.account = null;
+        this.name = null;
+        this.weight = 0;
+        this.count = 0;
+      } else {
+        this.account = this.items[this.original].account_id;
+        this.name = this.items[this.original].name;
+        this.color_id = this.items[this.original].color_id;
+        this.weight = this.items[this.original].weight;
+        this.count = this.items[this.original].count;
+      }
+    },
+    change: function( index ) {
+      if( this.editing ) {
+        let confirm = window.confirm( `Want to save your changes to ${this.name}?` );
+
+        if( confirm ) {
+          this.save();
+        }
+      }
+
+      this.editing = false;
+      this.error = null;
+      this.line_one_error = null;
+      this.line_two_error = null;
+
+      this.original = index;
+      this.id = this.items[index].id;
+      this.account = this.items[index].account_id;
+      this.color_id = this.items[index].color_id;
+      this.name = this.items[index].name;
+      this.weight = this.items[index].weight;
+      this.criteria = this.items[index].criteria;
+      this.count = this.items[index].count;
+    },
+    clearExtra: function() {
+      this.extra = false;
+      this.line_two_clause = 0;
+      this.line_two_field = 0;
+      this.line_two_condition = 0;
+      this.line_two_value = null;
+    },
+    clearRule: function() {
+      this.rule = false;
+      this.line_one_entity = 0;
+      this.line_one_field = 0;
+      this.line_one_condition = 0;
+      this.line_one_value = null;
+    },    
     coloring: function( color ) {
       let result = null;
 
@@ -308,7 +540,96 @@ export default {
       }
       
       return result;
-    },    
+    },
+    edit: function() {
+      this.editing = true;
+    },
+    remove: function() {
+      const id = this.id;
+    
+      this.editing = false;
+      this.error = null;
+      this.line_one_error = null;
+      this.line_two_error = null;
+      this.rule = false;
+      this.extra = false;
+
+      this.id = null;
+      this.account = null;
+      this.name = null;
+      this.weight = 0;
+      this.count = 0;
+
+      this.items.splice( this.original, 1 );
+
+      this.$store.dispatch( 'reach/REMOVE_ELEMENT', id );
+    },
+    save: function() {
+      if( this.name === null ) {
+        this.error = 'You must provide a name value';
+        return;
+      } else {
+        if( this.name.trim().length === 0 ) {
+          this.error = 'You must provide a name value';
+          return;
+        }
+      }
+
+      if( this.rule && this.line_one_condition !== 1 ) {
+        if( this.line_one_value === null ) {
+          this.line_one_error = 'You must provide a value for this condition';
+          return;
+        } else {
+          if( this.line_one_value.trim().length === 0 ) {
+            this.line_one_error = 'You must provide a value for this condition';
+            return;            
+          }
+        }
+      }
+
+      if( this.extra && this.line_two_condition !== 1 ) {
+        if( this.line_two_value === null ) {
+          this.line_two_error = 'You must provide a value for this condition';
+          return;
+        } else {
+          if( this.line_two_value.trim().length === 0 ) {
+            this.line_two_error = 'You must provide a value for this condition';
+            return;            
+          }
+        }
+      }      
+
+      this.editing = false;
+      this.error = null;
+      this.line_one_error = null;
+      this.line_two_error = null;
+      
+      let criteria = null;
+
+      if( this.rule !== false ) {
+        criteria = [
+          this.line_one_entity,
+          this.line_one_field,
+          this.line_one_condition,
+          this.line_one_value
+        ];
+      }
+
+      if( this.extra !== false ) {
+        criteria.push( this.line_two_clause );
+        criteria.push( this.line_two_field );
+        criteria.push( this.line_two_condition );
+        criteria.push( this.line_two_value );
+      }
+
+      this.$store.dispatch( 'reach/SET_CRITERIA', criteria );
+
+      if( this.id === null ) {
+        this.$store.dispatch( 'reach/CREATE_ELEMENT' );
+      } else {
+        this.$store.dispatch( 'reach/UPDATE_ELEMENT' );
+      }
+    }
   }
 }
 </script>

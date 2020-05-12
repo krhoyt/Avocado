@@ -4,12 +4,13 @@ import Vuex from 'vuex';
 import capacity from './modules/capacity.js';
 import community from './modules/community.js';
 import picklist from './modules/picklist.js';
+import reach from './modules/reach.js';
 
 Vue.use( Vuex );
 
 import Color from '../rpc/color.js';
 import Language from '../rpc/language.js';
-import Level from '../rpc/level.js';
+// import Level from '../rpc/level.js';
 import Organization from '../rpc/organization.js';
 import Relationship from '../rpc/relationship.js';
 import Reports from '../rpc/reports.js';
@@ -114,6 +115,7 @@ export default new Vuex.Store( {
     LOAD: async function( context ) {
       context.dispatch( 'community/LOAD' );
       context.dispatch( 'capacity/LOAD' );
+      context.dispatch( 'reach/LOAD' );
 
       let languages = await Language.browse( context.getters.TOKEN );
       context.commit( 'SET_LANGUAGES', languages );                  
@@ -136,8 +138,10 @@ export default new Vuex.Store( {
       let colors = await Color.browse( context.getters.TOKEN );
       context.commit( 'SET_COLORS', colors );
 
+      /*
       let levels = await Level.browse( context.getters.TOKEN );
       context.commit( 'SET_LEVELS', levels );      
+      */
 
       let report = await Reports.orbit( context.getters.TOKEN );
       context.commit( 'SET_REPORT', report );      
@@ -170,11 +174,13 @@ export default new Vuex.Store( {
       
       context.dispatch( 'community/UNLOAD' );
       context.dispatch( 'capacity/UNLOAD' );
+      context.dispatch( 'reach/UNLOAD' );      
     }
   },
   modules: {
     capacity: capacity,
     community: community,
-    picklist: picklist
+    picklist: picklist,
+    reach: reach
   }
 } );

@@ -1,9 +1,9 @@
-import Capacity from '../../rpc/capacity.js';
+import Reach from '../../rpc/reach.js';
 
 export default {
   namespaced: true,
   state: {
-    capacities: [],
+    elements: [],
     id: null,
     account_id: null,
     name: null,
@@ -26,50 +26,67 @@ export default {
     entities: [
       {label: 'Blog Post'},
       {label: 'Dev.to Post'},
+      {label: 'GitHub Account'},
       {label: 'GitHub Event'},
+      {label: 'Medium Account'},      
       {label: 'Medium Post'},
+      {label: 'Stack Overflow Account'},                  
       {label: 'Stack Overflow Answer'},            
+      {label: 'Twitter Account'},
       {label: 'Twitter Status'},
       {label: 'YouTube Video'}
     ],
     fields: {
       'Blog Post': [
-        {label: 'Title'},
-        {label: 'Summary'},
-        {label: 'Category'},
-        {label: 'Keyword'}
+        {label: 'Post'}
       ],
       'Dev.to Post': [
-        {label: 'Title'},
-        {label: 'Summary'},
-        {label: 'Keyword'}        
+        {label: 'Likes'},
+        {label: 'Post'},        
+        {label: 'Reading'},
+        {label: 'Unicorn'}        
+      ],
+      'GitHub Account': [
+        {label: 'Followers'},
+        {label: 'Following'},        
+        {label: 'Gists'},
+        {label: 'Repositories'}
       ],
       'GitHub Event': [
-        {label: 'Event Name'},
-        {label: 'Repository Name'},
+        {label: 'Event'}
+      ],
+      'Medium Account': [
+        {label: 'Followed By'},        
+        {label: 'Following'}
       ],
       'Medium Post': [
-        {label: 'Title'},
-        {label: 'Summary'},
-        {label: 'Category'},
-        {label: 'Keyword'}        
+        {label: 'Claps'},        
+        {label: 'Post'}
+      ],
+      'Stack Overflow Account': [
+        {label: 'Accept Rate'},
+        {label: 'Reputation'}
       ],
       'Stack Overflow Answer': [
-        {label: 'Accepted'},
-        {label: 'Title'},
-        {label: 'Tags'},
-        {label: 'Keywords'}
+        {label: 'Answer'},
+        {label: 'Score'},
+        {label: 'Views'}
+      ],
+      'Twitter Account': [
+        {label: 'Favorites'},
+        {label: 'Followers'},
+        {label: 'Friends'},
+        {label: 'Status Count'}
       ],
       'Twitter Status': [
-        {label: 'Body'},
-        {label: 'Hashtags'},
-        {label: 'Mentions'},
-        {label: 'URLs'}
+        {label: 'Favorite'},
+        {label: 'Retweet'},
+        {label: 'Status'}
       ],
       'YouTube Video': [
-        {label: 'Title'},
-        {label: 'Duration (sec)'},
-        {label: 'Summary'}
+        {label: 'Stars'},        
+        {label: 'Video'},
+        {label: 'Views'}
       ]
     },
     operators: [
@@ -80,9 +97,6 @@ export default {
   getters: {
     ACCOUNT: function( state ) {
       return state.account_id;
-    },
-    CAPACITIES: function( state ) {
-      return state.capacities;
     },
     COLOR: function( state ) {
       return state.color;
@@ -99,6 +113,9 @@ export default {
     CRITERIA: function( state ) {
       return state.criteria;
     },
+    ELEMENTS: function( state ) {
+      return state.elements;
+    },    
     ENTITIES: function( state ) {
       return state.entities;
     },
@@ -128,9 +145,6 @@ export default {
     SET_ID: function( state, id ) {
       state.id = id;
     },
-    SET_CAPACITIES: function( state, capacities ) {
-      state.capacities = capacities;
-    },
     SET_COLOR: function( state, color ) {
       state.color = color;
     },
@@ -143,6 +157,9 @@ export default {
     SET_CRITERIA: function( state, criteria ) {
       state.criteria = criteria;
     },
+    SET_ELEMENTS: function( state, elements ) {
+      state.elements = elements;
+    },
     SET_NAME: function( state, name ) {
       state.name = name;
     },
@@ -154,36 +171,35 @@ export default {
     }
   },
   actions: {
-    CREATE_CAPACITY: async function( context ) {
-      let result = await Capacity.create( context.rootGetters.TOKEN, {
+    CREATE_ELEMENT: async function( context ) {
+      let result = await Reach.create( context.rootGetters.TOKEN, {
         name: context.getters.NAME,
         color_id: context.rootGetters.COLORS[context.getters.COLOR].id,
         weight: context.getters.WEIGHT,
         criteria: context.getters.CRITERIA
       } );
-      result.count = 0;        
       result.color = context.getters.COLOR;
 
-      context.getters.CAPACITIES.push( result );
-      context.getters.CAPACITIES.sort( ( a, b ) => {
+      context.getters.ELEMENTS.push( result );
+      context.getters.ELEMENTS.sort( ( a, b ) => {
         if( a.name > b.name ) return 1;
         if( a.name < b.name ) return -1;
         return 0
       } );      
 
-      for( let c = 0; c < context.getters.CAPACITIES.length; c++ ) {
-        if( context.getters.CAPACITIES[c].id === result.id ) {
+      for( let c = 0; c < context.getters.ELEMENTS.length; c++ ) {
+        if( context.getters.ELEMENTS[c].id === result.id ) {
           context.commit( 'SET_ORIGINAL', c );
           break;
         }
       }      
     },
     LOAD: async function( context ) {
-      let capacities = await Capacity.browse( context.rootGetters.TOKEN );
-      context.commit( 'SET_CAPACITIES', capacities );
+      let elements = await Reach.browse( context.rootGetters.TOKEN );
+      context.commit( 'SET_ELEMENTS', elements );
     },
-    REMOVE_CAPACITY: function( context, id ) {
-      Capacity.remove( context.rootGetters.TOKEN, id );
+    REMOVE_ELEMENT: function( context, id ) {
+      Reach.remove( context.rootGetters.TOKEN, id );
     },
     SET_ACCOUNT: function( context, account ) {
       context.commit( 'SET_ACCOUNT', account );
@@ -231,10 +247,10 @@ export default {
       context.commit( 'SET_WEIGHT', weight );
     },
     UNLOAD: function( context ) {
-      context.commit( 'SET_CAPACITIES', [] );
+      context.commit( 'SET_ELEMENTS', [] );
     },
-    UPDATE_CAPACITY: async function( context ) {
-      let result = await Capacity.update( context.rootGetters.TOKEN, {
+    UPDATE_ELEMENT: async function( context ) {
+      let result = await Reach.update( context.rootGetters.TOKEN, {
         id: context.getters.ID,
         name: context.getters.NAME,
         color_id: context.rootGetters.COLORS[context.getters.COLOR].id,
@@ -242,19 +258,19 @@ export default {
         criteria: context.getters.CRITERIA
       } );
 
-      context.getters.CAPACITIES[context.getters.ORIGINAL].name = result.name;
-      context.getters.CAPACITIES[context.getters.ORIGINAL].color_id = result.color_id;
-      context.getters.CAPACITIES[context.getters.ORIGINAL].weight = result.weight;
-      context.getters.CAPACITIES[context.getters.ORIGINAL].criteria = result.criteria;
+      context.getters.ELEMENTS[context.getters.ORIGINAL].name = result.name;
+      context.getters.ELEMENTS[context.getters.ORIGINAL].color_id = result.color_id;
+      context.getters.ELEMENTS[context.getters.ORIGINAL].weight = result.weight;
+      context.getters.ELEMENTS[context.getters.ORIGINAL].criteria = result.criteria;
 
-      context.getters.CAPACITIES.sort( ( a, b ) => {
+      context.getters.ELEMENTS.sort( ( a, b ) => {
         if( a.name > b.name ) return 1;
         if( a.name < b.name ) return -1;
         return 0
       } );
       
-      for( let c = 0; c < context.getters.CAPACITIES.length; c++ ) {
-        if( context.getters.CAPACITIES[c].id === result.id ) {
+      for( let c = 0; c < context.getters.ELEMENTS.length; c++ ) {
+        if( context.getters.ELEMENTS[c].id === result.id ) {
           context.commit( 'SET_ORIGINAL', c );
           break;
         }

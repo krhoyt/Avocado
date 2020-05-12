@@ -99,6 +99,7 @@ app.use( '/api/role', require( './routes/role' ) );
 app.use( '/api/skill', require( './routes/skill' ) );
 app.use( '/api/contribution', require( './routes/contribution' ) );
 app.use( '/api/capacity', require( './routes/capacity' ) );
+app.use( '/api/reach', require( './routes/reach' ) );
 app.use( '/api/developer', require( './routes/developer' ) );
 app.use( '/api/note', require( './routes/note' ) );
 app.use( '/api/blog/post', require( './routes/blog-post' ) );

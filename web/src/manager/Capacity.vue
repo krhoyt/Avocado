@@ -16,7 +16,7 @@
       :margin-top="16">
       <TextInput
         :error="error"
-        helper="Type of involvement during an activity"        
+        helper="Descriptive label to help distinguish activities"        
         label="Name"
         placeholder="Name"
         :readonly="!editing"
@@ -24,7 +24,7 @@
       <Spacer
         :width="16"/>
       <Select
-        helper="Easily distinguish tags"
+        helper="Visually distinguish tags"
         label="Color"
         label-field="name"
         :options="colors"
@@ -61,86 +61,113 @@
     </Box>
     
     <Box
+      align="flex-end"
       direction="row"
-      :margin-bottom="5"
-      v-show="rule">
+      :margin-bottom="5">
       <Select
+        :disabled="!rule"
+        :readonly="rule && !editing"
+        label="Source"
+        helper="Where activity takes place"
         :options="entities"
         v-model="line_one_entity"
-        :width="170"/>
+        :width="210"/>
       <Spacer
         :width="16"/>
       <Select
+        :disabled="!rule"
+        :readonly="rule && !editing"
+        label="Field"
+        helper="Specific part of activity"
         :options="fields"
         v-model="line_one_field"
         :width="170"/>        
       <Spacer
         :width="16"/>
       <Select
+        :disabled="!rule"
+        :readonly="rule && !editing"
+        label="Condition"
+        helper="How to evaluate contents"
         :options="conditions"
         v-model="line_one_condition"
         :width="200"/>        
       <Spacer
         :width="16"/>
       <TextInput
-        :disabled="line_one_condition === 1 ? true : false"
+        :readonly="rule && !editing"
+        label="Value"
+        helper="Comparison made against the condition (case-insensitive)"
+        :disabled="line_one_condition === 1 || !rule ? true : false"
+        placeholder="Value"
         v-model="line_one_value"
         :error="line_one_error"/>
       <Spacer
         :width="16"/>
-      <Button
-        @click.native="rule = false"
-        icon="/img/subtract.svg"      
-        kind="tertiary"
-        size="field"
-        v-show="!extra && editing"
-        :width="110">
-        Clear
-      </Button>
+      <Box
+        :margin-bottom="19"
+        v-show="ruleButton">
+        <Button
+          @click.native="clearRule"
+          icon="/img/subtract.svg"      
+          kind="tertiary"
+          size="field"
+          :width="110">
+          Clear
+        </Button>        
+      </Box>
       <Spacer
-        v-show="extra"
+        v-show="ruleSpacer"
         :width="110"/>
     </Box>
 
     <Box
       direction="row"
-      :margin-bottom="5"
-      v-show="extra">
+      :margin-bottom="5">
       <Select
+        :disabled="!extra"
+        :readonly="extra && !editing"
         :options="operators"
         v-model="line_two_clause"
-        :width="170"/>
+        :width="210"/>
       <Spacer
         :width="16"/>
       <Select
+        :disabled="!extra"
+        :readonly="extra && !editing"
         :options="fields"
         v-model="line_two_field"
         :width="170"/>
       <Spacer
         :width="16"/>
       <Select
+        :disabled="!extra"
+        :readonly="extra && !editing"
         :options="conditions"
         v-model="line_two_condition"
         :width="200"/>
       <Spacer
         :width="16"/>
       <TextInput
+        :disabled="!extra"
+        :readonly="extra && !editing"
+        placeholder="Value"
         v-model="line_two_value"
         :error="line_two_error"/>        
       <Spacer
         :width="16"/>
       <Button
-        @click.native="extra = false"
+        @click.native="clearExtra"
         icon="/img/subtract.svg"
         kind="tertiary"
         size="field"
         :width="110"
-        v-show="editing">
+        v-show="editing && extra">
         Clear
       </Button>
       <Spacer
         :width="110"
-        v-show="!editing"/>
+        v-show="!editing || !extra"/>
     </Box>
 
     <Box
@@ -387,6 +414,44 @@ export default {
         this.$store.dispatch( 'capacity/SET_ORIGINAL', value );
       }
     },
+    ruleButton: function() {
+      let result = false;
+
+      if( this.editing ) {
+        if( this.rule ) {
+          if( this.extra ) {
+            result = false;
+          } else {
+            result = true;
+          }
+        } else {
+          result = false;
+        }
+      } else {
+        result = false;
+      }
+
+      return result;
+    },  
+    ruleSpacer: function() {
+      let result = false;
+
+      if( this.editing ) {
+        if( this.rule ) {
+          if( this.extra ) {
+            result = true;
+          } else {
+            result = false;
+          }
+        } else {
+          result = true;
+        }
+      } else {
+        result = true;
+      }
+
+      return result;
+    }, 
     weight: {
       get: function() {
         return this.$store.getters['capacity/WEIGHT'].toString();
@@ -412,6 +477,8 @@ export default {
       this.error = null;
       this.line_one_error = null;
       this.line_two_error = null;
+      this.rule = false;
+      this.extra = false;
 
       if( this.id === null ) {
         this.account = null;
@@ -439,6 +506,8 @@ export default {
       this.error = null;
       this.line_one_error = null;
       this.line_two_error = null;
+      this.rule = false;
+      this.extra = false;
 
       this.original = index;
       this.id = this.items[index].id;
@@ -448,6 +517,20 @@ export default {
       this.weight = this.items[index].weight;
       this.criteria = this.items[index].criteria;
       this.count = this.items[index].count;
+    },
+    clearExtra: function() {
+      this.extra = false;
+      this.line_two_clause = 0;
+      this.line_two_field = 0;
+      this.line_two_condition = 0;
+      this.line_two_value = null;
+    },
+    clearRule: function() {
+      this.rule = false;
+      this.line_one_entity = 0;
+      this.line_one_field = 0;
+      this.line_one_condition = 0;
+      this.line_one_value = null;
     },
     coloring: function( color ) {
       let result = null;
