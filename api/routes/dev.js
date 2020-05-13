@@ -23,7 +23,8 @@ router.get( '/:id', async ( req, res ) => {
   .leftJoin( 'Developer', 'Dev.developer_id', 'Developer.id' )
   .where( {
     'Dev.uuid': req.params.id
-  } );
+  } )
+  .first();
 
   if( record === undefined ) {
     record = null;

@@ -62,37 +62,6 @@ for hub in githubs:
       req = requests.post( api + '/github/event', json = record )
       insert = req.json()
 
-      # Build contribution
-      contribution = {
-        'developer_id': hub['developer_id'],
-        'contributed_at': record['published_at'],              
-        'description': record['event_name'] + ': ' + record['repository_name'],
-        'public': 1
-      }
-
-      # Different capacity for events
-      # Push, Pull, Comment
-      if record['event_name'] == 'PullRequestEvent':
-        contribution['capacity_id'] = '93e5878d-e384-44c7-9128-11c0fcffddd7'
-        contribution['link'] = event['payload']['pull_request']['html_url']        
-      elif record['event_name'] == 'IssueCommentEvent':
-        contribution['capacity_id'] = 'fff7b4ce-c245-49f4-b4df-23afecac7271'
-        contribution['link'] = event['payload']['comment']['html_url']
-      elif record['event_name'] == 'PushEvent':
-        contribution['capacity_id'] = 'c61057a8-1e2c-4d08-bd53-805026a54084' 
-        contribution['link'] = None       
-      else:
-        contribution['capacity_id'] = None
-        contribution['link'] = None
-
-      # Create contribution
-      # Where maps to capacity
-      if contribution['capacity_id'] != None:
-        req = requests.post( api + '/contribution', json = contribution )
-        contribution = req.json()
-
-        print( 'Cont: ' + contribution['id'] )
-
       print( 'Make: ' + insert['id'] )
     else:
       print( 'None: ' + matches['id'] )

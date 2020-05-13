@@ -47,6 +47,8 @@ tags:
     description: Contributions made by developers
   - name: 🧱 Capacity
     description: Capacity in which developer contributed
+  - name: 📣 Reach
+    description: Criteria to determine reach score
   - name: 📓 Blog
     description: Blog feeds to aggregate
   - name: 📓 📝 Blog Post
@@ -3097,6 +3099,9 @@ paths:
                     capacity_id:
                       type: string
                       format: uuid
+                    reference_id:
+                      type: string
+                      format: uuid
     post:
       tags:
         - 🏗️ Contribution
@@ -3125,6 +3130,9 @@ paths:
                   type: integer
                   example: 0
                 capacity_id:
+                  type: string
+                  format: uuid
+                reference_id:
                   type: string
                   format: uuid
       responses:
@@ -3160,6 +3168,9 @@ paths:
                     type: integer
                     example: 0
                   capacity_id:
+                    type: string
+                    format: uuid
+                  reference_id:
                     type: string
                     format: uuid
   "/contribution/{id}":
@@ -3215,6 +3226,9 @@ paths:
                   capacity_id:
                     type: string
                     format: uuid
+                  reference_id:
+                    type: string
+                    format: uuid
     put:
       tags:
         - 🏗️ Contribution
@@ -3243,6 +3257,9 @@ paths:
                   type: integer
                   example: 0
                 capacity_id:
+                  type: string
+                  format: uuid
+                reference_id:
                   type: string
                   format: uuid
       responses:
@@ -3318,6 +3335,63 @@ paths:
                       type: integer
                       example: 0
                     capacity_id:
+                      type: string
+                      format: uuid
+                    reference_id:
+                      type: string
+                      format: uuid
+  "/contribution/reference/{id}":
+    parameters:
+      - name: id
+        in: path
+        description: Reference to a specific entity record
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - 🏗️ Contribution
+      summary: Read contribution for specific reference
+      operationId: getContributionByReferenceID
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    developer_id:
+                      type: string
+                      format: uuid
+                    contributed_at:
+                      type: string
+                      format: date-time
+                    description:
+                      type: string
+                      example: Published new book
+                    link:
+                      type: string
+                      example: https://something.com
+                    public:
+                      type: integer
+                      example: 0
+                    capacity_id:
+                      type: string
+                      format: uuid
+                    reference_id:
                       type: string
                       format: uuid
   "/contribution/{id}/role":
@@ -3696,6 +3770,203 @@ paths:
                   id:
                     type: string
                     format: uuid
+  /reach:
+    get:
+      tags:
+        - 📣 Reach
+      summary: Read all available reach criteria
+      operationId: getReach
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: More than 1k
+                    color_id:
+                      type: string
+                      format: uuid
+                    weight:
+                      type: integer
+                      example: 10
+                    criteria:
+                      type: string
+                      example: 1,2,Term,3,4
+                    count:
+                      type: integer
+                      example: 0
+    post:
+      tags:
+        - 📣 Reach
+      summary: Create a new reach rule
+      operationId: createReach
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: More than 1k
+                color_id:
+                  type: string
+                  format: uuid
+                weight:
+                  type: integer
+                  example: 10
+                criteria:
+                  type: string
+                  example: 1,2,Term,3,4
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                required:
+                  - name
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  account_id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                    example: More than 1k
+                  color_id:
+                    type: string
+                    format: uuid
+                  weight:
+                    type: integer
+                    example: 10
+                  criteria:
+                    type: string
+                    example: 1,2,Term,3,4
+  "/reach/{id}":
+    parameters:
+      - name: id
+        in: path
+        description: ID field for desired reach rule
+        required: true
+        schema:
+          type: string
+          format: uuid
+    get:
+      tags:
+        - 📣 Reach
+      summary: Read specific reach by ID
+      operationId: getReachByID
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                required:
+                  - name
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  account_id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                    example: More than 1k
+                  color_id:
+                    type: string
+                    format: uuid
+                  weight:
+                    type: integer
+                    example: 10
+                  criteria:
+                    type: string
+                    example: 1,2,Term,3,4
+    put:
+      tags:
+        - 📣 Reach
+      summary: Update specific reach by ID
+      operationId: updateReach
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: More than 1k
+                color_id:
+                  type: string
+                  format: uuid
+                weight:
+                  type: integer
+                  example: 10
+                criteria:
+                  type: string
+                  example: 1,2,Term,3,4
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/paths/~1reach~1%7Bid%7D/get/responses/200/content/applicat\
+                  ion~1json/schema"
+    delete:
+      tags:
+        - 📣 Reach
+      summary: Delete specific reach by ID
+      operationId: deleteReachByID
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
   /blog:
     get:
       tags:
@@ -3844,6 +4115,13 @@ paths:
         - 📓 📝 Blog Post
       summary: Read all available blog posts
       operationId: getBlogPosts
+      parameters:
+        - in: query
+          name: days
+          required: false
+          schema:
+            type: integer
+          description: Number of days history from now
       responses:
         "200":
           description: successful operation
@@ -9800,6 +10078,9 @@ components:
         capacity_id:
           type: string
           format: uuid
+        reference_id:
+          type: string
+          format: uuid
     Dev:
       required:
         - developer_id
@@ -10352,6 +10633,35 @@ components:
         color_id:
           type: string
           format: uuid
+    Reach:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: More than 1k
+        color_id:
+          type: string
+          format: uuid
+        weight:
+          type: integer
+          example: 10
+        criteria:
+          type: string
+          example: 1,2,Term,3,4
     Reddit:
       required:
         - developer_id

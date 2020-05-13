@@ -86,35 +86,6 @@ for twitter in twitters:
       req = requests.post( api + '/twitter/status', json = record )
       insert = req.json()
 
-      # Build contribution
-      contribution = {
-        'developer_id': twitter['developer_id'],
-        'contributed_at': record['published_at'],              
-        'description': record['full_text'],
-        'link': record['link'],
-        'public': 1
-      }
-
-      # Check for 'ibm' mention
-      try:
-        index = contribution['description'].lower().index( 'ibm' )
-      except:
-        index = -1
-
-      # Different capacity for mention
-      # Contains string 'ibm'
-      # Does not contain string 'ibm'
-      if index >= 0:
-        contribution['capacity_id'] = '682813ad-4d00-4973-87ba-6c6fca29924d'
-      else:
-        contribution['capacity_id'] = 'b5eaa020-899a-4515-9295-77f13440d347'
-
-      # Create contribution
-      req = requests.post( api + '/contribution', json = contribution )
-      contribution = req.json()
-
-      print( 'Cont: ' + contribution['id'] )
-
       # Scan media
       # Need status ID (primary key from insert) first
       # Media key from Twitter is not always present

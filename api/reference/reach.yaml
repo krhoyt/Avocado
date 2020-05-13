@@ -1,0 +1,239 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📣 Reach
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+tags:
+- name: 📣 Reach
+  description: Criteria to determine reach score
+paths:
+  /reach:
+    get:
+      tags:
+      - 📣 Reach
+      summary: Read all available reach criteria
+      operationId: getReach
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: 'More than 1k'
+                    color_id:
+                      type: string
+                      format: uuid
+                    weight:
+                      type: integer
+                      example: 10
+                    criteria:
+                      type: string
+                      example: '1,2,Term,3,4'
+                    count:
+                      type: integer
+                      example: 0
+    post:
+      tags:
+      - 📣 Reach
+      summary: Create a new reach rule
+      operationId: createReach
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: 'More than 1k'
+                color_id:
+                  type: string
+                  format: uuid
+                weight:
+                  type: integer
+                  example: 10
+                criteria:
+                  type: string
+                  example: '1,2,Term,3,4'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reach'
+  /reach/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: ID field for desired reach rule
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      tags:
+      - 📣 Reach
+      summary: Read specific reach by ID
+      operationId: getReachByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reach'
+    put:
+      tags:
+      - 📣 Reach
+      summary: Update specific reach by ID
+      operationId: updateReach
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: 'More than 1k'
+                color_id:
+                  type: string
+                  format: uuid
+                weight:
+                  type: integer
+                  example: 10
+                criteria:
+                  type: string
+                  example: '1,2,Term,3,4'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reach'
+    delete:
+      tags:
+      - 📣 Reach
+      summary: Delete specific reach by ID
+      operationId: deleteReachByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+  /reach/name/{prefix}:
+    parameters:
+    - name: prefix
+      in: path
+      description: Prefix for a given reach
+      required: true
+      schema:
+        type: string
+        example: More
+    get:
+      tags:
+      - 📣 Reach
+      summary: Search for reach rule with given value
+      operationId: searchReachByName
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    account_id:
+                      type: string
+                      format: uuid
+                    name:
+                      type: string
+                      example: 'More than 1k'
+                    color_id:
+                      type: string
+                      format: uuid
+                    weight:
+                      type: integer
+                      example: 10
+                    criteria:
+                      type: string
+                      example: '1,2,Term,3,4'
+components:
+  schemas:
+    Reach:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        account_id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          example: 'More than 1k'
+        color_id:
+          type: string
+          format: uuid
+        weight:
+          type: integer
+          example: 10
+        criteria:
+          type: string
+          example: '1,2,Term,3,4'

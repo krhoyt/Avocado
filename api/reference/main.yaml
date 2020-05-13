@@ -44,6 +44,8 @@ tags:
   description: Contributions made by developers
 - name: 🧱 Capacity
   description: Capacity in which developer contributed
+- name: 📣 Reach
+  description: Criteria to determine reach score
 - name: 📓 Blog
   description: Blog feeds to aggregate
 - name: 📓 📝 Blog Post
@@ -177,6 +179,8 @@ paths:
     $ref: 'contribution.yaml#/paths/~1contribution~1{id}'
   /contribution/developer/{id}:
     $ref: 'contribution.yaml#/paths/~1contribution~1developer~1{id}'
+  /contribution/reference/{id}:
+    $ref: 'contribution.yaml#/paths/~1contribution~1reference~1{id}'    
   /contribution/{id}/role:
     $ref: 'contribution.yaml#/paths/~1contribution~1{id}~1role'
   /contribution/{contribution_id}/role/{role_id}:
@@ -185,6 +189,10 @@ paths:
     $ref: 'capacity.yaml#/paths/~1capacity'
   /capacity/{id}:
     $ref: 'capacity.yaml#/paths/~1capacity~1{id}'
+  /reach:
+    $ref: 'reach.yaml#/paths/~1reach'
+  /reach/{id}:
+    $ref: 'reach.yaml#/paths/~1reach~1{id}'    
   /blog:
     $ref: 'blog.yaml#/paths/~1blog'
   /blog/{id}:
@@ -362,6 +370,8 @@ components:
       $ref: 'note.yaml#/components/schemas/Note'
     Organization:
       $ref: 'organization.yaml#/components/schemas/Organization'
+    Reach:
+      $ref: 'reach.yaml#/components/schemas/Reach'      
     Reddit:
       $ref: 'reddit.yaml#/components/schemas/Reddit'
     RedditPost:

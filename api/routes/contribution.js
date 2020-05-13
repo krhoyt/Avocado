@@ -25,7 +25,8 @@ router.get( '/developer/:id', async ( req, res ) => {
     'Contribution.link',
     'Contribution.public',
     'Capacity.uuid AS capacity_id',
-    'Capacity.name AS capacity_name'
+    'Capacity.name AS capacity_name',
+    'Contribution.reference_id'
   )
   .from( 'Contribution' )
   .leftJoin( 'Capacity', 'Contribution.capacity_id', 'Capacity.id' )
@@ -64,6 +65,53 @@ router.get( '/developer/:id', async ( req, res ) => {
   res.json( records );
 } );
 
+// Read single record by reference ID
+router.get( '/reference/:id', async ( req, res ) => {
+  let record = await req.db
+  .select( 
+    'Contribution.uuid AS id',
+    'Contribution.created_at',
+    'Contribution.updated_at',
+    'Developer.uuid AS developer_id',
+    'Contribution.contributed_at',
+    'Contribution.description',
+    'Contribution.link',
+    'Contribution.public',
+    'Capacity.uuid AS capacity_id',
+    'Capacity.name AS capacity_name',
+    'Contribution.reference_id'
+  )
+  .from( 'Contribution' )
+  .leftJoin( 'Developer', 'Contribution.developer_id', 'Developer.id' )
+  .leftJoin( 'Capacity', 'Contribution.capacity_id', 'Capacity.id' )
+  .where( {
+    'Contribution.reference_id': req.params.id
+  } )
+  .first();
+
+  if( record === undefined ) {
+    record = null;
+  } else {
+    let listing = await req.db
+    .select( 
+      'Role.uuid AS id',
+      'Role.created_at', 
+      'Role.updated_at', 
+      'Role.name'    
+    )
+    .from( 'Role' )
+    .leftJoin( 'ContributionRole', 'ContributionRole.role_id', 'Role.id' ) 
+    .leftJoin( 'Contribution', 'Contribution.id',  'ContributionRole.contribution_id' )
+    .where( {
+      'Contribution.uuid': req.params.id
+    } );    
+
+    record.roles = listing.slice();    
+  }
+
+  res.json( record );
+} );
+
 // Read roles
 router.get( '/:id/role', async ( req, res ) => {
   let listing = await req.db
@@ -96,7 +144,8 @@ router.get( '/:id', async ( req, res ) => {
     'Contribution.link',
     'Contribution.public',
     'Capacity.uuid AS capacity_id',
-    'Capacity.name AS capacity_name'
+    'Capacity.name AS capacity_name',
+    'Contribution.reference_id'
   )
   .from( 'Contribution' )
   .leftJoin( 'Developer', 'Contribution.developer_id', 'Developer.id' )
@@ -142,7 +191,8 @@ router.get( '/', async ( req, res ) => {
     'Contribution.link',
     'Contribution.public',
     'Capacity.uuid AS capacity_id',
-    'Capacity.name AS capacity_name'
+    'Capacity.name AS capacity_name',
+    'Contribution.reference_id'
   )
   .from( 'Contribution' )
   .leftJoin( 'Developer', 'Contribution.developer_id', 'Developer.id' )
@@ -282,7 +332,8 @@ router.post( '/', async ( req, res ) => {
     description: req.body.description,
     link: req.body.link,
     public: req.body.public,
-    capacity_uuid: req.body.capacity_id
+    capacity_uuid: req.body.capacity_id,
+    reference_id: req.body.reference_id
   };
 
   let developer = await req.db
@@ -323,7 +374,8 @@ router.post( '/', async ( req, res ) => {
     description: record.description,
     link: record.link,
     public: record.public,
-    capacity_id: record.capacity_id
+    capacity_id: record.capacity_id,
+    reference_id: record.reference_id
   } );
     
   record = {
@@ -336,7 +388,8 @@ router.post( '/', async ( req, res ) => {
     link: record.link,
     public: record.public,
     capacity_id: record.capacity_uuid,
-    capacity_name: record.capacity_name
+    capacity_name: record.capacity_name,
+    reference_id: record.reference_id
   };
 
   res.json( record );
@@ -525,7 +578,8 @@ router.put( '/:id', async ( req, res ) => {
     description: req.body.description,
     link: req.body.link,
     public: req.body.public,
-    capacity_uuid: req.body.capacity_id
+    capacity_uuid: req.body.capacity_id,
+    reference_id: req.body.reference_id
   };
 
   let developer = await req.db
@@ -561,7 +615,8 @@ router.put( '/:id', async ( req, res ) => {
     description: record.description,
     link: record.link,
     public: record.public,
-    capacity_id: record.capacity_id
+    capacity_id: record.capacity_id,
+    reference_id: record.reference_id
   } )
   .where( {
     uuid: record.uuid
@@ -578,7 +633,8 @@ router.put( '/:id', async ( req, res ) => {
     'Contribution.link',
     'Contribution.public',
     'Capacity.uuid AS capacity_id',
-    'Capacity.name AS capacity_name'
+    'Capacity.name AS capacity_name',
+    'Contribution.reference_id'
   )
   .from( 'Contribution' )
   .leftJoin( 'Developer', 'Contribution.developer_id', 'Developer.id' )

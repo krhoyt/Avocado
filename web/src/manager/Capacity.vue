@@ -377,7 +377,13 @@ export default {
       return this.$store.getters['capacity/ENTITIES'];
     },
     fields: function() {
-      return this.$store.getters['capacity/FIELDS'][this.$store.getters['capacity/ENTITIES'][this.line_one_entity].label];
+      let result = [];
+
+      if( this.$store.getters['capacity/FIELDS'] !== null &&
+          this.$store.getters['capacity/ENTITIES'].length > 0 )
+        result = this.$store.getters['capacity/FIELDS'][this.$store.getters['capacity/ENTITIES'][this.line_one_entity].label];
+
+      return result;
     },
     id: {
       get: function() {

@@ -38,5 +38,23 @@ export default {
       }
     } )
     .then( ( response ) => response.json()  );
-  }
+  },
+  async entities( token ) {
+    return await fetch( `${process.env.VUE_APP_API}/capacity/entities`, {
+      method: 'GET',
+      headers: {
+        'X-Avocado': token
+      }
+    } )
+    .then( ( response ) => response.json() );
+  },  
+  async fields( token ) {
+    return await fetch( `${process.env.VUE_APP_API}/capacity/fields`, {
+      method: 'GET',
+      headers: {
+        'X-Avocado': token
+      }
+    } )
+    .then( ( response ) => response.json() );
+  }  
 }

@@ -61,6 +61,9 @@ paths:
                 capacity_id:
                   type: string
                   format: uuid
+                reference_id:
+                  type: string
+                  format: uuid
       responses:
         200:
           description: successful operation
@@ -95,7 +98,10 @@ paths:
                     example: 0
                   capacity_id:
                     type: string
-                    format: uuid                    
+                    format: uuid        
+                  reference_id:
+                    type: string
+                    format: uuid            
   /contribution/{id}:        
     parameters:
     - name: id
@@ -146,7 +152,10 @@ paths:
                   example: 0
                 capacity_id:
                   type: string
-                  format: uuid                                     
+                  format: uuid       
+                reference_id:
+                  type: string
+                  format: uuid                              
       responses:
         200:
           description: successful operation
@@ -220,7 +229,64 @@ paths:
                       example: 0
                     capacity_id:
                       type: string
-                      format: uuid      
+                      format: uuid     
+                    reference_id:
+                      type: string
+                      format: uuid 
+  /contribution/reference/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: Reference to a specific entity record
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 🏗️ Contribution
+      summary: Read contribution for specific reference
+      operationId: getContributionByReferenceID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    developer_id:
+                      type: string
+                      format: uuid
+                    contributed_at: 
+                      type: string
+                      format: date-time
+                    description:
+                      type: string
+                      example: Published new book
+                    link:
+                      type: string
+                      example: https://something.com
+                    public:
+                      type: integer
+                      example: 0
+                    capacity_id:
+                      type: string
+                      format: uuid    
+                    reference_id:
+                      type: string
+                      format: uuid                        
   /contribution/{id}/role:
     parameters:
     - name: id
@@ -435,4 +501,7 @@ components:
           example: 0
         capacity_id:
           type: string
-          format: uuid                                              
+          format: uuid            
+        reference_id:
+          type: string
+          format: uuid                                  

@@ -22,6 +22,13 @@ paths:
       - 📓 📝 Blog Post
       summary: Read all available blog posts
       operationId: getBlogPosts
+      parameters:
+      - in: query
+        name: days
+        required: false
+        schema:
+          type: integer
+        description: Number of days history from now
       responses:
         200:
           description: successful operation

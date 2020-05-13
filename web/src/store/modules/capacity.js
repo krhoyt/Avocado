@@ -23,55 +23,8 @@ export default {
       {label: 'Greater Than or Equal'},        
       {label: 'Less Than or Equal'}
     ],    
-    entities: [
-      {label: 'Blog Post'},
-      {label: 'Dev.to Post'},
-      {label: 'GitHub Event'},
-      {label: 'Medium Post'},
-      {label: 'Stack Overflow Answer'},            
-      {label: 'Twitter Status'},
-      {label: 'YouTube Video'}
-    ],
-    fields: {
-      'Blog Post': [
-        {label: 'Title'},
-        {label: 'Summary'},
-        {label: 'Category'},
-        {label: 'Keyword'}
-      ],
-      'Dev.to Post': [
-        {label: 'Title'},
-        {label: 'Summary'},
-        {label: 'Keyword'}        
-      ],
-      'GitHub Event': [
-        {label: 'Event Name'},
-        {label: 'Repository Name'},
-      ],
-      'Medium Post': [
-        {label: 'Title'},
-        {label: 'Summary'},
-        {label: 'Category'},
-        {label: 'Keyword'}        
-      ],
-      'Stack Overflow Answer': [
-        {label: 'Accepted'},
-        {label: 'Title'},
-        {label: 'Tags'},
-        {label: 'Keywords'}
-      ],
-      'Twitter Status': [
-        {label: 'Body'},
-        {label: 'Hashtags'},
-        {label: 'Mentions'},
-        {label: 'URLs'}
-      ],
-      'YouTube Video': [
-        {label: 'Title'},
-        {label: 'Duration (sec)'},
-        {label: 'Summary'}
-      ]
-    },
+    entities: [],
+    fields: null,
     operators: [
       {label: 'And'},
       {label: 'Or'}
@@ -143,6 +96,12 @@ export default {
     SET_CRITERIA: function( state, criteria ) {
       state.criteria = criteria;
     },
+    SET_ENTITIES: function( state, entities ) {
+      state.entities = entities;
+    },
+    SET_FIELDS: function( state, fields ) {
+      state.fields = fields;
+    },
     SET_NAME: function( state, name ) {
       state.name = name;
     },
@@ -181,6 +140,12 @@ export default {
     LOAD: async function( context ) {
       let capacities = await Capacity.browse( context.rootGetters.TOKEN );
       context.commit( 'SET_CAPACITIES', capacities );
+
+      let entities = await Capacity.entities( context.rootGetters.TOKEN );
+      context.commit( 'SET_ENTITIES', entities );
+      
+      let fields = await Capacity.fields( context.rootGetters.TOKEN );
+      context.commit( 'SET_FIELDS', fields );      
     },
     REMOVE_CAPACITY: function( context, id ) {
       Capacity.remove( context.rootGetters.TOKEN, id );
@@ -232,6 +197,8 @@ export default {
     },
     UNLOAD: function( context ) {
       context.commit( 'SET_CAPACITIES', [] );
+      context.commit( 'SET_ENTITIES', [] );
+      context.commit( 'SET_FIELDS', null );
     },
     UPDATE_CAPACITY: async function( context ) {
       let result = await Capacity.update( context.rootGetters.TOKEN, {

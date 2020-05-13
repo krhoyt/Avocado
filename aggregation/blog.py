@@ -72,49 +72,16 @@ for blog in blogs:
       req = requests.post( api + '/blog/post', json = record )
       insert = req.json()
 
-      # Build contribution
-      contribution = {
-        'developer_id': blog['developer_id'],
-        'contributed_at': record['published_at'],              
-        'description': record['title'],
-        'link': record['link'],
-        'public': 1
-      }
-
-      # Check for 'ibm' mention
-      try:
-        index = record['summary'].lower().index( 'ibm' )
-      except:
-        index = -1
-
-      # Different capacity for mention
-      # Contains string 'ibm'
-      # Does not contain string 'ibm'
-      if index >= 0:
-        contribution['capacity_id'] = 'a940c77e-c02c-4cf9-9bd1-b2a4895a5911'
-      else:
-        contribution['capacity_id'] = '027734bc-dfe8-4fa6-bcd4-79b5903f330c'
-
-      # Create contribution
-      req = requests.post( api + '/contribution', json = contribution )
-      contribution = req.json()
-
-      print( 'Cont: ' + contribution['id'] )
-
       # Extract unique images
       # Analyze if needed
       # Store new images 
       # Make associations with post
-
-      # TODO: Temporarily disabled
-      # TODO: Not handling 404 error
-      # TODO: On the Watson Vision (Node.js) side
-      # utility.unique_images( 
-      #   insert['link'], 
-      #   'blog', 
-      #   insert['id'], 
-      #   config['WATSON'].getboolean( 'Vision' ) 
-      # )
+      utility.unique_images( 
+        insert['link'], 
+        'blog', 
+        insert['id'], 
+        config['WATSON'].getboolean( 'Vision' ) 
+      )
 
       print( 'Make: ' + insert['id'] )
     else:

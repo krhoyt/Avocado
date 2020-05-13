@@ -9,6 +9,63 @@ router.get( '/test', ( req, res ) => {
   res.json( {capacity: 'Test'} );
 } );
 
+// Read supported entities
+router.get( '/entities', async ( req, res ) => {
+  res.json( [
+    {label: 'Blog Post', path: '/blog/post', description: 'title', link: 'link', contributed: 'published_at'},
+    {label: 'Dev.to Post', path: '/dev/post', description: 'title', link: 'link', contributed: 'published_at'},
+    {label: 'GitHub Event', path: '/github/event', description: 'event_name,: ,repository_name', contributed: 'published_at', link: null},
+    {label: 'Medium Post', path: '/medium/post', description: 'title', link: 'link', contributed: 'published_at'},
+    {label: 'Stack Overflow Answer', path: '/so/answer', description: 'title', link: 'link', contributed: 'active_at'},            
+    {label: 'Twitter Status', path: '/twitter/status', description: 'full_text', link: 'link', contributed: 'published_at'},
+    {label: 'YouTube Video', path: '/youtube/video', description: 'title', link: 'link', contributed: 'published_at'}
+  ] );
+} );
+
+// Read supported fields
+router.get( '/fields', async ( req, res ) => {
+  res.json( {
+    'Blog Post': [
+      {label: 'Title', column: 'title'},
+      {label: 'Summary', column: 'summary'},
+      {label: 'Category', column: 'category'},
+      {label: 'Keywords', column: 'keywords'}
+    ],
+    'Dev.to Post': [
+      {label: 'Title', column: 'title'},
+      {label: 'Summary', column: 'summary'},
+      {label: 'Keywords', column: 'keywords'}        
+    ],
+    'GitHub Event': [
+      {label: 'Event Name', column: 'event_name'},
+      {label: 'Repository Name', column: 'repository_name'},
+    ],
+    'Medium Post': [
+      {label: 'Title', column: 'title'},
+      {label: 'Summary', column: 'summary'},
+      {label: 'Category', column: 'category'},
+      {label: 'Keywords', column: 'keywords'}        
+    ],
+    'Stack Overflow Answer': [
+      {label: 'Accepted', column: 'accepted'},
+      {label: 'Title', column: 'title'},
+      {label: 'Tags', column: 'tags'},
+      {label: 'Keywords', column: 'keywords'}
+    ],
+    'Twitter Status': [
+      {label: 'Body', column: 'full_text'},
+      {label: 'Hashtags', column: 'hashtags'},
+      {label: 'Mentions', column: 'mentions'},
+      {label: 'URLs', column: 'urls'}
+    ],
+    'YouTube Video': [
+      {label: 'Title', column: 'title'},
+      {label: 'Duration (sec)', column: 'duration'},
+      {label: 'Summary', column: 'summary'}
+    ]
+  } );
+} );
+
 // Read single record by ID
 router.get( '/:id', async ( req, res ) => {
   let record = await req.db

@@ -174,7 +174,17 @@ router.get( '/', async ( req, res ) => {
   )
   .from( 'BlogPost' )
   .leftJoin( 'Blog', 'BlogPost.blog_id', 'Blog.id' )
-  .orderBy( 'BlogPost.published_at' );
+  .orderBy( 'BlogPost.published_at' )
+  .modify( ( builder ) => {
+    if( req.query.hasOwnProperty( 'days' ) ) {
+      let days = parseInt( req.query.days );
+      
+      let start = new Date();
+      start.setDate( start.getDate() - days );
+
+      builder.where( 'BlogPost.published_at', '>', start );
+    }
+  } );
 
   for( let r = 0; r < records.length; r++ ) {
     if( records[r].category === null ) {
