@@ -9,6 +9,82 @@ router.get( '/test', ( req, res ) => {
   res.json( {reach: 'Test'} );
 } );
 
+// Entities
+// For reporting
+router.get( '/entities', ( req, res ) => {
+  res.json( [
+    {label: 'Blog Post', table: 'BlogPost', parent: 'Blog', join: 'blog_id', contributed: 'published_at'},
+    {label: 'Dev.to Post', table: 'DevPost', parent: 'Dev', join: 'dev_id', contributed: 'published_at' },
+    {label: 'GitHub Account', table: 'GitHub', parent: null, join: null, contributed: null},
+    {label: 'GitHub Event', table: 'GitHubEvent', parent: 'GitHub', join: 'github_id', contributed: 'published_at'},
+    {label: 'Medium Account', table: 'Medium', parent: null, join: null, contributed: null},      
+    {label: 'Medium Post', table: 'MediumPost', parent: 'Medium', join: 'medium_id', contributed: 'published_at'},
+    {label: 'Stack Overflow Account', table: 'StackOverflow', parent: null, join: null, contributed: null},                  
+    {label: 'Stack Overflow Answer', table: 'StackOverflowAnswer', parent: 'StackOverflow', join: 'so_id', contributed: 'active_at'},            
+    {label: 'Twitter Account', table: 'Twitter', parent: null, join: null, contributed: null},
+    {label: 'Twitter Status', table: 'TwitterStatus', parent: 'Twitter', join: 'twitter_id', contributed: 'published_at'},
+    {label: 'YouTube Video', table: 'YouTubeVideo', parent: 'YouTube', join: 'youtube_id', contributed: 'published_at'}
+  ] );
+} );
+
+// Fields
+// For reporting
+router.get( '/fields', ( req, res ) => {
+  res.json( {
+    'Blog Post': [
+      {label: 'Post', column: 'title'}
+    ],
+    'Dev.to Post': [
+      {label: 'Likes', column: 'likes'},
+      {label: 'Post', column: 'title'},        
+      {label: 'Reading', column: 'reading'},
+      {label: 'Unicorn', column: 'unicorn'}        
+    ],
+    'GitHub Account': [
+      {label: 'Followers', column: 'followers'},
+      {label: 'Following', column: 'following'},        
+      {label: 'Gists', column: 'gists'},
+      {label: 'Repositories', column: 'repositories'}
+    ],
+    'GitHub Event': [
+      {label: 'Event', column: 'event_name'}
+    ],
+    'Medium Account': [
+      {label: 'Followed By', column: 'followed_by'},        
+      {label: 'Following', column: 'following'}
+    ],
+    'Medium Post': [
+      {label: 'Claps', column: 'claps'},        
+      {label: 'Post', column: 'title'}
+    ],
+    'Stack Overflow Account': [
+      {label: 'Accept Rate', column: 'accept_rate'},
+      {label: 'Reputation', column: 'reputation'}
+    ],
+    'Stack Overflow Answer': [
+      {label: 'Answer', column: 'title'},
+      {label: 'Score', column: 'score'},
+      {label: 'Views', column: 'views'}
+    ],
+    'Twitter Account': [
+      {label: 'Favorites', column: 'favorites'},
+      {label: 'Followers', column: 'followers'},
+      {label: 'Friends', column: 'friends'},
+      {label: 'Status Count', column: 'favorites'}
+    ],
+    'Twitter Status': [
+      {label: 'Favorite', column: 'favorite'},
+      {label: 'Retweet', column: 'retweet'},
+      {label: 'Status', column: 'full_text'}
+    ],
+    'YouTube Video': [
+      {label: 'Stars', column: 'stars'},        
+      {label: 'Video', column: 'title'},
+      {label: 'Views', column: 'views'}
+    ]
+  } );
+} );
+
 // Read single record by ID
 router.get( '/:id', async ( req, res ) => {
   let record = await req.db

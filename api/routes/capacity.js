@@ -10,7 +10,7 @@ router.get( '/test', ( req, res ) => {
 } );
 
 // Read supported entities
-router.get( '/entities', async ( req, res ) => {
+router.get( '/entities', ( req, res ) => {
   res.json( [
     {label: 'Blog Post', path: '/blog/post', description: 'title', link: 'link', contributed: 'published_at'},
     {label: 'Dev.to Post', path: '/dev/post', description: 'title', link: 'link', contributed: 'published_at'},

@@ -143,7 +143,7 @@ export default new Vuex.Store( {
       context.commit( 'SET_LEVELS', levels );      
       */
 
-      let report = await Reports.orbit( context.getters.TOKEN );
+      let report = await Reports.orbit( context.getters.ACCOUNT );
       context.commit( 'SET_REPORT', report );      
     },
     SET_ACCOUNT: function( context, account ) {

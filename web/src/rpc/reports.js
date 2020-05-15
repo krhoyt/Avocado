@@ -1,11 +1,6 @@
 export default {
-  async orbit( token ) {
-    return await fetch( `${process.env.VUE_APP_API}/reports/orbit`, {
-      method: 'GET',
-      headers: {
-        'X-Avocado': token
-      }
-    } )
+  async orbit( account ) {
+    return await fetch( `/data/orbit-${account}.json` )
     .then( ( response ) => response.json() );
   }
 }
