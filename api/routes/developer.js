@@ -661,7 +661,7 @@ router.post( '/', async ( req, res ) => {
     updated_at: new Date(),
     account_id: req.account.id,
     account_uuid: req.account.uuid,
-    level_uuid: req.body.level_id,
+    level_uuid: req.body.hasOwnProperty( 'level_id' ) ? req.body.level_id : null,
     name: req.body.name,
     email: req.body.email,
     title: req.body.title,
