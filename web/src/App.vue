@@ -8,60 +8,88 @@
       @logout="logout"
       @menu="menu = !menu"/>
 
-    <Members
-      v-show="feature === 'community'"/>
-    <Capacity
-      v-show="feature === 'activity'"/>
-    <Reach
-      v-show="feature === 'reach'"/>      
-    <Report
-      v-show="feature === 'report'"/>      
-    <PickList
-      v-show="feature === 'list'"/>
-    <Map
-      v-show="feature === 'map'"/>
+    <Box
+      direction="row"
+      :grow="1"
+      v-show="feature != 'login'">
+      <Menu
+        @change="feature = $event"/>
+      <Members
+        v-show="feature === 'members'"/>
+      <Report
+        v-show="feature === 'reports'"/>        
+      <Capacity
+        v-show="feature === 'types'"/>
+      <Reach
+        v-show="feature === 'elements'"/>
+      <Level
+        v-show="feature === 'levels'"/>        
+      <Color
+        v-show="feature === 'colors'"/>
+      <Language
+        v-show="feature === 'languages'"/>
+      <Organization
+        v-show="feature === 'organizations'"/>
+      <Relationship
+        v-show="feature === 'relationships'"/>
+      <Role
+        v-show="feature === 'roles'"/>
+      <Situation
+        v-show="feature === 'situations'"/>
+      <Skill
+        v-show="feature === 'skills'"/>
+    </Box>
+
     <Login
       @login="login( $event )"
       v-show="feature === 'login'"/>
-
-    <FeatureMenu
-      @change="change( $event )"
-      @dismiss="menu = false"
-      v-show="menu"/>
 
   </Box>
 </template>
 
 <script>
 import Box from './containers/Box.vue';
-import Capacity from './manager/Capacity.vue';
-import FeatureMenu from './manager/FeatureMenu.vue';
+import Capacity from './manager/rules/Capacity.vue';
+import Color from './manager/resources/Color.vue';
 import Header from './manager/Header.vue';
+import Language from './manager/resources/Language.vue';
+import Level from './manager/rules/Level.vue';
 import Login from './manager/Login.vue';
 import Map from './manager/Map.vue';
-import Members from './manager/members/Members.vue';
-import Reach from './manager/Reach.vue';
+import Members from './manager/Members.vue';
+import Menu from './manager/Menu.vue';
+import Organization from './manager/resources/Organization.vue';
+import Reach from './manager/rules/Reach.vue';
+import Relationship from './manager/resources/Relationship.vue';
 import Report from './manager/Report.vue';
-import PickList from './manager/picklist/PickList.vue';
+import Role from './manager/resources/Role.vue';
+import Situation from './manager/resources/Situation.vue';
+import Skill from './manager/resources/Skill.vue';
 
 export default {
   name: 'App',
   components: {
     Box,
     Capacity,
-    FeatureMenu,
+    Color,
     Header,
+    Language,
+    Level,
     Login,
     Map,
-    Members,    
-    PickList,
+    Members,
+    Menu,
+    Organization,
     Reach,
-    Report    
+    Relationship,
+    Report,
+    Role,
+    Situation,
+    Skill
   },
   data: function() {
     return {
-      feature: 'login',
-      menu: false
+      feature: 'login'
     };
   },
   computed: {
@@ -72,11 +100,10 @@ export default {
   methods: {
     change: function( tag ) {
       this.feature = tag;
-      this.menu = false;
     },
     login: function() {
       this.$store.dispatch( 'LOAD' );
-      this.feature = 'community';      
+      this.feature = 'members';
     },
     logout: function() {
       this.feature = 'login';
@@ -103,7 +130,7 @@ body {
 section {
   display: flex;
   flex-basis: 0;
-  flex-direction: row;  
+  flex-direction: row;
   flex-grow: 1;
 }
 

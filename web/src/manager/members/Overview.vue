@@ -40,7 +40,9 @@
       :margin-left="16"
       :margin-right="16">
       <TagInput
+        :basis="0"
         @change="organization = $event.value"
+        :grow="1"
         helper="Company name and/or team nomenclature"
         label="Organization"
         labelField="name"
@@ -54,7 +56,9 @@
       <Spacer
         :width="16"/>
       <TagInput
+        :basis="0"
         @change="relationship = $event.value"
+        :grow="1"
         helper="Business connection between stakeholders"
         label="Relationship"
         labelField="name"

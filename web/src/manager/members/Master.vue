@@ -2,9 +2,17 @@
   <Box
     background="#f4f4f4"
     :width="325">
-    <Search
-      @clear="search = null"
-      v-model="search"/>
+    <Box
+      direction="row">
+      <Search
+        @clear="search = null"
+        v-model="search"/>
+      <Button
+        icon="/img/add.svg"
+        title="Add member">
+        Add
+      </Button>
+    </Box>
     <List
       @change="select( $event.item )"
       :data="filter"
@@ -16,6 +24,7 @@
 
 <script>
 import Box from '../../containers/Box.vue';
+import Button from '../../controls/Button.vue';
 import Label from '../../controls/Label.vue';
 import List from '../../controls/List.vue';
 import Search from '../../controls/Search.vue';
@@ -24,6 +33,7 @@ export default {
   name: 'Master',
   components: {
     Box,
+    Button,
     Label,
     List,
     Search

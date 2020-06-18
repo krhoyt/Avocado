@@ -1,0 +1,44 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 🥑 Avocado
+  description: Community management for developer relations professionals.
+  contact:
+    email: parkerkrhoyt@gmail.com
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+- url: https://avocado.dev/api
+security:
+- ApiKeyAuth: []
+tags:
+- name: 📒 Account
+  description: Account ownership of data sets
+- name: 🔒 Authenticate
+  description: Login to third-party providers  
+paths:
+  /account:
+    $ref: account.yaml#/paths/~1account
+  /account/{id}:
+    $ref: account.yaml#/paths/~1account~1{id}
+  /account/{id}/token:
+    $ref: account.yaml#/paths/~1account~1{id}~1token
+  /account/email/{email}:
+    $ref: account.yaml#/paths/~1account~1email~1{email}
+  /account/token/{token}:
+    $ref: account.yaml#/paths/~1account~1token~1{token}
+  /authenticate/github:
+    $ref: authenticate.yaml#/paths/~1authenticate~1github    
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Avocado
+  schemas:
+    Account:
+      $ref: account.yaml#/components/schemas/Account

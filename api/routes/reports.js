@@ -18,6 +18,36 @@ router.get( '/test', ( req, res ) => {
   res.json( {reports: 'Test'} );
 } );
 
+// Directory
+// Including geolocation data
+router.get( '/directory', async ( req, res ) => {
+  const developers = await req.db
+  .select(
+    'Developer.uuid AS id', 
+    'Developer.name',
+    'Developer.email',
+    'Developer.location',
+    'Developer.latitude',
+    'Developer.longitude',
+    'Developer.country'
+  )
+  .from( 'Developer' )
+  .orderBy( 'Developer.name' );
+
+  for( let d = 0; d < developers.length; d++ ) {
+    developers[d].roles = await req.db
+    .select( 'Role.name' )
+    .from( 'Role' )
+    .leftJoin( 'DeveloperRole', 'DeveloperRole.role_id', 'Role.id' )
+    .leftJoin( 'Developer', 'Developer.id', 'DeveloperRole.developer_id' )
+    .where( 'Developer.uuid', developers[d].id )
+    .orderBy( 'Role.name' );
+    developers[d].area = developers[d].roles.length > 0 ? developers[d].roles[0] : null;
+  }
+
+  res.json( developers );
+} );
+
 // Orbit
 router.get( '/orbit', async ( req, res ) => {
   let days = 30;
@@ -249,36 +279,6 @@ router.get( '/orbit', async ( req, res ) => {
     } else if( developers[d].love >= 9 && developers[d].love <= 10 ) {
       developers[d].level = 1;
     }
-  }
-
-  res.json( developers );
-} );
-
-// Directory
-// Including geolocation data
-router.get( '/directory', async ( req, res ) => {
-  const developers = await req.db
-  .select(
-    'Developer.uuid AS id', 
-    'Developer.name',
-    'Developer.email',
-    'Developer.location',
-    'Developer.latitude',
-    'Developer.longitude',
-    'Developer.country'
-  )
-  .from( 'Developer' )
-  .orderBy( 'Developer.name' );
-
-  for( let d = 0; d < developers.length; d++ ) {
-    developers[d].roles = await req.db
-    .select( 'Role.name' )
-    .from( 'Role' )
-    .leftJoin( 'DeveloperRole', 'DeveloperRole.role_id', 'Role.id' )
-    .leftJoin( 'Developer', 'Developer.id', 'DeveloperRole.developer_id' )
-    .where( 'Developer.uuid', developers[d].id )
-    .orderBy( 'Role.name' );
-    developers[d].area = developers[d].roles.length > 0 ? developers[d].roles[0] : null;
   }
 
   res.json( developers );

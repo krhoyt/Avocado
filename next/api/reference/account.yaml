@@ -1,0 +1,300 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: 📒 Account
+  description: Paths and components
+  contact:
+    email: parkerkrhoyt@gmail.com  
+  license:
+    name: MIT
+externalDocs:
+  description: Find out more about Avocado
+  url: http://kevinhoyt.com
+servers:
+- url: http://localhost:3000/api
+- url: https://avocado.dev/api
+tags:
+- name: 📒 Account
+  description: Account ownership of data sets
+paths:
+  /account:
+    get:
+      tags:
+      - 📒 Account
+      summary: Read all available accounts
+      operationId: getAccounts
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+                    email:
+                      type: string
+                      example: thedude@biglebowski.com
+                    token:
+                      type: string
+                      format: uuid
+    post:
+      tags:
+      - 📒 Account
+      summary: Create a new account
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: thedude@biglebowski.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  email:
+                    type: string
+                    example: thedude@biglebowski.com
+                  token:
+                    type: string
+                    format: uuid
+  /account/{id}:        
+    parameters:
+    - name: id
+      in: path
+      description: ID of a specific account
+      required: true
+      schema:
+        type: string
+        format: uuid      
+    get:
+      tags:
+      - 📒 Account
+      summary: Read specific account by ID
+      operationId: getAccountByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  email:
+                    type: string
+                    example: thedude@biglebowski.com
+                  token:
+                    type: string
+                    format: uuid                
+    put:
+      tags:
+      - 📒 Account
+      summary: Update specific account by ID
+      operationId: updateAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: thedude@biglebowski.com
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  email:
+                    type: string
+                    example: thedude@biglebowski.com
+                  token:
+                    type: string
+                    format: uuid             
+    delete:
+      tags:
+      - 📒 Account
+      summary: Delete specific account by ID
+      operationId: deleteAccountByID
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid  
+  /account/{id}/token:
+    parameters:
+    - name: id
+      in: path
+      description: ID of a specific account
+      required: true
+      schema:
+        type: string
+        format: uuid   
+    patch: 
+      tags:
+      - 📒 Account
+      summary: Refresh the token for a given account
+      operationId: accountRefreshToken
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    format: uuid
+  /account/email/{email}:
+    parameters:
+    - name: email
+      in: path
+      description: Email of a specific account
+      required: true
+      schema:
+        type: string
+        example: thedude@biglebowski.com   
+    get: 
+      tags:
+      - 📒 Account
+      summary: Read specific account by email
+      operationId: getAccountByEmail
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  email:
+                    type: string
+                    example: thedude@biglebowski.com
+                  token:
+                    type: string
+                    format: uuid
+  /account/token/{token}:
+    parameters:
+    - name: token
+      in: path
+      description: Token of a specific account
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get: 
+      tags:
+      - 📒 Account
+      summary: Read specific account by token
+      operationId: getAccountByToken
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                    format: date-time
+                  email:
+                    type: string
+                    example: thedude@biglebowski.com
+                  token:
+                    type: string
+                    format: uuid                    
+components:
+  schemas:
+    Account:
+      required:
+      - email
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        email:
+          type: string
+          example: thedude@biglebowski.com
+        token:
+          type: string
+          format: uuid

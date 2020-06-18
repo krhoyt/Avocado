@@ -1,0 +1,187 @@
+<html>
+<head>
+
+<title>Community Manager</title>
+
+<link rel="icon" href="avocado.ico">
+
+<style>
+  body {
+    background: #224106;
+    background: linear-gradient( 25deg, #224106 0%, #5e7446 50%, #224106 100% );    
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    /*
+     * IBM Developer
+     * background: #282828;
+     */
+  }
+
+  button.signin {
+    display: none;
+  }
+
+  #github {
+    background: none;
+    background-image: url( /img/github.svg );
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border: solid 1px #ffffff;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    height: 40px;
+    line-height: 20px;
+    margin: 0;
+    outline: solid 1px transparent;
+    outline-offset: -3px;
+    padding: 0 12px 0 12px;
+    text-align: left;
+    width: 300px;
+  }
+
+  #github:focus {
+    outline: solid 1px #224106;    
+  }
+
+  #github:hover {
+    background-color: #ffffff;
+    background-image: url( /img/github-avocado.svg );
+    color: #224106;
+  }
+</style>
+
+</head>
+<body>
+
+<button id="github" class="signin">Sign in with GitHub</button>
+<button id="twitter" class="signin">Sign in with Twitter</button>
+<button id="logout" class="signin">Logout</button>
+
+<script>
+const state = {
+  account: null
+};
+
+class Avocado {
+  constructor() {
+    this.$github = document.querySelector( '#github' );
+    this.$github.addEventListener( 'click', ( evt ) => this.doGitHub( evt ) );
+
+    this.$twitter = document.querySelector( '#twitter' );
+    this.$twitter.addEventListener( 'click', ( evt ) => this.doTwitter( evt ) );    
+
+    this.$logout = document.querySelector( '#logout' );
+    this.$logout.addEventListener( 'click', ( evt ) => this.doLogout( evt ) );
+
+    // Is user logged in
+    const account = window.localStorage.getItem( 'account' );
+
+    // Nope
+    if( account === null ) {
+      // Show login
+      this.$github.classList.remove( 'signin' );
+      this.$twitter.classList.remove( 'signin' );
+    } else {
+      // Yup
+      // Load account details
+      this.load( account );
+    }
+  }
+
+  // Load account details
+  // For account already logged in
+  async load( account ) {
+    // Load
+    account = await fetch( `/api/account/${account}` )
+    .then( ( response ) => response.json() );
+
+    // Store in state
+    state.account = account;
+
+    // Store in ... storage
+    window.localStorage.setItem( 'account', state.account.id );
+
+    // Show logout
+    // Hide login
+    this.$logout.classList.remove( 'signin' );
+    this.$github.classList.add( 'signin' );  
+  }
+
+  login( account ) {
+    // Place in state
+    // Store in local storage
+    // Keep logged in
+    state.account = account;
+    window.localStorage.setItem( 'account', account.id );
+
+    // Show logout
+    // Hide login
+    this.$logout.classList.remove( 'signin' );
+    this.$github.classList.add( 'signin' ); 
+  }
+
+  // Authenticate (GitHub)
+  async doGitHub( evt ) {
+    const id = await fetch( '/api/authenticate/github' )
+    .then( ( response ) => response.json() );
+
+    const top = window.top.outerHeight / 2 + window.top.screenY - ( 480 / 2 );
+    const left = window.top.outerWidth / 2 + window.top.screenX - ( 640 / 2 );    
+
+    window.open(
+      `https://github.com/login/oauth/authorize?scope=user:email&client_id=${id}`,
+      '_blank',
+      `height=480,location=no,menubar=no,status=no,toolbar=no,width=640,left=${left},top=${top}`
+    );
+  }
+
+   // Authenticate (Twitter)
+   async doTwitter( evt ) {
+    const id = await fetch( '/api/authenticate/github' )
+    .then( ( response ) => response.json() );
+
+    const top = window.top.outerHeight / 2 + window.top.screenY - ( 480 / 2 );
+    const left = window.top.outerWidth / 2 + window.top.screenX - ( 640 / 2 );    
+
+    window.open(
+      `https://github.com/login/oauth/authorize?scope=user:email&client_id=${id}`,
+      '_blank',
+      `height=480,location=no,menubar=no,status=no,toolbar=no,width=640,left=${left},top=${top}`
+    );
+  } 
+
+
+
+  // Log out
+  doLogout( evt ) {
+    // Clear local storage
+    // Clear state
+    window.localStorage.clear();
+    state.account = null;
+
+    // Hide logout
+    // Show login
+    this.$logout.classList.add( 'signin' );
+    this.$github.classList.remove( 'signin' ); 
+  }  
+}
+
+// Main
+const application = new Avocado();
+
+// Callback from login window
+// Directs back into application
+function login( data ) {
+  application.login( data );
+}  
+</script>
+
+</body>
+</html>

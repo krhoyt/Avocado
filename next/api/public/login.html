@@ -1,0 +1,37 @@
+<html>
+<head>
+
+<title>Login</title>
+
+</head>  
+<body>
+
+<script>
+// Authenticated
+const params = new URLSearchParams( window.location.search );
+
+// Called back
+if( params.has( 'code' ) ) {
+  // Login
+  fetch( '/api/authenticate/github', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify( {
+      code: params.get( 'code' )
+    } )
+  } )
+  .then( ( response ) => response.json() )
+  .then( ( data ) => {
+    // Send back to application
+    window.opener.login( data );
+
+    // All done!
+    window.close();
+  } );
+}  
+</script>
+
+</body>
+</html>

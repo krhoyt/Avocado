@@ -46,10 +46,12 @@
         :disabled="selected === null ? true : false"
         :label="social_count"
         :readonly="readonly"/>
+        <!--
       <Activity
         :disabled="selected === null ? true : false"      
         :label="activity_count"
         :readonly="readonly"/>
+        -->
       <Note
         :disabled="selected === null ? true : false"      
         :label="notes_count"
@@ -60,23 +62,10 @@
     <Box
       direction="row"
       :height="47"
+      :margin-bottom="16"
+      :margin-left="16"
+      :margin-right="16"
       :margin-top="16">
-      <Button
-        @click.native="add"
-        icon="/img/add.svg"
-        v-show="!editing">
-        Add
-      </Button>      
-      <Button
-        @click.native="remove"
-        disabled-icon="/img/delete-disabled.svg"
-        icon="/img/delete.svg"
-        kind="danger"
-        v-show="editing && selected !== null">
-        Delete
-      </Button>
-      <Spacer
-        :grow="1"/>
       <Button
         @click.native="cancel"
         kind="secondary"
@@ -96,6 +85,21 @@
         icon="/img/save.svg"
         v-show="editing">
         Save
+      </Button>      
+      <Spacer
+        :grow="1"/>
+      <Button
+        icon="/img/export.svg"
+        kind="ghost"
+        title="Export vCard"
+        v-show="selected !== null && !editing"/>
+      <Button
+        @click.native="remove"
+        disabled-icon="/img/delete-disabled.svg"
+        icon="/img/delete.svg"
+        kind="danger"
+        v-show="editing && selected !== null">
+        Delete
       </Button>
     </Box>
 

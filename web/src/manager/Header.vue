@@ -5,13 +5,15 @@
     direction="row"
     :height="47">
 
+    <!--
     <button 
       class="menu" 
       @click="$emit( 'menu' )"
       title="Menu"
       v-show="decorate">
     </button>
-
+    -->
+    
     <Label 
       color="#ffffff"
       :padding-left="16"
@@ -25,18 +27,26 @@
       Community Manager
     </Label>
 
+    <!--
     <button 
       class="token" 
       @click="$emit( 'token' )"
       title="API token"
       v-show="decorate">
     </button>    
+    -->
+
+    <div v-show="decorate" title="Account" style="width: 28px; height: 28px; border: solid 1px #ffffff; border-radius: 30px; margin-right: 16px; background-size: 22px; background-position: center bottom; background-repeat: no-repeat; background-image: url( /img/user.svg );">
+    </div>
+
+    <!--
     <button 
       class="logout" 
       @click="$emit( 'logout' )"
       title="Log out"
       v-show="decorate">
     </button>
+    -->
     
   </Box>
 </template>

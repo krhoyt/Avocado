@@ -51,7 +51,8 @@
         :placeholder="contents"
         :readonly="readonly"
         ref="field"
-        v-model="content"/>
+        v-model="content"
+        v-show="!disabled && !readonly"/>
 
       <!-- TODO: Make an actual menu component -->
       <!-- TODO: Limit the length of the menu -->
@@ -268,6 +269,7 @@ div.tagarea {
   flex-direction: row;
   flex-grow: 1;
   margin: 0 0 19px 0;
+  min-height: 40px;
   outline: solid 2px transparent;  
   outline-offset: -2px;
   padding: 0 0 0 16px;

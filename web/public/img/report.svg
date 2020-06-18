@@ -1,1 +1,8 @@
-<svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform;"><rect width="8" height="2" x="10" y="18"></rect><rect width="12" height="2" x="10" y="13"></rect><rect width="5" height="2" x="10" y="23"></rect><path d="M25,5H22V4a2,2,0,0,0-2-2H12a2,2,0,0,0-2,2V5H7A2,2,0,0,0,5,7V28a2,2,0,0,0,2,2H25a2,2,0,0,0,2-2V7A2,2,0,0,0,25,5ZM12,4h8V8H12ZM25,28H7V7h3v3H22V7h3Z"></path><title>Report</title></svg>
+<svg focusable="false" preserveAspectRatio="xMidYMid meet" 
+  xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform;">
+  <rect fill="#ffffff" width="8" height="2" x="10" y="18"></rect>
+  <rect fill="#ffffff" width="12" height="2" x="10" y="13"></rect>
+  <rect fill="#ffffff" width="5" height="2" x="10" y="23"></rect>
+  <path fill="#ffffff" d="M25,5H22V4a2,2,0,0,0-2-2H12a2,2,0,0,0-2,2V5H7A2,2,0,0,0,5,7V28a2,2,0,0,0,2,2H25a2,2,0,0,0,2-2V7A2,2,0,0,0,25,5ZM12,4h8V8H12ZM25,28H7V7h3v3H22V7h3Z"></path>
+  <title>Report</title>
+</svg>

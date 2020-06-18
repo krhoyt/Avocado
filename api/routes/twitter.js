@@ -25,6 +25,9 @@ router.get( '/timeline/:screen_name', async ( req, res ) => {
       tweet_mode: 'extended'
     },
     json: true      
+  } )
+  .catch( ( err ) => {
+    return [];
   } );
 
   res.json( timeline );

@@ -24,6 +24,12 @@ for twitter in twitters:
   print( 'Load: ' + twitter['id'] )
   req = requests.get( api + '/twitter/timeline/' + twitter['screen_name'] )
   timeline = req.json()
+  
+  # User has blocked access
+  # Never posted a status
+  if len( timeline ) == 0:
+    print( 'Skip: ' + twitter['id'] )
+    continue
 
   # Update account statistics
   user = timeline[0]['user']
@@ -100,15 +106,21 @@ for twitter in twitters:
           if matches == None:
             record = {
               'url': media['media_url_https'],
-              'keywords': None
+              'keywords': []
             }
+
+            # Watson analysis always bombing
+            # Dropping connections
+            # Removing ML analysis temporarily
+            # Not entirely sure it was ever needed
+            # I just thought it was cool at some point
 
             # Analyze image
             # Optional feature
-            if config['WATSON'].getboolean( 'Vision' ) == True:
-              encoded = base64.urlsafe_b64encode( record['url'].encode( 'utf-8' ) )           
-              req = requests.get( api + '/watson/vision/' + str( encoded, 'utf-8' ) )
-              record['keywords'] = req.json()            
+            # if config['WATSON'].getboolean( 'Vision' ) == True:
+            #   encoded = base64.urlsafe_b64encode( record['url'].encode( 'utf-8' ) )           
+            #   req = requests.get( api + '/watson/vision/' + str( encoded, 'utf-8' ) )
+            #   record['keywords'] = req.json()            
 
             # Create media record
             req = requests.post( api + '/media', json = record )
@@ -124,15 +136,22 @@ for twitter in twitters:
 
       print( 'Make: ' + insert['id'] )
     else:
-      matches['favorite'] = record['favorite']
-      matches['retweet'] = record['retweet']
+      # How long since updated
+      # In place to expedite aggregation
+      # Has no impact on Twitter API usage
+      published = iso8601.parse_date( matches['published_at'] ) 
+      now = datetime.now( timezone.utc )
+      duration = now - published
+      days = duration.days
 
-      # Update database
-      # Do not care about date range (like other feed sources)
-      # Data is already provided in timeline request
-      # No additional API usage calls are needed
-      # In that case - update all the things
-      # Items will stop getting updated once they fall off users timeline
-      req = requests.put( api + '/twitter/status/' + matches['id'], json = matches )
+      # Update status statistics
+      # If still recent status
+      if days < 7:
+        matches['favorite'] = record['favorite']
+        matches['retweet'] = record['retweet']
+
+        requests.put( api + '/twitter/status/' + matches['id'], json = matches )
       
-      print( 'Edit: ' + matches['id'] )
+        print( 'Edit: ' + matches['id'] )        
+      else:
+        print( 'None:'  + matches['id'] )
